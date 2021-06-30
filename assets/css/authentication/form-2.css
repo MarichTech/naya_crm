@@ -16,7 +16,8 @@ body {
   overflow: auto;
   margin: 0;
   padding: 0;
-  background-color: #0e1726; }
+  background-color: #0e1726;
+  max-width: 100%; }
 
 .form-form {
   width: 50%;
@@ -90,7 +91,8 @@ body {
       margin-top: 0; }
     .form-form .form-form-wrap p.signup-link a {
       color: #009688;
-      border-bottom: 1px solid; }
+      border-bottom: 1px solid;
+      font-weight: 600; }
   .form-form .form-form-wrap form .field-wrapper {
     width: 100%; }
     .form-form .form-form-wrap form .field-wrapper.input {
@@ -117,7 +119,7 @@ body {
         font-size: 14px;
         color: #009688;
         padding-left: 31px;
-        font-weight: 100; }
+        font-weight: 600; }
       .form-form .form-form-wrap form .field-wrapper.terms_condition a {
         color: #bfc9d4; }
     .form-form .form-form-wrap form .field-wrapper svg.feather-user {

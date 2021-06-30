@@ -10,7 +10,8 @@
 */
 .maintanence-hero-img img {
   width: 62px;
-  height: 62px; }
+  height: 62px;
+  border-radius: 5px; }
 
 body.maintanence {
   background-color: #e0e6ed;

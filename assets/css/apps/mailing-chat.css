@@ -8,6 +8,12 @@
 			@Import	Mixins
 	===============================
 */
+.main-container {
+  min-height: auto; }
+
+.layout-px-spacing {
+  min-height: auto !important; }
+
 .wrapper {
   position: relative;
   left: 50%;
@@ -20,10 +26,11 @@
 
 .chat-system {
   display: flex;
-  height: calc(100vh - 104px);
+  height: calc(100vh - 197px);
   -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px; }
   .chat-system .hamburger {
     display: none; }
   .chat-system .user-list-box {
@@ -64,7 +71,7 @@
       margin: auto;
       width: 100%;
       overflow: auto;
-      height: calc(100vh - 177px); }
+      height: calc(100vh - 270px); }
       .chat-system .user-list-box .people .person {
         position: relative;
         width: 100%;
@@ -124,7 +131,7 @@
   background-image: url(../../img/bg.png);
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
-  height: calc(100vh - 104px); }
+  height: calc(100vh - 197px); }
   .chat-system .chat-box .chat-not-selected {
     display: flex;
     height: 100%;
@@ -148,7 +155,7 @@
     display: none;
     position: absolute;
     width: 100%;
-    height: calc(100vh - 104px);
+    height: calc(100vh - 197px);
     z-index: 4 !important;
     opacity: 0;
     transition: all 0.5s ease-in-out;
@@ -230,7 +237,7 @@
     display: none;
     position: absolute;
     width: 100%;
-    height: calc(100vh - 104px);
+    height: calc(100vh - 197px);
     z-index: 4 !important;
     opacity: 0;
     transition: all 0.5s ease-in-out;

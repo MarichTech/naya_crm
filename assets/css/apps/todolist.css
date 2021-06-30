@@ -8,6 +8,12 @@
 			@Import	Mixins
 	===============================
 */
+.main-container {
+  min-height: auto; }
+
+.layout-px-spacing {
+  min-height: auto !important; }
+
 /*----------Theme checkbox---------*/
 .new-control {
   position: relative;
@@ -64,6 +70,7 @@
   position: relative;
   display: flex;
   border-radius: 6px;
+  margin-bottom: 10px;
   background: #0e1726;
   -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
@@ -104,6 +111,7 @@
     border: none;
     color: #191e3a;
     bottom: 32px;
+    font-weight: 600;
     left: 17%;
     background-color: #009688;
     box-shadow: none; }
@@ -120,7 +128,7 @@
   .tab-title .todoList-sidebar-scroll {
     position: relative;
     width: 100%;
-    height: calc(100vh - 318px); }
+    height: calc(100vh - 377px); }
   .tab-title .nav-pills .nav-link.active {
     background-color: transparent;
     color: #191e3a;
@@ -158,11 +166,8 @@
     color: #0e1726; }
     .tab-title .nav-pills a.nav-link.active:hover svg {
       color: #0e1726; }
-  .tab-title .nav-pills a.nav-link:hover {
-    /*color: $m-color_9;*/ }
-    .tab-title .nav-pills a.nav-link:hover svg {
-      /*color: $m-color_9;*/
-      fill: rgba(136, 142, 168, 0.258824); }
+  .tab-title .nav-pills a.nav-link:hover svg {
+    fill: rgba(136, 142, 168, 0.258824); }
   .tab-title .nav-pills a.nav-link svg {
     color: #888ea8;
     margin-right: 6px;
@@ -220,7 +225,7 @@
   margin: auto;
   width: 100%;
   overflow: auto;
-  height: calc(100vh - 148px); }
+  height: calc(100vh - 242px); }
 
 .todo-inbox .todo-item {
   cursor: pointer;
@@ -256,7 +261,7 @@
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    max-width: calc(100vw - 730px); }
+    max-width: calc(100vw - 760px); }
   .todo-inbox .todo-item .todo-item-inner:hover .todo-text {
     -webkit-transform: translateY(0) scale(1.01);
     transform: translateY(0) scale(1.01); }
