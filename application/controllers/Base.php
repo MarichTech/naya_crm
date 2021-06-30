@@ -18,6 +18,16 @@ class Base extends CI_Controller
 		$this->load->view('dashboard.php');
 
 	}
+	public function new_quote()
+	{
+		$this->load->view('quotes/generateQuote.php');
+
+	}
+	public function home()
+	{
+		$this->load->view('dashboard.php');
+
+	}
 	public function logout()
 	{
 		//unset all user & session data and redirect to index page
