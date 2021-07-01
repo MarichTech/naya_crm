@@ -117,10 +117,10 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="tables"  data-parent="#topAccordion">
 						<li class="active">
-							<a href="#" > Job Categories </a>
+							<a href="<?php echo base_url(); ?>job_categories" > Job Categories </a>
 						</li>
 						<li class="active">
-							<a href="#" > Job Sub Categories </a>
+							<a href="<?php echo base_url(); ?>job_subcategories" > Job Sub Categories </a>
 						</li>
 					</ul>
 
@@ -136,7 +136,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="uiKit" data-parent="#topAccordion">
 						<li class="active">
-							<a href="#"> Rate Card </a>
+							<a href="<?php echo base_url(); ?>rate_cards"> Rate Cards </a>
 						</li>
 					</ul>
 				</li>
@@ -149,7 +149,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="forms"  data-parent="#topAccordion">
 						<li  class="active">
-							<a href="#"> List Of Materials </a>
+							<a href="<?php echo base_url(); ?>materials"> List Of Materials </a>
 						</li>
 					</ul>
 				</li>
@@ -162,7 +162,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="page"  data-parent="#topAccordion">
 						<li  class="active">
-							<a href="#"> Manage Users </a>
+							<a href="<?php echo base_url(); ?>users"> Manage Staff </a>
 						</li>
 
 					</ul>
@@ -178,7 +178,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="page"  data-parent="#topAccordion">
 						<li  class="active">
-							<a href="#"> Company Settings </a>
+							<a href="<?php echo base_url(); ?>company_settings"> Company Settings </a>
 						</li>
 
 					</ul>

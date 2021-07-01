@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Base extends CI_Controller
 {
@@ -18,21 +18,61 @@ class Base extends CI_Controller
 		$this->load->view('dashboard.php');
 
 	}
+
 	public function new_quote()
 	{
 		$this->load->view('quotes/generateQuote.php');
 
 	}
+
 	public function home()
 	{
 		$this->load->view('dashboard.php');
 
 	}
+
 	public function manage_clients()
 	{
 		$this->load->view('clients/manage_clients.php');
 
 	}
+
+	public function job_categories()
+	{
+		$this->load->view('jobs/job_categories.php');
+
+	}
+
+	public function job_subcategories()
+	{
+		$this->load->view('jobs/job_subcategories.php');
+
+	}
+
+	public function materials()
+	{
+		$this->load->view('jobs/materials.php');
+
+	}
+	public function rate_cards()
+		{
+			$this->load->view('jobs/rate_cards.php');
+
+		}
+
+	public function users()
+	{
+		$this->load->view('users/users.php');
+
+	}
+
+	public function company_settings()
+	{
+		$this->load->view('settings/company_settings.php');
+
+	}
+
+
 	public function logout()
 	{
 		//unset all user & session data and redirect to index page

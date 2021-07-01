@@ -20,6 +20,7 @@
 	<link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
 	<link href="assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/components/tabs-accordian/custom-tabs.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
 	<link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
 	<link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
