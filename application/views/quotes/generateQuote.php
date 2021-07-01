@@ -2,8 +2,8 @@
 <?php $this->load->view('templates/navbar'); ?>
 	<!--  BEGIN CONTENT AREA  -->
 	<div id="content" class="main-content">
-		<div class="container">
-			<div class="container">
+		<div class="">
+			<div class="">
 				<div id="navSection" data-spy="affix" class="nav  sidenav">
 					<div class="sidenav-content">
 						<a href="#wizards_pills" class="active nav-link">New Quote</a>
@@ -38,6 +38,8 @@
 										<h3>Fetch Rate Card</h3>
 									<section> <p>The next and previous buttons help you to navigate through your content.</p> </section>
 										<h3>Enter Quantities</h3>
+									<section> <p>The next and previous buttons help you to navigate through your content.</p> </section>
+										<h3>Add Materials</h3>
 									<section> <p>The next and previous buttons help you to navigate through your content.</p> </section>
 										<h3>Add Notes & Assumptions</h3>
 									<section> <p>The next and previous buttons help you to navigate through your content.</p> </section>
