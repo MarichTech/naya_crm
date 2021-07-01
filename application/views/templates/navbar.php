@@ -100,7 +100,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="components" data-parent="#topAccordion">
 						<li class="active">
-							<a href="#"> Manage Clients </a>
+							<a href="<?php echo base_url(); ?>manage_clients"> Manage Clients </a>
 						</li>
 
 					</ul>

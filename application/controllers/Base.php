@@ -28,6 +28,11 @@ class Base extends CI_Controller
 		$this->load->view('dashboard.php');
 
 	}
+	public function manage_clients()
+	{
+		$this->load->view('clients/manage_clients.php');
+
+	}
 	public function logout()
 	{
 		//unset all user & session data and redirect to index page
