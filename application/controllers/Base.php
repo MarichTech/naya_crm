@@ -71,7 +71,11 @@ class Base extends CI_Controller
 
 	public function users()
 	{
-		$this->load->view('users/users.php');
+		$staff = $this->Data->getStaff();
+		$data = array(
+			'staffers' => $staff
+		);
+		$this->load->view('users/users.php', $data);
 
 	}
 
