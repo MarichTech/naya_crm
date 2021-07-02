@@ -149,6 +149,7 @@
 								<div class="tab-pane fade" id="<?php echo "tab_". $ratecard->id ?>" role="tabpanel">
 									<div class="media">
 										<div class="media-body">
+											<div class="table-responsive mb-4 mt-4">
 											<table id="" class="multi-table table table-hover" style="width:100%">
 												<thead>
 												<tr>
@@ -224,6 +225,7 @@
 												</tr>
 												</tfoot>
 											</table>
+											</div>
 										</div>
 									</div>
 								</div>

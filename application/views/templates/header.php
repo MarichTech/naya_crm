@@ -25,6 +25,9 @@
 	<link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
 	<link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_multiple_tables.css">
 	<link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
+	<link rel="stylesheet" type="text/css" href="plugins/select2/select2.min.css">
+	<link href="assets/css/elements/infobox.css" rel="stylesheet" type="text/css" />
+
 	<style>
 		#formValidate .wizard > .content {min-height: 25em;}
 		#example-vertical.wizard > .content {min-height: 24.5em;}
