@@ -60,7 +60,11 @@ class Base extends CI_Controller
 
 	public function materials()
 	{
-		$this->load->view('jobs/materials.php');
+		$materials = $this->Data->getMaterials();
+		$data = array(
+			'materials' => $materials
+		);
+		$this->load->view('jobs/materials.php', $data);
 
 	}
 	public function rate_cards()
