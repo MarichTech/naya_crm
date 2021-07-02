@@ -24,128 +24,202 @@
 						<div class="widget-header">
 							<div class="row">
 								<div class="col-xl-12 col-md-12 col-sm-12 col-12">
-									<h4>Icon Pills</h4>
+									<h4>Switch Between the Job Type Tab Pills</h4>
 								</div>
 							</div>
 						</div>
 						<div class="widget-content widget-content-area icon-pill">
 
 							<ul class="nav nav-pills mb-3 mt-3" id="icon-pills-tab" role="tablist">
+							<?php
+							$count= 0;
+							foreach ($ratecards as $ratecard ){
+								if($count == 0){ ?>
 								<li class="nav-item">
-									<a class="nav-link active" id="icon-pills-home-tab" data-toggle="pill"
-									   href="#icon-pills-home" role="tab" aria-controls="icon-pills-home"
+									<a class="nav-link active" id="<?php echo "#main_tab_". $ratecard->id ?>" data-toggle="pill"
+									   href="<?php echo "#tab_". $ratecard->id ?>" role="tab" aria-controls="icon-pills-home"
 									   aria-selected="true">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-											 stroke-linecap="round" stroke-linejoin="round"
-											 class="feather feather-home">
-											<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-											<polyline points="9 22 9 12 15 12 15 22"></polyline>
-										</svg>
-										Base Station Installation</a>
+										<?php echo $ratecard->svg; ?>
+										<?php echo $ratecard->subType; ?></a>
 								</li>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-									   aria-haspopup="true" aria-expanded="false">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-											 stroke-linecap="round" stroke-linejoin="round"
-											 class="feather feather-user">
-											<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-											<circle cx="12" cy="7" r="4"></circle>
-										</svg>
-										P2P Installation
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-											 stroke-linecap="round" stroke-linejoin="round"
-											 class="feather feather-chevron-down">
-											<polyline points="6 9 12 15 18 9"></polyline>
-										</svg>
-									</a>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" id="icon-pills-profile-tab1" data-toggle="tab"
-										   href="#icon-pills-profile" role="tab" aria-controls="icon-pills-profile"
-										   aria-selected="false">Action</a>
-										<a class="dropdown-item" id="icon-pills-profile-tab2" data-toggle="tab"
-										   href="#icon-pills-profile2" role="tab" aria-controls="icon-pills-profile2"
-										   aria-selected="false">Another action</a>
-									</div>
-								</li>
-
+							<?php	}else{ ?>
 								<li class="nav-item">
-									<a class="nav-link" id="icon-pills-contact-tab" data-toggle="pill"
-									   href="#icon-pills-contact" role="tab" aria-controls="icon-pills-contact"
-									   aria-selected="false">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-											 stroke-linecap="round" stroke-linejoin="round"
-											 class="feather feather-phone">
-											<path
-												d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-										</svg>
-										VSAT Installation</a>
+									<a class="nav-link" id="<?php echo "#main_tab_". $ratecard->id ?>" data-toggle="pill"
+									   href="<?php echo "#tab_". $ratecard->id ?>" role="tab" aria-controls="icon-pills-home" >
+										<?php echo $ratecard->svg; ?>
+										<?php echo $ratecard->subType; ?></a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-										<svg xmlns="http://www.w3.org/2000/svg"
-											 width="24" height="24" viewBox="0 0 24 24" fill="none"
-											 stroke="currentColor"
-											 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather
-																												  feather-alert-circle">
-											<circle cx="12" cy="12" r="10"></circle>
-											<line x1="12" y1="8" x2="12" y2="12"></line>
-											<line x1="12" y1="16" x2="12" y2="16"></line>
-										</svg>
-										CPE Installation</a>
-								</li>
+							<?php
+								}
+								$count ++ ;
+							}
+							?>
 							</ul>
 							<div class="tab-content" id="icon-pills-tabContent">
-								<div class="tab-pane fade show active" id="icon-pills-home" role="tabpanel"
-									 aria-labelledby="icon-pills-home-tab">
-									<p class="mb-4">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-										nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-									</p>
-
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-										nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-									</p>
-								</div>
-								<div class="tab-pane fade" id="icon-pills-profile" role="tabpanel"
-									 aria-labelledby="icon-pills-profile-tab1">
+								<?php
+							$count= 0;
+							foreach ($ratecards as $ratecard ){
+								if($count == 0){ ?>
+								<div class="tab-pane fade show active" id="<?php echo "tab_". $ratecard->id ?>" role="tabpanel">
 									<div class="media">
-										<img class="mr-3" src="assets/img/90x90.jpg" alt="Generic placeholder image">
 										<div class="media-body">
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-											ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
-											viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-											lacinia congue felis in faucibus.
+									<table id="default-ordering" class="table table-hover" style="width:100%">
+									<thead>
+									<tr>
+										<th>#</th>
+										<th>Description</th>
+										<th>UOM</th>
+										<th>Quantity</th>
+										<th>Proposed Rate</th>
+										<th>Remarks</th>
+										<th>Date Created</th>
+										<th>Action</th>
+									</tr>
+									</thead>
+									<tbody>
+									<?php
+									$i = 1;
+									foreach ($ratecards
+											 as $ratecard){ ?>
+										<tr>
+											<td><?php echo $i ?></td>
+											<td><?php echo $ratecard->description ?></td>
+											<td><?php echo $ratecard->UOM ?></td>
+											<td><?php echo $ratecard->quantity ?></td>
+											<td><?php echo $ratecard->rate ?></td>
+											<td><?php echo $ratecard->remarks ?></td>
+											<td><?php echo $ratecard->date_created ?></td>
+											<td class="text-center">
+												<a href="<?php echo base_url() . 'settings/ratecard/edit/' . $ratecard->id ?>"
+												   class="bs-tooltip" data-toggle="tooltip" data-placement="top"
+												   title="" data-original-title="Edit">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+														 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+														 stroke-width="2" stroke-linecap="round"
+														 stroke-linejoin="round"
+														 class="feather feather-edit-2 p-1 br-6 mb-1">
+														<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+													</svg>
+												</a>
+												<a onclick="confirmDelete('<?php echo base_url() . 'settings/ratecard/delete/' . $ratecard->id ?>')"
+												   href="javascript:;" class="bs-tooltip" data-toggle="tooltip"
+												   data-placement="top" title="" data-original-title="Delete">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+														 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+														 stroke-width="2" stroke-linecap="round"
+														 stroke-linejoin="round"
+														 class="feather feather-trash p-1 br-6 mb-1">
+														<polyline points="3 6 5 6 21 6"></polyline>
+														<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+													</svg>
+												</a>
+												</ul>
+											</td>
+										</tr>
+										<?php
+										$i++;
+									$count ++ ;
+									}?>
+										</tbody>
+										<tfoot>
+										<tr>
+											<th>#</th>
+											<th>Description</th>
+											<th>UOM</th>
+											<th>Quantity</th>
+											<th>Proposed Rate</th>
+											<th>Remarks</th>
+											<th>Date Created</th>
+											<th class="invisible"></th>
+										</tr>
+										</tfoot>
+										</table>
 										</div>
 									</div>
 								</div>
-
-								<div class="tab-pane fade" id="icon-pills-profile2" role="tabpanel"
-									 aria-labelledby="icon-pills-profile-tab2">
-									<p class="">
-										Duis aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-									</p>
+								<?php
+									}else{ ?>
+								<div class="tab-pane fade" id="<?php echo "tab_". $ratecard->id ?>" role="tabpanel">
+									<div class="media">
+										<div class="media-body">
+											<table id="" class="multi-table table table-hover" style="width:100%">
+												<thead>
+												<tr>
+													<th>#</th>
+													<th>Description</th>
+													<th>UOM</th>
+													<th>Quantity</th>
+													<th>Proposed Rate</th>
+													<th>Remarks</th>
+													<th>Date Created</th>
+													<th>Action</th>
+												</tr>
+												</thead>
+												<tbody>
+												<?php
+												$i = 1;
+												foreach ($ratecards
+														 as $ratecard){ ?>
+													<tr>
+														<td><?php echo $i ?></td>
+														<td style=" white-space: nowrap;"><?php echo $ratecard->description ?></td>
+														<td><?php echo $ratecard->UOM ?></td>
+														<td><?php echo $ratecard->quantity ?></td>
+														<td><?php echo $ratecard->rate ?></td>
+														<td><?php echo $ratecard->remarks ?></td>
+														<td><?php echo $ratecard->date_created ?></td>
+														<td class="text-center">
+															<a href="<?php echo base_url() . 'settings/ratecard/edit/' . $ratecard->id ?>"
+															   class="bs-tooltip" data-toggle="tooltip" data-placement="top"
+															   title="" data-original-title="Edit">
+																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+																	 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+																	 stroke-width="2" stroke-linecap="round"
+																	 stroke-linejoin="round"
+																	 class="feather feather-edit-2 p-1 br-6 mb-1">
+																	<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+																</svg>
+															</a>
+															<a onclick="confirmDelete('<?php echo base_url() . 'settings/ratecard/delete/' . $ratecard->id ?>')"
+															   href="javascript:;" class="bs-tooltip" data-toggle="tooltip"
+															   data-placement="top" title="" data-original-title="Delete">
+																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+																	 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+																	 stroke-width="2" stroke-linecap="round"
+																	 stroke-linejoin="round"
+																	 class="feather feather-trash p-1 br-6 mb-1">
+																	<polyline points="3 6 5 6 21 6"></polyline>
+																	<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+																</svg>
+															</a>
+															</ul>
+														</td>
+													</tr>
+													<?php
+													$i++;
+													$count ++ ;
+												}?>
+												</tbody>
+												<tfoot>
+												<tr>
+													<th>#</th>
+													<th>Description</th>
+													<th>UOM</th>
+													<th>Quantity</th>
+													<th>Proposed Rate</th>
+													<th>Remarks</th>
+													<th>Date Created</th>
+													<th class="invisible"></th>
+												</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
 								</div>
+							<?php
+								}
+							}?>
 
-								<div class="tab-pane fade" id="icon-pills-contact" role="tabpanel"
-									 aria-labelledby="icon-pills-contact-tab">
-									<p class="dropcap  dc-outline-primary">
-										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-										aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-									</p>
-								</div>
 							</div>
 
 

@@ -61,7 +61,7 @@ class Data_model extends CI_Model
 	 */
 	public function getClients($params = "")
 	{
-		$this->db->select('clients.client_id,clients.name, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
+		$this->db->select('clients.client_id,clients.name, clients.email, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
 		clients.address, clients.logo as file_name, clients.date_added, clients.last_modified');
 		$this->db->from('clients');
 		if (($params != '')) {
@@ -192,10 +192,10 @@ class Data_model extends CI_Model
 	 * @return object[]
 	 */
 	public function getRateCard($params = ""){
-		$this->db->select('materials.id,materials.description, materials.unit_of_measurement as UOM, quantity, proposed_rate as rate, remarks,
-		materials.sub_cat_id, job_subcategories.name as subType, job_categories.name as jobType, materials.date_created, materials.last_modified');
+		$this->db->select('rate_cards.id,rate_cards.description, rate_cards.unit_of_measurement as UOM, quantity, svg,  proposed_rate as rate, remarks,
+		rate_cards.sub_cat_id, job_subcategories.name as subType, job_categories.name as jobType, rate_cards.date_created, rate_cards.last_modified');
 		$this->db->from('rate_cards');
-		$this->db->join("job_subcategories", "materials.sub_cat_id = job_subcategories.sub_cat_id");
+		$this->db->join("job_subcategories", "rate_cards.sub_cat_id = job_subcategories.sub_cat_id");
 		$this->db->join("job_categories", "job_subcategories.category_id = job_categories.category_id");
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
@@ -204,6 +204,7 @@ class Data_model extends CI_Model
 				}
 			}
 		}
+		$this->db->group_by('rate_cards.sub_cat_id');
 		return $this->db->get()->result();
 	}
 
