@@ -251,7 +251,7 @@ ALTER TABLE `audit_trail`
 -- Indexes for table `clients`
 --
 ALTER TABLE `clients`
-    ADD PRIMARY KEY (`client_i`);
+    ADD PRIMARY KEY (client_id);
 
 --
 -- Indexes for table `company_details`
@@ -333,7 +333,7 @@ ALTER TABLE `audit_trail`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-    MODIFY `client_i` int(255) NOT NULL AUTO_INCREMENT;
+    MODIFY client_id int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `company_details`

@@ -42,20 +42,29 @@ class Base extends CI_Controller
 
 	public function manage_clients()
 	{
-		$this->load->view('clients/manage_clients.php');
-
+		$clients = $this->Data->getClients();
+		$data = array(
+			'clients' => $clients
+		);
+		$this->load->view('clients/manage_clients.php', $data);
 	}
 
 	public function job_categories()
 	{
-		$this->load->view('jobs/job_categories.php');
-
+		$categories = $this->Data->getJobCategories();
+		$data = array(
+			'categories' => $categories
+		);
+		$this->load->view('jobs/job_categories.php', $data);
 	}
 
 	public function job_subcategories()
 	{
-		$this->load->view('jobs/job_subcategories.php');
-
+		$subcategories = $this->Data->getJobSubCategories();
+		$data = array(
+			'subcategories' => $subcategories
+		);
+		$this->load->view('jobs/job_subcategories.php', $data);
 	}
 
 	public function materials()

@@ -62,7 +62,7 @@ class Data_model extends CI_Model
 	public function getClients($params = "")
 	{
 		$this->db->select('clients.client_id,clients.name, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
-		clients.address, clients.logo as file_name, clients.date_added, clients.lastmodified');
+		clients.address, clients.logo as file_name, clients.date_added, clients.last_modified');
 		$this->db->from('clients');
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
