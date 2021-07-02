@@ -78,8 +78,8 @@ class Base extends CI_Controller
 	}
 	public function rate_cards()
 		{
-			$ratecards = $this->Data->getRateCard();
-			var_dump($ratecards);
+			$ratecards = $this->Data->getRateCards();
+
 			$data = array(
 				'ratecards' => $ratecards
 			);

@@ -58,7 +58,14 @@
 							<div class="tab-content" id="icon-pills-tabContent">
 								<?php
 							$count= 0;
+
+
 							foreach ($ratecards as $ratecard ){
+								$params = array(
+										'rate_cards.sub_cat_id' => $ratecard->sub_cat_id
+								);
+								$ratecars = $this->Data->getRateCard($params);
+								//var_dump($ratecars);
 								if($count == 0){ ?>
 								<div class="tab-pane fade show active" id="<?php echo "tab_". $ratecard->id ?>" role="tabpanel">
 									<div class="media">
@@ -79,7 +86,7 @@
 									<tbody>
 									<?php
 									$i = 1;
-									foreach ($ratecards
+									foreach ($ratecars
 											 as $ratecard){ ?>
 										<tr>
 											<td><?php echo $i ?></td>
@@ -158,7 +165,11 @@
 												<tbody>
 												<?php
 												$i = 1;
-												foreach ($ratecards
+												$params = array(
+														'rate_cards.sub_cat_id' => $ratecard->sub_cat_id
+												);
+												$ratecars = $this->Data->getRateCard($params);
+												foreach ($ratecars
 														 as $ratecard){ ?>
 													<tr>
 														<td><?php echo $i ?></td>
