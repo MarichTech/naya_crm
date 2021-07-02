@@ -17,6 +17,7 @@
 				</div>
 				<br>
 				<br>
+				<h4>Edit Company Details</h4>
 				<br>
 				<br>
 				<div class="form-row">
@@ -26,30 +27,30 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label>Company Logo</label><br>
-						<input id="company_name" <?php if( !empty($company)) echo 'value="'.$company->name.'"' ?> type="text" class="form-control  basic " name="company_name" required>
+						<input id="company_logo" <?php if( !empty($company)) echo 'value="'.$company->logo.'"' ?> type="text" class="form-control  basic " name="company_logo" required>
 					</div>
 
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label>Company Mobile</label><br>
-						<input id="company_name" <?php if( !empty($company)) echo 'value="'.$company->name.'"' ?> type="text" class="form-control  basic " name="company_name" required>
+						<input id="company_mobile" <?php if( !empty($company)) echo 'value="'.$company->mobile.'"' ?> type="text" class="form-control  basic " name="company_mobile" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label>Company Email</label><br>
-						<input id="company_name" <?php if( !empty($company)) echo 'value="'.$company->name.'"' ?> type="text" class="form-control  basic " name="company_name" required>
+						<input id="company_email" <?php if( !empty($company)) echo 'value="'.$company->email.'"' ?> type="text" class="form-control  basic " name="company_email" required>
 					</div>
 
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label>Company Rep Mobile</label><br>
-						<input id="company_name" <?php if( !empty($company)) echo 'value="'.$company->name.'"' ?> type="text" class="form-control  basic " name="company_name" required>
-					</div>
-					<div class="form-group col-md-6">
-						<label>Company Rep Email</label><br>
-						<input id="company_name" <?php if( !empty($company)) echo 'value="'.$company->name.'"' ?> type="text" class="form-control  basic " name="company_name" required>
-					</div>
+<!--					<div class="form-group col-md-6">-->
+<!--						<label>Company Rep Mobile</label><br>-->
+<!--						<input id="company_name" --><?php //if( !empty($company)) echo 'value="'.$company->name.'"' ?><!-- type="text" class="form-control  basic " name="company_name" required>-->
+<!--					</div>-->
+<!--					<div class="form-group col-md-6">-->
+<!--						<label>Company Rep Email</label><br>-->
+<!--						<input id="company_name" --><?php //if( !empty($company)) echo 'value="'.$company->name.'"' ?><!-- type="text" class="form-control  basic " name="company_name" required>-->
+<!--					</div>-->
 
 				</div>
 

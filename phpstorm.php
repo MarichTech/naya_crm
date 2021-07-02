@@ -63,6 +63,8 @@ die('This file is used for development purposes only.');
  * @property CI_Utf8             $utf8                                Provides support for UTF-8 environments
  * @property Ispconfig           $ispconfig                           This class enables you to use the ISPConfig 3 Remote API
  * @property Boleto              $boleto                              Boleto Class
+ * @property Data_model      $Data                              Data Model
+
  */
 class CI_Controller {
 	public function __construct()
