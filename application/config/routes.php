@@ -61,6 +61,9 @@ $route['clients'] = 'Quotes/getClients';
 $route['clientDetails'] = 'Quotes/clientDetails';
 $route['jobTypes'] = 'Quotes/jobTypes';
 $route['jobSubTypes'] = 'Quotes/jobSubTypes';
+$route['ratecard'] = 'Quotes/ratecard';
+$route['material'] = 'Quotes/material';
+
 $route['job_categories'] = 'Base/job_categories';
 $route['job_subcategories'] = 'Base/job_subcategories';
 $route['404_override'] = '';

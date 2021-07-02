@@ -49,6 +49,33 @@ class Quotes extends CI_Controller
 		);
 		echo json_encode($result);
 	}
+	public function material()
+	{
+
+		$materials = $this->Data->getMaterials();
+		$result = array(
+			'materials' => $materials
+		);
+		echo json_encode($result);
+	}
+
+
+		public function ratecard()
+	{
+		$input = file_get_contents("php://input");
+		$decoded = json_decode($input);
+		$sub_cat_id = $decoded->sub_cat_id;
+		$params = array(
+			'rate_cards.sub_cat_id' => $sub_cat_id
+		);
+		$ratecard = $this->Data->getRateCard($params);
+		$result = array(
+			'ratecard' => $ratecard
+		);
+		echo json_encode($result);
+	}
+
+
 	public function clientDetails()
 	{
 		$input = file_get_contents("php://input");
