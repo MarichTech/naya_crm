@@ -38,6 +38,10 @@
 <script src="plugins/table/datatable/datatables.js"></script>
 <script src="plugins/select2/select2.min.js"></script>
 <script src="plugins/select2/custom-select2.js"></script>
+<script src="plugins/editors/markdown/simplemde.min.js"></script>
+<script src="plugins/editors/markdown/custom-markdown.js"></script>
+<script src="plugins/sweetalerts/sweetalert2.min.js"></script>
+<script src="plugins/sweetalerts/custom-sweetalert.js"></script>
 <script>
 	$('#default-ordering').DataTable( {
 		"oLanguage": {

@@ -27,7 +27,14 @@
 	<link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
 	<link rel="stylesheet" type="text/css" href="plugins/select2/select2.min.css">
 	<link href="assets/css/elements/infobox.css" rel="stylesheet" type="text/css" />
-
+	<link rel="stylesheet" href="plugins/editors/markdown/simplemde.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+	<link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+	<script src="plugins/sweetalerts/promise-polyfill.js"></script>
+	<link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
 	<style>
 		#formValidate .wizard > .content {min-height: 25em;}
 		#example-vertical.wizard > .content {min-height: 24.5em;}

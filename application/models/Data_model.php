@@ -18,6 +18,30 @@ class Data_model extends CI_Model
 	}
 
 	/**
+	 * get all quote references
+	 * @return CI_DB_result
+	 */
+	public function getReferences()
+	{
+		$this->db->select('ref_id,index_id, reference');
+		$this->db->from('quote_references');
+		return $this->db->get()->result();
+	}
+
+	/**
+	 * get Last Quote Reference
+	 * @return array|mixed|object|null
+	 */
+	public function getLastReference()
+	{
+		$this->db->select('ref_id,index_id, quote_ref');
+		$this->db->from('quote_references');
+		$this->db->order_by('ref_id', 'DESC');
+		$this->db->limit(1);
+		return $this->db->get()->row();
+	}
+
+	/**
 	 * Fetch all  Audit Trail data
 	 * @return object[]
 	 */
@@ -254,6 +278,18 @@ class Data_model extends CI_Model
 		$this->db->from('users');
 		$this->db->join('user_groups', "users.usergroup = user_groups.group_id");
 		return $this->db->get()->result();
+	}
+
+	public function insert($table, array $quotesTableData)
+	{
+		try{
+
+			$this->db->insert($table, $quotesTableData);
+			return true;
+		}catch (Exception $exception){
+
+			return false;
+		}
 	}
 
 

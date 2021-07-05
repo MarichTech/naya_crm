@@ -58,11 +58,14 @@ $route['rate_cards'] = 'Base/rate_cards';
 $route['company_settings'] = 'Base/company_settings';
 $route['manage_clients'] = 'Base/manage_clients';
 $route['clients'] = 'Quotes/getClients';
+$route['references'] = 'Quotes/references';
+$route['getPdfUrl'] = 'Quotes/getPdfUrl';
 $route['clientDetails'] = 'Quotes/clientDetails';
 $route['jobTypes'] = 'Quotes/jobTypes';
 $route['jobSubTypes'] = 'Quotes/jobSubTypes';
 $route['ratecard'] = 'Quotes/ratecard';
 $route['material'] = 'Quotes/material';
+$route['quote'] = 'Quotes/quote';
 
 $route['job_categories'] = 'Base/job_categories';
 $route['job_subcategories'] = 'Base/job_subcategories';

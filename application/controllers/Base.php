@@ -1,4 +1,7 @@
 <?php
+
+
+
 defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * Base Controller for Naya Solutions Internal CRM Web Application
@@ -19,7 +22,7 @@ class Base extends CI_Controller
 //		$this->isSuperAdmin();
 //		$this->isAdmin();
 		$this->load->model("Data_model", "Data");
-
+		$this->load->model("Base_model");
 	}
 
 	public function index()
@@ -113,6 +116,47 @@ class Base extends CI_Controller
 		$this->session->unset_userdata('user_id');
 		$this->session->sess_destroy();
 		$this->load->view('login.php');
+	}
+	/*Audit Trail */
+	/**
+	 * @param $action
+	 * @param $username
+	 * @param $status
+	 */
+
+	function createTrail($action, $user_id ,$status)
+	{
+		$data = array(
+			"action" =>$action,
+			"ip_address" => $this->get_client_ip(),
+			"status"=>$status,
+			"user_id" =>$user_id,
+			"time_of_action"=>date("Y-m-d H:i:s")
+		);
+		$this->Base_model->insertTrail($data);
+	}
+	/*Get Client IP For Audit Trail */
+
+	/**
+	 * @return mixed|string
+	 */
+	function get_client_ip() {
+		$ipaddress = '';
+		if (isset($_SERVER['HTTP_CLIENT_IP']))
+			$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+		else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		else if(isset($_SERVER['HTTP_X_FORWARDED']))
+			$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+		else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+			$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+		else if(isset($_SERVER['HTTP_FORWARDED']))
+			$ipaddress = $_SERVER['HTTP_FORWARDED'];
+		else if(isset($_SERVER['REMOTE_ADDR']))
+			$ipaddress = $_SERVER['REMOTE_ADDR'];
+		else
+			$ipaddress = 'UNKNOWN';
+		return $ipaddress;
 	}
 
 }
