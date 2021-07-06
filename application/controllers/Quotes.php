@@ -125,8 +125,8 @@ class Quotes extends  Base
 		$job_sub_type_id  = $decoded->job_sub_type_id;
 		$job_sub_type_name  = $decoded->job_sub_type_name;
 		$rate_card  = $decoded->rate_card;
-		$materials_to_show  = $decoded->materials;
-		$materials  = $this->Data->getMaterials();
+		$materials_to_show  = $decoded->materials_to_show;
+		$materials  = $decoded->materials;
 		$notes  = $decoded->notes;
 		$payment_terms  = $decoded->payment_terms;
 		/* 2. Insert to dB tables  */

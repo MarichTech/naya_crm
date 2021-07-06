@@ -35,6 +35,10 @@
 	<link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 	<link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
+
+
 	<style>
 		#formValidate .wizard > .content {min-height: 25em;}
 		#example-vertical.wizard > .content {min-height: 24.5em;}

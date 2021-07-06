@@ -267,6 +267,53 @@
 
 		</div>
 	</div>
+
+	<!-- Modal  Update Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1" role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" id="standardModalLabel">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="icon-content">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+					</div>
+					<h5 class="modal-title">Edit Material Item Details</h5>
+					<br>
+					<br>
+					<div class="form-row">
+						<input id="modal_id" type="hidden" class="form-control  basic " name="id"  required>
+						<div class="form-group col-md-6">
+							<label>Description</label><br>
+							<input id="modal_name" type="text" class="form-control  basic " name="desc" required>
+
+						</div>
+						<div class="form-group col-md-6">
+							<label>UOM</label><br>
+							<input id="modal_uom" type="text" class="form-control  basic " name="uom" readonly required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label>Quantity</label><br>
+							<input id="modal_quantity" type="number" class="form-control  basic " name="quantity"   required>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Proposed Rate</label><br>
+							<input id="modal_price" type="number" class="form-control  basic " name="rate" readonly required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Remarks</label><br>
+							<input id="modal_remarks" type="text" class="form-control  basic " name="remarks" >
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+					<button type="button" onclick="submitModal()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<?php $this->load->view('templates/footer'); ?>
 	<script type="text/javascript">
 		var basePath = "http://localhost/naya_crm";
@@ -274,6 +321,7 @@
 		let job_type_details_ = []
 		let job_sub_type_details_ = []
 		let rate_card_ = []
+		let materials_ = []
 		let radiovalues_ = []
 		let referenceDetails_ = []
 		$(document).ready(function () {
@@ -457,14 +505,10 @@
 					})
 					.then(data => {
 						materials = data["materials"];
+						materials_ = materials
 						var tbody = document.getElementById("materials_tbody");
 						var tr = '';
 						for (let i = 0; i < materials.length; i++) {
-							var include_icon = '<a ' +
-									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
-									'data-original-title="Edit">' +
-									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" fill="rgba(216,176,12,1)"/></svg>' +
-									'</a>';
 							var radio_btn = '  <div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">' +
 									'<input type="checkbox" onclick="includeMaterials(' + materials[i].id +  ', \''+  materials[i].description  +'\')"' +
 									' name="material_radio_' + materials[i].id +  '"class="new-control-input"><span class="new-control-indicator">' +
@@ -474,12 +518,17 @@
 							var quantity = materials[i].quantity
 							var proposed_rate = materials[i].rate
 							var remarks = materials[i].remarks;
-							var action = '<a onclick="disableRow()"' +
+							var action =  '<a onclick="editRow(' + materials[i].id +  ', \''+  materials[i].description +'\''   +  ', \''+  materials[i].quantity+'\''  +  ', \''+   materials[i].UOM +'\''  +', \''+  materials[i].rate+'\''  +',\' '+  materials[i].remarks+'\')"' +
+									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+									'data-original-title="Edit">' +
+									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
+									'</a>' +
+									'<a onclick="disableRow()"' +
 									'href="javascript:;" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 									'data-original-title="Delete">' +
 									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-9h10v2H7v-2z" fill="rgba(216,176,12,1)"/></svg> ' +
 									'</a>'
-							tr += "<tr id='tr" + i + "'><td>" + include_icon + "</td><td>" + radio_btn + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
+							tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1)  + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
 									"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
 						}
 						tbody.innerHTML = tr;
@@ -515,7 +564,8 @@
 			let job_sub_type_id = $("#jobSubTypes_select").val();
 			let job_sub_type_name = $("#jobSubTypes_select option:selected").text();
 			let rate_card = rate_card_
-			let materials = radiovalues_
+			let materials_to_show = radiovalues_
+			let materials = materials_
 			let notes = document.getElementById("demo2").value;
 			let payment_terms = document.getElementById("payment_terms").value;
 			let title = document.getElementById("quote_title").value;
@@ -573,6 +623,7 @@
 				job_sub_type_name : job_sub_type_name,
 				rate_card : rate_card,
 				materials : materials,
+				materials_to_show : materials_to_show,
 				notes : notes,
 				payment_terms : payment_terms
 			};
@@ -608,9 +659,96 @@
 						document.getElementById("quote_download_btn").setAttribute("href", url)
 					})
 		}
-
-		function editRow() {
-
+		function editRow(id, desc, quantity, uom, rate, remarks) {
+			// console.log("id")
+			// console.log(id)
+			// console.log("desc")
+			// console.log(desc)
+			// console.log("uom")
+			// console.log(uom)
+			// console.log("quantity")
+			// console.log(quantity)
+			// console.log("rate")
+			// console.log(rate)
+			// console.log("remarks")
+			// console.log(remarks)
+			/*step 1: Populate Modal */
+			document.getElementById("modal_id").setAttribute("value", id)
+			document.getElementById("modal_name").setAttribute("value", desc)
+			document.getElementById("modal_uom").setAttribute("value", uom)
+			document.getElementById("modal_quantity").setAttribute("value", quantity)
+			document.getElementById("modal_price").setAttribute("value", rate)
+			document.getElementById("modal_remarks").setAttribute("value", remarks)
+			/*step 2*/
+			$('#standardModal').modal('show');
+		}
+		function submitModal(){
+		/*	1. get data from form items  */
+			let material_id = document.getElementById("modal_id").value;
+			let modal_name = document.getElementById("modal_name").value;
+			let modal_uom = document.getElementById("modal_uom").value;
+			let modal_quantity = document.getElementById("modal_quantity").value;
+			let modal_price = document.getElementById("modal_price").value;
+			let modal_remarks = document.getElementById("modal_remarks").value;
+			// console.log("id")
+			// console.log(material_id)
+			// console.log("modal_name")
+			// console.log(modal_name)
+			// console.log("modal_uom")
+			// console.log(modal_uom)
+			// console.log("modal_quantity")
+			// console.log(modal_quantity)
+			// console.log("modal_price")
+			// console.log(modal_price)
+			// console.log("modal_remarks")
+			// console.log(modal_remarks)
+			/*	2. update Materials Global array Attributes for that index   */
+				for (var i in materials_){
+					if( materials_[i].id == material_id){
+						materials_[i].description = modal_name
+						materials_[i].UOM = modal_uom
+						materials_[i].quantity = modal_quantity
+						materials_[i].rate = modal_price
+						materials_[i].remarks = modal_remarks
+						// console.log("updated row")
+						// console.log(materials_)
+					}
+				}
+			/*	3. Update materials  table   */
+			var tbody = document.getElementById("materials_tbody");
+			var tr = '';
+			let materials = materials_
+			for (let i = 0; i < materials.length; i++) {
+				var radio_btn = '  <div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">' +
+						'<input type="checkbox" onclick="includeMaterials(' + materials[i].id +  ', \''+  materials[i].description  +'\')"' +
+						' name="material_radio_' + materials[i].id +  '"class="new-control-input"><span class="new-control-indicator">' +
+						'</span>Add Item </label>	</div>'
+				var description = materials[i].description
+				var uom = materials[i].UOM
+				var quantity = materials[i].quantity
+				var proposed_rate = materials[i].rate
+				var remarks = materials[i].remarks;
+				var action =  '<a onclick="editRow(' + materials[i].id +  ', \''+  materials[i].description +'\''   +  ', \''+  materials[i].quantity+'\''  +  ', \''+   materials[i].UOM +'\''  +', \''+  materials[i].rate+'\''  +',\' '+  materials[i].remarks+'\')"' +
+						'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+						'data-original-title="Edit">' +
+						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
+						'</a>' +
+						'<a onclick="disableRow()"' +
+						'href="javascript:;" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+						'data-original-title="Delete">' +
+						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-9h10v2H7v-2z" fill="rgba(216,176,12,1)"/></svg> ' +
+						'</a>'
+				tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1)  + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
+						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
+			}
+			tbody.innerHTML = tr;
+			/*	4. hide modal  */
+			$('#standardModal').modal('hide');
+			/*	5. notify user of update status  */
+			// toast body populate
+			document.getElementById("toast_body").innerHTML= "Item " + modal_name + " Details updated!."
+			//display toast
+			$('.toast').toast('show');
 		}
 
 		function add_row_modal() {

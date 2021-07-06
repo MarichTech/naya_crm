@@ -67,7 +67,7 @@
 
 		<?php
 		$id = sizeof($data['rate_card'][0]);
-		for ($x = 0; $x < sizeof($data['materials']); $x++) {
+		for ($x = 0; $x < sizeof($data['materials']) -1 ; $x++) {
 			if (!empty($data['materials_to_show'])) {
 				if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
 					?>
@@ -99,7 +99,7 @@
 				for ($x = 0; $x < sizeof($data['rate_card'][0]) - 1; $x++) {
 					$subtotal += ($data['rate_card'][$count][$x]->quantity * $data['rate_card'][$count][$x]->rate);
 				}
-				for ($x = 0; $x < sizeof($data['materials']); $x++) {
+				for ($x = 0; $x < sizeof($data['materials']) -1; $x++) {
 					if (!empty($data['materials_to_show'])) {
 						if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
 							$subtotal += ($data['materials'][$x]->quantity * $data['materials'][$x]->rate);
