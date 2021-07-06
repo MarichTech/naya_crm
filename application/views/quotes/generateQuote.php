@@ -86,7 +86,7 @@
 										</div>
 									</div>
 								</section>
-								<h3>Select Job Category</h3>
+								<h3>Select Job Category & Job Sub Type</h3>
 								<section>
 									<select class="form-control  basic" id="jobTypes_select" onchange="jobSubTypes()">
 									</select>
@@ -96,10 +96,6 @@
 											<p class="info-link badge badge-warning" id="jobType_text"></p>
 										</div>
 									</div>
-								</section>
-
-								<h3>Select Job Sub Type</h3>
-								<section>
 									<select class="form-control  basic" id="jobSubTypes_select" onchange="rateCard()">
 									</select>
 									<div class="infobox-1">
@@ -108,7 +104,7 @@
 											<p class="info-link badge badge-warning" id="subType_text"></p>
 										</div>
 									</div>
-										<!--										<p>You Chose: - <b id="subType_text"></b></p>-->
+									<!--										<p>You Chose: - <b id="subType_text"></b></p>-->
 								</section>
 								<h3>Edit Rate Card</h3>
 								<section>
@@ -129,6 +125,19 @@
 												<th>Edit</th>
 											</tr>
 											</thead>
+											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
+												<div class="toast toast-primary fade hide" role="alert" data-delay="6000" aria-live="assertive" aria-atomic="true">
+													<div class="toast-header">
+														<strong class="mr-auto">Additional Rate Card Items </strong>
+														<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="toast-body">
+														<h5><p  id="rate_toast_body" class="text-success"></p></h5>
+													</div>
+												</div>
+											</div>
 											<tbody id="rate_card_tbody">
 											</tbody>
 										</table>
@@ -143,14 +152,14 @@
 											   style="width:100%">
 											<thead>
 											<tr>
-												<th>Include</th>
+												<th>Add/Remove</th>
 												<th>#</th>
 												<th>Description</th>
 												<th>UOM</th>
 												<th>Quantity</th>
 												<th>Proposed Rate</th>
 												<th>Remarks</th>
-												<th>Remove</th>
+												<th>Edit</th>
 											</tr>
 											</thead>
 											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
@@ -309,6 +318,51 @@
 				<div class="modal-footer justify-content-between">
 					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
 					<button type="button" onclick="submitModal()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Modal  Update Rate Card Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="rateCardModal" tabindex="-1" role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" id="">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="icon-content">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+					</div>
+					<h5 class="modal-title">Edit Rate Card Item Details</h5>
+					<br>
+					<br>
+					<div class="form-row">
+						<input id="mod_id" type="hidden" class="form-control  basic " name="id"  required>
+						<div class="form-group col-md-12">
+							<label>Description</label><br>
+							<input id="mod_name" type="text" class="form-control  basic " name="desc" required>
+
+						</div>
+						<div class="form-group col-md-6">
+							<label>UOM</label><br>
+							<input id="mod_uom" type="text" class="form-control  basic " name="uom" readonly required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label>Quantity</label><br>
+							<input id="mod_quantity" type="number" class="form-control  basic " name="quantity"   required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Proposed Rate</label><br>
+							<input id="mod_price" type="number" class="form-control  basic " name="rate" readonly required>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Remarks</label><br>
+							<input id="mod_remarks" type="text" class="form-control  basic " name="remarks" >
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+					<button type="button" onclick="submitRateCardModal()" class="btn btn-primary">Save</button>
 				</div>
 			</div>
 		</div>
@@ -473,7 +527,7 @@
 					.then(data => {
 						ratecard = data["ratecard"];
 						//populate global variable
-						rate_card_.push(ratecard)
+						rate_card_= (ratecard)
 						document.getElementById("table_title").innerText = ratecard[0]["subType"];
 						var tbody = document.getElementById("rate_card_tbody");
 						var tr = '';
@@ -484,7 +538,7 @@
 							var quantity = ratecard[i].quantity
 							var proposed_rate = ratecard[i].rate
 							var remarks = ratecard[i].remarks;
-							var action = '<a onclick="editRow()"' +
+							var action = '<a onclick="editRateCardRow(' + ratecard[i].id +  ', \''+  ratecard[i].description +'\''   +  ', \''+  ratecard[i].quantity+'\''  +  ', \''+   ratecard[i].UOM +'\''  +', \''+  ratecard[i].rate+'\''  +',\' '+  ratecard[i].remarks+'\')"' +
 									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 									'data-original-title="Edit">' +
 									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
@@ -512,7 +566,7 @@
 							var radio_btn = '  <div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">' +
 									'<input type="checkbox" onclick="includeMaterials(' + materials[i].id +  ', \''+  materials[i].description  +'\')"' +
 									' name="material_radio_' + materials[i].id +  '"class="new-control-input"><span class="new-control-indicator">' +
-									'</span>Add Item </label>	</div>'
+									'</span>Add/Remove Item </label>	</div>'
 							var description = materials[i].description
 							var uom = materials[i].UOM
 							var quantity = materials[i].quantity
@@ -522,11 +576,6 @@
 									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 									'data-original-title="Edit">' +
 									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
-									'</a>' +
-									'<a onclick="disableRow()"' +
-									'href="javascript:;" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
-									'data-original-title="Delete">' +
-									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-9h10v2H7v-2z" fill="rgba(216,176,12,1)"/></svg> ' +
 									'</a>'
 							tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1)  + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
 									"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
@@ -660,18 +709,6 @@
 					})
 		}
 		function editRow(id, desc, quantity, uom, rate, remarks) {
-			// console.log("id")
-			// console.log(id)
-			// console.log("desc")
-			// console.log(desc)
-			// console.log("uom")
-			// console.log(uom)
-			// console.log("quantity")
-			// console.log(quantity)
-			// console.log("rate")
-			// console.log(rate)
-			// console.log("remarks")
-			// console.log(remarks)
 			/*step 1: Populate Modal */
 			document.getElementById("modal_id").setAttribute("value", id)
 			document.getElementById("modal_name").setAttribute("value", desc)
@@ -682,6 +719,17 @@
 			/*step 2*/
 			$('#standardModal').modal('show');
 		}
+		function editRateCardRow(id, desc, quantity, uom, rate, remarks) {
+			/*step 1: Populate Modal */
+			document.getElementById("mod_id").setAttribute("value", id)
+			document.getElementById("mod_name").setAttribute("value", desc)
+			document.getElementById("mod_uom").setAttribute("value", uom)
+			document.getElementById("mod_quantity").setAttribute("value", quantity)
+			document.getElementById("mod_price").setAttribute("value", rate)
+			document.getElementById("mod_remarks").setAttribute("value", remarks)
+			/*step 2*/
+			$('#rateCardModal').modal('show');
+		}
 		function submitModal(){
 		/*	1. get data from form items  */
 			let material_id = document.getElementById("modal_id").value;
@@ -690,18 +738,6 @@
 			let modal_quantity = document.getElementById("modal_quantity").value;
 			let modal_price = document.getElementById("modal_price").value;
 			let modal_remarks = document.getElementById("modal_remarks").value;
-			// console.log("id")
-			// console.log(material_id)
-			// console.log("modal_name")
-			// console.log(modal_name)
-			// console.log("modal_uom")
-			// console.log(modal_uom)
-			// console.log("modal_quantity")
-			// console.log(modal_quantity)
-			// console.log("modal_price")
-			// console.log(modal_price)
-			// console.log("modal_remarks")
-			// console.log(modal_remarks)
 			/*	2. update Materials Global array Attributes for that index   */
 				for (var i in materials_){
 					if( materials_[i].id == material_id){
@@ -746,7 +782,69 @@
 			$('#standardModal').modal('hide');
 			/*	5. notify user of update status  */
 			// toast body populate
-			document.getElementById("toast_body").innerHTML= "Item " + modal_name + " Details updated!."
+			document.getElementById("toast_body").innerHTML=modal_name + " Details updated!."
+			//display toast
+			$('.toast').toast('show');
+		}
+		function submitRateCardModal(){
+		/*	1. get data from form items  */
+			let rate_card_id = document.getElementById("mod_id").value;
+			let modal_name = document.getElementById("mod_name").value;
+			let modal_uom = document.getElementById("mod_uom").value;
+			let modal_quantity = document.getElementById("mod_quantity").value;
+			let modal_price = document.getElementById("mod_price").value;
+			let modal_remarks = document.getElementById("mod_remarks").value;
+			console.log("id")
+			console.log(rate_card_id)
+			console.log("modal_name")
+			console.log(modal_name)
+			console.log("modal_uom")
+			console.log(modal_uom)
+			console.log("modal_quantity")
+			console.log(modal_quantity)
+			console.log("modal_price")
+			console.log(modal_price)
+			console.log("modal_remarks")
+			console.log(modal_remarks)
+			console.log("rate card")
+			console.log(rate_card_)
+			/*	2. update Rate Card  Global array Attributes for that index ID   */
+				for (var i in rate_card_){
+					if( rate_card_[i].id == rate_card_id){
+						rate_card_[i].description = modal_name
+						rate_card_[i].UOM = modal_uom
+						rate_card_[i].quantity = modal_quantity
+						rate_card_[i].rate = modal_price
+						rate_card_[i].remarks = modal_remarks
+						console.log("updated row")
+						console.log(rate_card_)
+					}
+				}
+			/*	3. Update materials  table   */
+			var tbody = document.getElementById("rate_card_tbody");
+		let 	ratecard = rate_card_
+			var tr = '';
+			var total = 0
+			for (let i = 0; i < ratecard.length; i++) {
+				var description = ratecard[i].description
+				var uom = ratecard[i].UOM
+				var quantity = ratecard[i].quantity
+				var proposed_rate = ratecard[i].rate
+				var remarks = ratecard[i].remarks;
+				var action = '<a onclick="editRow(' + ratecard[i].id +  ', \''+  ratecard[i].description +'\''   +  ', \''+  ratecard[i].quantity+'\''  +  ', \''+   ratecard[i].UOM +'\''  +', \''+  ratecard[i].rate+'\''  +',\' '+  ratecard[i].remarks+'\')"' +
+						'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+						'data-original-title="Edit">' +
+						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
+						'</a>'
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
+						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
+			}
+			tbody.innerHTML = tr;
+			/*	4. hide modal  */
+			$('#rateCardModal').modal('hide');
+			/*	5. notify user of update status  */
+			// toast body populate
+			document.getElementById("rate_toast_body").innerHTML= "Item " + description + " Details updated!."
 			//display toast
 			$('.toast').toast('show');
 		}

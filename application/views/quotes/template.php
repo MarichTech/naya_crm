@@ -50,15 +50,15 @@
 		<?php
 		$count = 0;
 		$total = 0;
-		for ($x = 0; $x < sizeof($data['rate_card'][0]) - 1; $x++) {
+		for ($x = 0; $x < sizeof($data['rate_card']) - 1; $x++) {
 			?>
 			<tr>
 				<td class="no"><?php echo $x + 1; ?></td>
-				<td class="desc"><h3><?php echo $data['rate_card'][$count][$x]->description ?></h3></td>
-				<td class="qty"><?php echo $data['rate_card'][$count][$x]->quantity ?></td>
-				<td class="qty"><?php echo number_format(($data['rate_card'][$count][$x]->rate), 2) ?></td>
-				<td class="total"><?php $total = number_format($data['rate_card'][$count][$x]->quantity *
-							$data['rate_card'][$count][$x]->rate, '2');
+				<td class="desc"><h3><?php echo $data['rate_card'][$x]->description ?></h3></td>
+				<td class="qty"><?php echo $data['rate_card'][$x]->quantity ?></td>
+				<td class="qty"><?php echo number_format(($data['rate_card'][$x]->rate), 2) ?></td>
+				<td class="total"><?php $total = number_format($data['rate_card'][$x]->quantity *
+							$data['rate_card'][$x]->rate, '2');
 					echo $total;
 					?></td>
 			</tr>
@@ -66,10 +66,13 @@
 		} ?>
 
 		<?php
-		$id = sizeof($data['rate_card'][0]);
-		for ($x = 0; $x < sizeof($data['materials']) -1 ; $x++) {
+		$id = sizeof($data['rate_card']);
+		for ($x = 0; $x < sizeof($data['materials'])  ; $x++) {
 			if (!empty($data['materials_to_show'])) {
-				if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
+		//		var_dump($data['materials_to_show']);
+		//		var_dump($data['materials']);
+				for ($y = 0; $y < sizeof($data['materials_to_show']); $y++) {
+					if ($data['materials_to_show'][$y] == $data['materials'][$x]->id) {
 					?>
 					<tr>
 						<td class="no"><?php echo $id; ?></td>
@@ -80,10 +83,10 @@
 					</tr>
 					<?php
 					$id++;
+					}
 				}
 			}
 		} ?>
-
 
 		</tbody>
 		<tfoot>
@@ -96,8 +99,8 @@
 			<td colspan="2">SUBTOTAL</td>
 			<td>KES <?php
 				$subtotal = 0;
-				for ($x = 0; $x < sizeof($data['rate_card'][0]) - 1; $x++) {
-					$subtotal += ($data['rate_card'][$count][$x]->quantity * $data['rate_card'][$count][$x]->rate);
+				for ($x = 0; $x < sizeof($data['rate_card']) - 1; $x++) {
+					$subtotal += ($data['rate_card'][$x]->quantity * $data['rate_card'][$x]->rate);
 				}
 				for ($x = 0; $x < sizeof($data['materials']) -1; $x++) {
 					if (!empty($data['materials_to_show'])) {
@@ -120,7 +123,7 @@
 			<td colspan="2">GRAND TOTAL</td>
 			<td>KES <?php
 				for ($x = 1;
-				$x < sizeof($data['rate_card'][0]) - 1;
+				$x < sizeof($data['rate_card']) - 1;
 				$x++) {
 				echo number_format(((int)(str_replace(',', '', $subtotal)) + ((int)str_replace(',', '', $tax))), 02) ?></td>
 			<?php
@@ -128,14 +131,14 @@
 		</tr>
 		</tfoot>
 	</table>
-	<div><h4 style="font-style: italic ; color: black">Prepared By: <?php echo $data['username'] ?></div>
+	<div><h4 style="font-style: italic ; color: black; text-align: left">Prepared By: <?php echo $data['username'] ?></div>
 	<div id="notices">
 		<div>Payment Terms:</div>
-		<div class="notice"><p><?php echo $data['payment_terms'] ?></p></div>
+		<div class="notice"><p style="text-align: left""><?php echo $data['payment_terms'] ?></p></div>
 	</div>
 	<div id="notices">
 		<div>Notes:</div>
-		<div class="notice"><p><?php echo $data['notes'] ?></p></div>
+		<div class="notice"><p style="text-align: left""><?php echo $data['notes'] ?></p></div>
 	</div>
 </main>
 <footer>
