@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Naya Solutions</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/pdf/style.css" media="all" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/pdf/style.css" media="all"/>
 </head>
 <body>
 <header class="clearfix">
@@ -11,7 +11,7 @@
 		<img src="https://www.naya.co.ke/wp-content/uploads/2019/11/nayalogo-6.png">
 	</div>
 	<div id="company">
-<!--		<h2 class="name">Naya Solutions</h2>-->
+		<!--		<h2 class="name">Naya Solutions</h2>-->
 		<div>7th Floor, Westside Towers, Westlands,</div>
 		<div>P.O Box 899-00515, Nairobi, Kenya</div>
 		<div>Tel: +254 722 124 444</div>
@@ -22,16 +22,20 @@
 <main>
 	<div id="details" class="clearfix">
 		<div id="client">
-			<div class="to">INVOICE TO:</div>
+			<div class="to">Attention:</div>
 			<h2 class="name"><?php echo $data['client_details']->name ?></h2>
-			<div class="address"><?php echo  $data['client_details']->address  ?></div>
-			<div class="email"><a ><?php  echo $data['client_details']->email ?></div>
+			<div class="address"><?php echo $data['client_details']->address ?></div>
+			<div class="email"><a><?php echo $data['client_details']->email ?></div>
 		</div>
 		<div id="invoice">
-			<h1><?php echo $data['quote_ref']  ?></h1>
-			<div class="date">Date of Invoice: <?php echo $data['date_created']  ?></div>
+			<h1><?php echo $data['quote_ref'] ?></h1>
+			<div class="date">Date: <?php echo $data['date_created'] ?></div>
 		</div>
 	</div>
+	<div>
+		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['title'] ?>
+	</div>
+
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 		<tr>
@@ -46,17 +50,39 @@
 		<?php
 		$count = 0;
 		$total = 0;
-		for($x= 0 ; $x < sizeof($data['rate_card'][0])-1 ; $x++) {
+		for ($x = 0; $x < sizeof($data['rate_card'][0]) - 1; $x++) {
 			?>
-		<tr>
-			<td class="no"><?php  echo $x + 1 ; ?></td>
-			<td class="desc"><h3><?php echo $data['rate_card'][$count][$x]->description ?></h3></td>
-			<td class="qty"><?php echo $data['rate_card'][$count][$x]->quantity ?></td>
-			<td class="qty"><?php echo number_format(($data['rate_card'][$count][$x]->rate), 2) ?></td>
-			<td class="total"><?php echo number_format($data['rate_card'][$count][$x]->quantity * $data['rate_card'][$count][$x]->rate, '2') ?></td>
-		</tr>
+			<tr>
+				<td class="no"><?php echo $x + 1; ?></td>
+				<td class="desc"><h3><?php echo $data['rate_card'][$count][$x]->description ?></h3></td>
+				<td class="qty"><?php echo $data['rate_card'][$count][$x]->quantity ?></td>
+				<td class="qty"><?php echo number_format(($data['rate_card'][$count][$x]->rate), 2) ?></td>
+				<td class="total"><?php $total = number_format($data['rate_card'][$count][$x]->quantity *
+							$data['rate_card'][$count][$x]->rate, '2');
+					echo $total;
+					?></td>
+			</tr>
+			<?php
+		} ?>
+
 		<?php
-		}?>
+		$id = sizeof($data['rate_card'][0]);
+		for ($x = 0; $x < sizeof($data['materials']); $x++) {
+			if (!empty($data['materials_to_show'])) {
+				if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
+					?>
+					<tr>
+						<td class="no"><?php echo $id; ?></td>
+						<td class="desc"><h3><?php echo $data['materials'][$x]->description ?></h3></td>
+						<td class="qty"><?php echo $data['materials'][$x]->quantity ?></td>
+						<td class="qty"><?php echo number_format(($data['materials'][$x]->rate), 2) ?></td>
+						<td class="total"><?php echo number_format($data['materials'][$x]->quantity * $data['materials'][$x]->rate, '2') ?></td>
+					</tr>
+					<?php
+					$id++;
+				}
+			}
+		} ?>
 
 
 		</tbody>
@@ -69,39 +95,47 @@
 			<td colspan="2"></td>
 			<td colspan="2">SUBTOTAL</td>
 			<td>KES <?php
-				$subtotal =0;
-				for($x= 0 ; $x < sizeof($data['rate_card'][0])-1 ; $x++) {
-				$subtotal +=	($data['rate_card'][$count][$x]->quantity * $data['rate_card'][$count][$x]->rate) ;
+				$subtotal = 0;
+				for ($x = 0; $x < sizeof($data['rate_card'][0]) - 1; $x++) {
+					$subtotal += ($data['rate_card'][$count][$x]->quantity * $data['rate_card'][$count][$x]->rate);
+				}
+				for ($x = 0; $x < sizeof($data['materials']); $x++) {
+					if (!empty($data['materials_to_show'])) {
+						if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
+							$subtotal += ($data['materials'][$x]->quantity * $data['materials'][$x]->rate);
+						}
+					}
 				}
 				echo number_format($subtotal, 2);
-
 				?></td>
 		</tr>
 		<tr>
 			<td colspan="2"></td>
-			<td colspan="2"> 16% VAT </td>
-			<td>KES <?php  $tax = 0 ;
-				echo $tax ; ?></td>
+			<td colspan="2"> 16% VAT</td>
+			<td>KES <?php $tax = 0.16 * $subtotal;
+				echo $tax; ?></td>
 		</tr>
 		<tr>
 			<td colspan="2"></td>
 			<td colspan="2">GRAND TOTAL</td>
- 			<td>KES <?php
-				for($x= 1 ; $x < sizeof($data['rate_card'][0])-1 ; $x++) {
-				echo number_format(((int)(str_replace( ',', '',$subtotal)) + ((int)str_replace( ',', '',$tax))), 02)  ?></td>
+			<td>KES <?php
+				for ($x = 1;
+				$x < sizeof($data['rate_card'][0]) - 1;
+				$x++) {
+				echo number_format(((int)(str_replace(',', '', $subtotal)) + ((int)str_replace(',', '', $tax))), 02) ?></td>
 			<?php
-			}?>
+			} ?>
 		</tr>
 		</tfoot>
 	</table>
-	<div><h4 style="font-style: italic ; color: black" >Prepared By: <?php echo  $data['username']  ?></div>
+	<div><h4 style="font-style: italic ; color: black">Prepared By: <?php echo $data['username'] ?></div>
 	<div id="notices">
 		<div>Payment Terms:</div>
-		<div class="notice"><p><?php echo  $data['payment_terms']  ?></p></div>
+		<div class="notice"><p><?php echo $data['payment_terms'] ?></p></div>
 	</div>
 	<div id="notices">
 		<div>Notes:</div>
-		<div class="notice"><p><?php echo  $data['notes']  ?></p></div>
+		<div class="notice"><p><?php echo $data['notes'] ?></p></div>
 	</div>
 </main>
 <footer>

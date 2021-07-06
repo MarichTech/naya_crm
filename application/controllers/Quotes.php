@@ -125,7 +125,8 @@ class Quotes extends  Base
 		$job_sub_type_id  = $decoded->job_sub_type_id;
 		$job_sub_type_name  = $decoded->job_sub_type_name;
 		$rate_card  = $decoded->rate_card;
-		$materials  = $decoded->materials;
+		$materials_to_show  = $decoded->materials;
+		$materials  = $this->Data->getMaterials();
 		$notes  = $decoded->notes;
 		$payment_terms  = $decoded->payment_terms;
 		/* 2. Insert to dB tables  */
@@ -136,7 +137,7 @@ class Quotes extends  Base
 			'job_category' => $job_type_id,
 			'job_sub_category' => $job_sub_type_id,
 //			'rate_card_id' => implode(",", $rate_card),
-			'additional_materials' => implode(",", $materials),
+			'additional_materials' => implode(",", $materials_to_show),
 			'notes' => $notes,
 			'payment_terms' => $payment_terms,
 			'amount' => 0 ,
@@ -173,6 +174,8 @@ class Quotes extends  Base
 			}else{
 				$this->createTrail('Create Quote', $user_id, "Success");
 			}
+
+			//var_dump($materials);
 		/* 3. Prepare Data for PDF  */
 		$PDFData = array(
 			'quote_ref' => $quote_ref,
@@ -183,6 +186,7 @@ class Quotes extends  Base
 			'job_sub_type_name' => $job_sub_type_name,
 			'rate_card' => $rate_card,
 			'materials' => $materials,
+			'materials_to_show' => $materials_to_show,
 			'notes' => $notes,
 			'payment_terms' => $payment_terms,
 			'amount' => 0 ,

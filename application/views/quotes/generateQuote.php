@@ -218,9 +218,8 @@
 										<b style="color: black">Generate Quote</b>
 									</a>
 								</section>
-								<h3>Preview & Download PDF</h3>
+								<h3>Preview PDF</h3>
 								<section>
-
 									<object id="pdf_obj" data="<?php echo base_url(); ?>assets/quotes/TemplateQuotation.pdf"
 													type="application/pdf" height="600px" width="100%">
 									<p>It appears you don't have Adobe Reader or PDF support in this web
@@ -238,6 +237,7 @@
 								<section>
 									<div class="infobox-1">
 										<div class="info-icon">
+											<h5 class="info-heading">Download PDF Document</h5>
 											<a id="quote_download_btn" download>
 												<button type="button" class="btn btn-warning">Download Quote
 												</button>
