@@ -131,14 +131,14 @@
 		</tr>
 		</tfoot>
 	</table>
-	<div><h4 style="font-style: italic ; color: black; text-align: left">Prepared By: <?php echo $data['username'] ?></div>
+	<div><h4 style="font-style: italic ; color: black; text-align: left; text-transform: lowercase">Prepared By: <?php echo $data['username'] ?></div>
 	<div id="notices">
 		<div>Payment Terms:</div>
-		<div class="notice"><p style="text-align: left""><?php echo $data['payment_terms'] ?></p></div>
+		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['payment_terms'] ?></p></div>
 	</div>
 	<div id="notices">
 		<div>Notes:</div>
-		<div class="notice"><p style="text-align: left""><?php echo $data['notes'] ?></p></div>
+		<div class="notice"><p style="text-align: left;; text-transform: lowercase""><?php echo $data['notes'] ?></p></div>
 	</div>
 </main>
 <footer>
