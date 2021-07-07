@@ -114,6 +114,7 @@ class Quotes extends  Base
 		$input = file_get_contents("php://input");
 		$decoded = json_decode($input);
 		$title   = $decoded->title;
+		$vat   = $decoded->vat;
 		$references   = $decoded->quote_references;
 		$quote_ref = $references->quote_ref;
 		$date = $references->date;
@@ -180,6 +181,7 @@ class Quotes extends  Base
 		$PDFData = array(
 			'quote_ref' => $quote_ref,
 			'title' => $title,
+			'vat' => $vat,
 			'job_category' => $job_type_id,
 			'job_type_name' => $jobTypeName,
 			'job_sub_category' => $job_sub_type_id,

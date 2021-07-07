@@ -83,6 +83,26 @@
 											</p>
 											<h5 class="info-heading">Title</h5>
 											<input type="text" class="form-control" id="quote_title">
+											<br>
+											<br>
+											<div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">
+													<input type="checkbox" onclick="includeVAT()" id="vat_radio_" name="vat_radio_" class="new-control-input"><span class="new-control-indicator">
+													</span>Include VAT </label>
+												<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
+													<div class="toast toast-primary fade hide" role="alert" data-delay="6000" aria-live="assertive" aria-atomic="true">
+														<div class="toast-header">
+															<strong class="mr-auto">Include VAT </strong>
+															<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="toast-body">
+															<h5><p  id="vat_toast_body" class="text-success"></p></h5>
+														</div>
+													</div>
+												</div>
+
+											</div>
 										</div>
 									</div>
 								</section>
@@ -378,6 +398,7 @@
 		let materials_ = []
 		let radiovalues_ = []
 		let referenceDetails_ = []
+		let vat_ = 0
 		$(document).ready(function () {
 			clients();
 			jobTypes();
@@ -604,6 +625,27 @@
 			}
 			console.log(radiovalues_);
 		}
+		function includeVAT(){
+			let name = "vat_radio_";
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				//change VAT global value
+				vat_ = 1;
+				// toast body populate
+				document.getElementById("vat_toast_body").innerHTML= "VAT included."
+				//display toast
+				$('.toast').toast('show');
+			} else {
+				let index = radiovalues_.indexOf(id)
+				//remove ID from materials to be included array
+				radiovalues_.splice(index, 1)
+				// toast body populate
+				document.getElementById("vat_toast_body").innerHTML= " VAT Included. removed."
+				//display toast
+				$('.toast').toast('show');
+			}
+			console.log(vat_);
+		}
 		function  generateQuote(){
 			/*	step 1. Collect all Quote Data from form fields   */
 			let quote_references = referenceDetails_
@@ -633,6 +675,7 @@
 			console.log(rate_card)
 			console.log("materials")
 			console.log(materials)
+			console.log("notes")
 			console.log("notes")
 			console.log(notes)
 			console.log("payment_terms")
@@ -665,6 +708,7 @@
 			let data = {
 				quote_references : referenceDetails_,
 				title : title,
+				vat : vat_,
 				clientDetails : clientDetails,
 				jobTypeName : jobTypeName,
 				job_type_id: job_type_id,

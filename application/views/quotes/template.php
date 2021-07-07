@@ -104,8 +104,10 @@
 				}
 				for ($x = 0; $x < sizeof($data['materials']) -1; $x++) {
 					if (!empty($data['materials_to_show'])) {
-						if ($data['materials_to_show'][$x] == $data['materials'][$x]->id) {
-							$subtotal += ($data['materials'][$x]->quantity * $data['materials'][$x]->rate);
+						for ($y = 0; $y < sizeof($data['materials_to_show']); $y++) {
+							if ($data['materials_to_show'][$y] == $data['materials'][$x]->id) {
+								$subtotal += ($data['materials'][$x]->quantity * $data['materials'][$x]->rate);
+							}
 						}
 					}
 				}
@@ -113,10 +115,17 @@
 				?></td>
 		</tr>
 		<tr>
+			<?php
+			$tax = 0;
+			if(isset($data['vat'])){
+			if($data['vat'] == 1){  ?>
 			<td colspan="2"></td>
 			<td colspan="2"> 16% VAT</td>
-			<td>KES <?php $tax = 0.16 * $subtotal;
-				echo $tax; ?></td>
+			<td>KES <?php
+				$tax = 0.16 * $subtotal;
+				echo number_format($tax, 2);
+				}
+				}?></td>
 		</tr>
 		<tr>
 			<td colspan="2"></td>
@@ -131,9 +140,9 @@
 		</tr>
 		</tfoot>
 	</table>
-	<div><h4 style="font-style: italic ; color: black; text-align: left; text-transform: lowercase">Prepared By: <?php echo $data['username'] ?></div>
+	<div><h4 style="font-style: italic ; color: black; text-align: left; text-transform: capitalize">Prepared By: <?php echo $data['username'] ?></div>
 	<div id="notices">
-		<div>Payment Terms:</div>
+		<div style="text-align: left; text-transform: capitalize">Payment Terms:</div>
 		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['payment_terms'] ?></p></div>
 	</div>
 	<div id="notices">
