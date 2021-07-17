@@ -85,7 +85,7 @@ class Data_model extends CI_Model
 	 */
 	public function getClients($params = "")
 	{
-		$this->db->select('clients.client_id,clients.name, clients.email, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
+		$this->db->select('clients.client_id, clients.client_group ,clients.name, clients.email, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
 		clients.address, clients.logo as file_name, clients.date_added, clients.last_modified');
 		$this->db->from('clients');
 		if (($params != '')) {
@@ -216,7 +216,7 @@ class Data_model extends CI_Model
 	 * @return object[]
 	 */
 	public function getRateCards($params = ""){
-		var_dump($params);
+//		var_dump($params);
 		$this->db->select('rate_cards.id,rate_cards.description, rate_cards.unit_of_measurement as UOM, quantity, svg,  proposed_rate as rate, remarks,
 		rate_cards.sub_cat_id, job_subcategories.name as subType, job_categories.name as jobType, rate_cards.date_created, rate_cards.last_modified');
 		$this->db->from('rate_cards');

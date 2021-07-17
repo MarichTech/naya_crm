@@ -31,7 +31,7 @@
 							<div id="pill-vertical">
 								<h3>Select Client</h3>
 								<section>
-									<p>Select a Client to begin</p>
+									<p>Select Client</p>
 
 									<select class="form-control  basic" id="clients_select"
 											onchange="loadClientDetails()">
@@ -57,16 +57,16 @@
 										</div>
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Name</h5>
-											<p class="info-link badge badge-warning" id="rep_name"></p>
+											<p class="info-link badge badge-warning" contenteditable="true" id="rep_name"></p>
 										</div>
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Mobile</h5>
-											<p class="info-link badge badge-warning" id="rep_mobile"></p>
+											<p class="info-link badge badge-warning"  contenteditable="true" id="rep_mobile"></p>
 										</div>
 
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Email</h5>
-											<p class="info-link badge badge-warning" id="rep_email"></p>
+											<p class="info-link badge badge-warning" contenteditable="true" id="rep_email"></p>
 										</div>
 
 
@@ -76,28 +76,37 @@
 									<div class="infobox-1">
 										<div class="info-icon">
 											<h5 class="info-heading">Quote Ref</h5>
-											<p><span id="quote_ref"  class="badge badge-warning"> </span>
+											<p><span id="quote_ref" class="badge badge-warning"> </span>
 											</p>
 											<h5 class="info-heading">Date</h5>
-											<p><span id="quote_date"  class="badge badge-warning"> </span>
+											<p><span id="quote_date" class="badge badge-warning"> </span>
 											</p>
 											<h5 class="info-heading">Title</h5>
 											<input type="text" class="form-control" id="quote_title">
 											<br>
+											<h5 class="info-heading">Unique ID</h5>
+											<input type="text" class="form-control" id="quote_uid">
 											<br>
-											<div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">
-													<input type="checkbox" onclick="includeVAT()" id="vat_radio_" name="vat_radio_" class="new-control-input"><span class="new-control-indicator">
+											<br>
+											<div class="n-chk" id="vat_icon">
+												<label
+														class="new-control new-checkbox new-checkbox-rounded checkbox-success">
+													<input type="checkbox" onclick="includeVAT()" id="vat_radio_"
+														   name="vat_radio_" class="new-control-input"><span
+															class="new-control-indicator">
 													</span>Include VAT </label>
 												<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
-													<div class="toast toast-primary fade hide" role="alert" data-delay="6000" aria-live="assertive" aria-atomic="true">
+													<div class="toast toast-primary fade hide" role="alert"
+														 data-delay="6000" aria-live="assertive" aria-atomic="true">
 														<div class="toast-header">
 															<strong class="mr-auto">Include VAT </strong>
-															<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+															<button type="button" class="ml-2 mb-1 close"
+																	data-dismiss="toast" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>
 														<div class="toast-body">
-															<h5><p  id="vat_toast_body" class="text-success"></p></h5>
+															<h5><p id="vat_toast_body" class="text-success"></p></h5>
 														</div>
 													</div>
 												</div>
@@ -106,8 +115,9 @@
 										</div>
 									</div>
 								</section>
-								<h3>Select Job Category & Job Sub Type</h3>
-								<section>
+
+								<h3 id="title_jobs">Select Job Category & Job Sub Type</h3>
+								<section id="section_jobs">
 									<select class="form-control  basic" id="jobTypes_select" onchange="jobSubTypes()">
 									</select>
 									<div class="infobox-1">
@@ -146,15 +156,17 @@
 											</tr>
 											</thead>
 											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
-												<div class="toast toast-primary fade hide" role="alert" data-delay="6000" aria-live="assertive" aria-atomic="true">
+												<div class="toast toast-primary fade hide" role="alert"
+													 data-delay="6000" aria-live="assertive" aria-atomic="true">
 													<div class="toast-header">
 														<strong class="mr-auto">Additional Rate Card Items </strong>
-														<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+														<button type="button" class="ml-2 mb-1 close"
+																data-dismiss="toast" aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
 													<div class="toast-body">
-														<h5><p  id="rate_toast_body" class="text-success"></p></h5>
+														<h5><p id="rate_toast_body" class="text-success"></p></h5>
 													</div>
 												</div>
 											</div>
@@ -163,6 +175,7 @@
 										</table>
 									</div>
 								</section>
+
 								<h3>Additional Materials</h3>
 								<section>
 									<p>Additional Materials </p>
@@ -183,15 +196,17 @@
 											</tr>
 											</thead>
 											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
-												<div class="toast toast-primary fade hide" role="alert" data-delay="6000" aria-live="assertive" aria-atomic="true">
+												<div class="toast toast-primary fade hide" role="alert"
+													 data-delay="6000" aria-live="assertive" aria-atomic="true">
 													<div class="toast-header">
 														<strong class="mr-auto">Additional Material Items </strong>
-														<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+														<button type="button" class="ml-2 mb-1 close"
+																data-dismiss="toast" aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
 													<div class="toast-body">
-														<h5><p  id="toast_body" class="text-success"></p></h5>
+														<h5><p id="toast_body" class="text-success"></p></h5>
 													</div>
 												</div>
 											</div>
@@ -249,17 +264,18 @@
 								</section>
 								<h3>Preview PDF</h3>
 								<section>
-									<object id="pdf_obj" data="<?php echo base_url(); ?>assets/quotes/TemplateQuotation.pdf"
-													type="application/pdf" height="600px" width="100%">
-									<p>It appears you don't have Adobe Reader or PDF support in this web
-										browser. <a
-												href="<?php echo base_url(); ?>assets/quotes/TemplateQuotation.pdf">Click
-											here to download the PDF</a>. Or <a
-												href="http://get.adobe.com/reader/"
-												target="_blank">click here to
-											install Adobe Reader</a>.</p>
-									<embed id="pdf_emb"
-										   type="application/pdf"/>
+									<object id="pdf_obj"
+											data="<?php echo base_url(); ?>assets/quotes/TemplateQuotation.pdf"
+											type="application/pdf" height="600px" width="100%">
+										<p>It appears you don't have Adobe Reader or PDF support in this web
+											browser. <a
+													href="<?php echo base_url(); ?>assets/quotes/TemplateQuotation.pdf">Click
+												here to download the PDF</a>. Or <a
+													href="http://get.adobe.com/reader/"
+													target="_blank">click here to
+												install Adobe Reader</a>.</p>
+										<embed id="pdf_emb"
+											   type="application/pdf"/>
 									</object>
 								</section>
 								<h3>Download & Finish</h3>
@@ -298,18 +314,24 @@
 	</div>
 
 	<!-- Modal  Update Row-->
-	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1" role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1"
+		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document" id="standardModalLabel">
 			<div class="modal-content">
 				<div class="modal-body text-center">
 					<div class="icon-content">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="feather feather-bell">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
 					</div>
 					<h5 class="modal-title">Edit Material Item Details</h5>
 					<br>
 					<br>
 					<div class="form-row">
-						<input id="modal_id" type="hidden" class="form-control  basic " name="id"  required>
+						<input id="modal_id" type="hidden" class="form-control  basic " name="id" required>
 						<div class="form-group col-md-6">
 							<label>Description</label><br>
 							<input id="modal_name" type="text" class="form-control  basic " name="desc" required>
@@ -322,15 +344,17 @@
 
 						<div class="form-group col-md-6">
 							<label>Quantity</label><br>
-							<input id="modal_quantity" type="number" class="form-control  basic " name="quantity"   required>
+							<input id="modal_quantity" type="number" class="form-control  basic " name="quantity"
+								   required>
 						</div>
 						<div class="form-group col-md-6">
 							<label>Proposed Rate</label><br>
-							<input id="modal_price" type="number" class="form-control  basic " name="rate" readonly required>
+							<input id="modal_price" type="number" class="form-control  basic " name="rate" readonly
+								   required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Remarks</label><br>
-							<input id="modal_remarks" type="text" class="form-control  basic " name="remarks" >
+							<input id="modal_remarks" type="text" class="form-control  basic " name="remarks">
 						</div>
 
 					</div>
@@ -342,19 +366,25 @@
 			</div>
 		</div>
 	</div>
-<!-- Modal  Update Rate Card Row-->
-	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="rateCardModal" tabindex="-1" role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+	<!-- Modal  Update Rate Card Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="rateCardModal" tabindex="-1"
+		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document" id="">
 			<div class="modal-content">
 				<div class="modal-body text-center">
 					<div class="icon-content">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="feather feather-bell">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
 					</div>
 					<h5 class="modal-title">Edit Rate Card Item Details</h5>
 					<br>
 					<br>
 					<div class="form-row">
-						<input id="mod_id" type="hidden" class="form-control  basic " name="id"  required>
+						<input id="mod_id" type="hidden" class="form-control  basic " name="id" required>
 						<div class="form-group col-md-12">
 							<label>Description</label><br>
 							<input id="mod_name" type="text" class="form-control  basic " name="desc" required>
@@ -367,15 +397,17 @@
 
 						<div class="form-group col-md-6">
 							<label>Quantity</label><br>
-							<input id="mod_quantity" type="number" class="form-control  basic " name="quantity"   required>
+							<input id="mod_quantity" type="number" class="form-control  basic " name="quantity"
+								   required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Proposed Rate</label><br>
-							<input id="mod_price" type="number" class="form-control  basic " name="rate" readonly required>
+							<input id="mod_price" type="number" class="form-control  basic " name="rate" readonly
+								   required>
 						</div>
 						<div class="form-group col-md-12">
 							<label>Remarks</label><br>
-							<input id="mod_remarks" type="text" class="form-control  basic " name="remarks" >
+							<input id="mod_remarks" type="text" class="form-control  basic " name="remarks">
 						</div>
 
 					</div>
@@ -400,9 +432,21 @@
 		let referenceDetails_ = []
 		let vat_ = 0
 		$(document).ready(function () {
+			//hide rate card & job type sections
+			$('#pill-vertical-t-2').attr('hidden', true);
+			$('#pill-vertical-h-2').attr('hidden', true);
+			$('#pill-vertical-p-2').attr('hidden', true);
+
+			$('#pill-vertical-t-3').attr('hidden', true);
+			$('#pill-vertical-h-3').attr('hidden', true);
+			$('#pill-vertical-p-3').attr('hidden', true);
+			$('#vat_icon').attr('hidden', true);
+			//fetch data for dropdowns
 			clients();
 			jobTypes();
 			references();
+			materials()
+
 		});
 
 		function clients() {
@@ -423,6 +467,7 @@
 						sortClients()
 					})
 		}
+
 		function references() {
 			let ref_id = ""
 			let date_ref = ""
@@ -472,9 +517,38 @@
 						document.getElementById("rep_mobile").innerText = clientDetails["rep_mobile"];
 						document.getElementById("rep_name").innerText = clientDetails["rep_name"];
 						document.getElementById("rep_email").innerText = clientDetails["rep_email"];
-					})
+						filterMenu()
 
+					})
 		}
+
+		function filterMenu() {
+			let client_type = clientDetails_['client_group']
+			//if client type is Provider, show rate card & job type sections
+			if (client_type == 1) {
+				//provider clients (include rate card & job type)
+				$('#pill-vertical-t-2').attr('hidden', false);
+				$('#pill-vertical-h-2').attr('hidden', false);
+				$('#pill-vertical-p-2').attr('hidden', false);
+
+				$('#pill-vertical-t-3').attr('hidden', false);
+				$('#pill-vertical-h-3').attr('hidden', false);
+				$('#pill-vertical-p-3').attr('hidden', false);
+
+			}else{
+				//non-provider clients
+				//	$("#pill-vertical").steps("remove", 3);
+				//	$("#pill-vertical").steps("remove", 2);
+				$('#pill-vertical-t-2').attr('hidden', true);
+				$('#pill-vertical-h-2').attr('hidden', true);
+				$('#pill-vertical-p-2').attr('hidden', true);
+
+				$('#pill-vertical-t-3').attr('hidden', true);
+				$('#pill-vertical-h-3').attr('hidden', true);
+				$('#pill-vertical-p-3').attr('hidden', true);
+			}
+		}
+
 
 		function jobTypes() {
 			let jobTypes = []
@@ -548,7 +622,7 @@
 					.then(data => {
 						ratecard = data["ratecard"];
 						//populate global variable
-						rate_card_= (ratecard)
+						rate_card_ = (ratecard)
 						document.getElementById("table_title").innerText = ratecard[0]["subType"];
 						var tbody = document.getElementById("rate_card_tbody");
 						var tr = '';
@@ -559,7 +633,7 @@
 							var quantity = ratecard[i].quantity
 							var proposed_rate = ratecard[i].rate
 							var remarks = ratecard[i].remarks;
-							var action = '<a onclick="editRateCardRow(' + ratecard[i].id +  ', \''+  ratecard[i].description +'\''   +  ', \''+  ratecard[i].quantity+'\''  +  ', \''+   ratecard[i].UOM +'\''  +', \''+  ratecard[i].rate+'\''  +',\' '+  ratecard[i].remarks+'\')"' +
+							var action = '<a onclick="editRateCardRow(' + ratecard[i].id + ', \'' + ratecard[i].description + '\'' + ', \'' + ratecard[i].quantity + '\'' + ', \'' + ratecard[i].UOM + '\'' + ', \'' + ratecard[i].rate + '\'' + ',\' ' + ratecard[i].remarks + '\')"' +
 									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 									'data-original-title="Edit">' +
 									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
@@ -569,7 +643,6 @@
 						}
 						tbody.innerHTML = tr;
 					})
-			materials()
 		}
 
 		function materials() {
@@ -585,33 +658,34 @@
 						var tr = '';
 						for (let i = 0; i < materials.length; i++) {
 							var radio_btn = '  <div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">' +
-									'<input type="checkbox" onclick="includeMaterials(' + materials[i].id +  ', \''+  materials[i].description  +'\')"' +
-									' name="material_radio_' + materials[i].id +  '"class="new-control-input"><span class="new-control-indicator">' +
+									'<input type="checkbox" onclick="includeMaterials(' + materials[i].id + ', \'' + materials[i].description + '\')"' +
+									' name="material_radio_' + materials[i].id + '"class="new-control-input"><span class="new-control-indicator">' +
 									'</span>Add/Remove Item </label>	</div>'
 							var description = materials[i].description
 							var uom = materials[i].UOM
 							var quantity = materials[i].quantity
 							var proposed_rate = materials[i].rate
 							var remarks = materials[i].remarks;
-							var action =  '<a onclick="editRow(' + materials[i].id +  ', \''+  materials[i].description +'\''   +  ', \''+  materials[i].quantity+'\''  +  ', \''+   materials[i].UOM +'\''  +', \''+  materials[i].rate+'\''  +',\' '+  materials[i].remarks+'\')"' +
+							var action = '<a onclick="editRow(' + materials[i].id + ', \'' + materials[i].description + '\'' + ', \'' + materials[i].quantity + '\'' + ', \'' + materials[i].UOM + '\'' + ', \'' + materials[i].rate + '\'' + ',\' ' + materials[i].remarks + '\')"' +
 									'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 									'data-original-title="Edit">' +
 									'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
 									'</a>'
-							tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1)  + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
+							tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
 									"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
 						}
 						tbody.innerHTML = tr;
 					})
 		}
-		function includeMaterials(id, desc){
+
+		function includeMaterials(id, desc) {
 			let name = "material_radio_" + id;
 			let checkbox_status = $('input[name=' + name + ']:checked').val();
 			if (checkbox_status === "on") {
 				//add ID to materials to be included array
 				radiovalues_.push(id);
 				// toast body populate
-				document.getElementById("toast_body").innerHTML= "Item " + desc + " added to list."
+				document.getElementById("toast_body").innerHTML = "Item " + desc + " added to list."
 				//display toast
 				$('.toast').toast('show');
 			} else {
@@ -619,20 +693,21 @@
 				//remove ID from materials to be included array
 				radiovalues_.splice(index, 1)
 				// toast body populate
-				document.getElementById("toast_body").innerHTML= " Item " + desc + " removed to list."
+				document.getElementById("toast_body").innerHTML = " Item " + desc + " removed to list."
 				//display toast
 				$('.toast').toast('show');
 			}
 			console.log(radiovalues_);
 		}
-		function includeVAT(){
+
+		function includeVAT() {
 			let name = "vat_radio_";
 			let checkbox_status = $('input[name=' + name + ']:checked').val();
 			if (checkbox_status === "on") {
 				//change VAT global value
 				vat_ = 1;
 				// toast body populate
-				document.getElementById("vat_toast_body").innerHTML= "VAT included."
+				document.getElementById("vat_toast_body").innerHTML = "VAT included."
 				//display toast
 				$('.toast').toast('show');
 			} else {
@@ -640,17 +715,18 @@
 				//remove ID from materials to be included array
 				radiovalues_.splice(index, 1)
 				// toast body populate
-				document.getElementById("vat_toast_body").innerHTML= " VAT Included. removed."
+				document.getElementById("vat_toast_body").innerHTML = " VAT Included. removed."
 				//display toast
 				$('.toast').toast('show');
 			}
 			console.log(vat_);
 		}
-		function  generateQuote(){
+
+		function generateQuote() {
 			/*	step 1. Collect all Quote Data from form fields   */
 			let quote_references = referenceDetails_
 			let clientDetails = clientDetails_
-			let jobTypeName =  $("#jobTypes_select option:selected").text();
+			let jobTypeName = $("#jobTypes_select option:selected").text();
 			let job_type_id = $("#jobTypes_select").val();
 			let job_sub_type_id = $("#jobSubTypes_select").val();
 			let job_sub_type_name = $("#jobSubTypes_select option:selected").text();
@@ -684,7 +760,7 @@
 			if (clientDetails === '') {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
-					html:	'No Client selected',
+					html: 'No Client selected',
 					animation: false,
 					customClass: 'animated tada',
 					padding: '2em'
@@ -706,19 +782,19 @@
 				'Content-Type': 'application/json;charset=utf-8'
 			}
 			let data = {
-				quote_references : referenceDetails_,
-				title : title,
-				vat : vat_,
-				clientDetails : clientDetails,
-				jobTypeName : jobTypeName,
+				quote_references: referenceDetails_,
+				title: title,
+				vat: vat_,
+				clientDetails: clientDetails,
+				jobTypeName: jobTypeName,
 				job_type_id: job_type_id,
 				job_sub_type_id: job_sub_type_id,
-				job_sub_type_name : job_sub_type_name,
-				rate_card : rate_card,
-				materials : materials,
-				materials_to_show : materials_to_show,
-				notes : notes,
-				payment_terms : payment_terms
+				job_sub_type_name: job_sub_type_name,
+				rate_card: rate_card,
+				materials: materials,
+				materials_to_show: materials_to_show,
+				notes: notes,
+				payment_terms: payment_terms
 			};
 			console.log(data)
 			fetch(this.basePath + '/quote', {
@@ -752,6 +828,7 @@
 						document.getElementById("quote_download_btn").setAttribute("href", url)
 					})
 		}
+
 		function editRow(id, desc, quantity, uom, rate, remarks) {
 			/*step 1: Populate Modal */
 			document.getElementById("modal_id").setAttribute("value", id)
@@ -763,6 +840,7 @@
 			/*step 2*/
 			$('#standardModal').modal('show');
 		}
+
 		function editRateCardRow(id, desc, quantity, uom, rate, remarks) {
 			/*step 1: Populate Modal */
 			document.getElementById("mod_id").setAttribute("value", id)
@@ -774,8 +852,9 @@
 			/*step 2*/
 			$('#rateCardModal').modal('show');
 		}
-		function submitModal(){
-		/*	1. get data from form items  */
+
+		function submitModal() {
+			/*	1. get data from form items  */
 			let material_id = document.getElementById("modal_id").value;
 			let modal_name = document.getElementById("modal_name").value;
 			let modal_uom = document.getElementById("modal_uom").value;
@@ -783,32 +862,32 @@
 			let modal_price = document.getElementById("modal_price").value;
 			let modal_remarks = document.getElementById("modal_remarks").value;
 			/*	2. update Materials Global array Attributes for that index   */
-				for (var i in materials_){
-					if( materials_[i].id == material_id){
-						materials_[i].description = modal_name
-						materials_[i].UOM = modal_uom
-						materials_[i].quantity = modal_quantity
-						materials_[i].rate = modal_price
-						materials_[i].remarks = modal_remarks
-						// console.log("updated row")
-						// console.log(materials_)
-					}
+			for (var i in materials_) {
+				if (materials_[i].id == material_id) {
+					materials_[i].description = modal_name
+					materials_[i].UOM = modal_uom
+					materials_[i].quantity = modal_quantity
+					materials_[i].rate = modal_price
+					materials_[i].remarks = modal_remarks
+					// console.log("updated row")
+					// console.log(materials_)
 				}
+			}
 			/*	3. Update materials  table   */
 			var tbody = document.getElementById("materials_tbody");
 			var tr = '';
 			let materials = materials_
 			for (let i = 0; i < materials.length; i++) {
 				var radio_btn = '  <div class="n-chk"><label class="new-control new-checkbox new-checkbox-rounded checkbox-success">' +
-						'<input type="checkbox" onclick="includeMaterials(' + materials[i].id +  ', \''+  materials[i].description  +'\')"' +
-						' name="material_radio_' + materials[i].id +  '"class="new-control-input"><span class="new-control-indicator">' +
+						'<input type="checkbox" onclick="includeMaterials(' + materials[i].id + ', \'' + materials[i].description + '\')"' +
+						' name="material_radio_' + materials[i].id + '"class="new-control-input"><span class="new-control-indicator">' +
 						'</span>Add Item </label>	</div>'
 				var description = materials[i].description
 				var uom = materials[i].UOM
 				var quantity = materials[i].quantity
 				var proposed_rate = materials[i].rate
 				var remarks = materials[i].remarks;
-				var action =  '<a onclick="editRow(' + materials[i].id +  ', \''+  materials[i].description +'\''   +  ', \''+  materials[i].quantity+'\''  +  ', \''+   materials[i].UOM +'\''  +', \''+  materials[i].rate+'\''  +',\' '+  materials[i].remarks+'\')"' +
+				var action = '<a onclick="editRow(' + materials[i].id + ', \'' + materials[i].description + '\'' + ', \'' + materials[i].quantity + '\'' + ', \'' + materials[i].UOM + '\'' + ', \'' + materials[i].rate + '\'' + ',\' ' + materials[i].remarks + '\')"' +
 						'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 						'data-original-title="Edit">' +
 						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
@@ -818,7 +897,7 @@
 						'data-original-title="Delete">' +
 						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-9h10v2H7v-2z" fill="rgba(216,176,12,1)"/></svg> ' +
 						'</a>'
-				tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1)  + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
+				tr += "<tr id='tr" + i + "'><td>" + radio_btn + "</td><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + uom +
 						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + proposed_rate + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + action + "</td></tr>"
 			}
 			tbody.innerHTML = tr;
@@ -826,12 +905,13 @@
 			$('#standardModal').modal('hide');
 			/*	5. notify user of update status  */
 			// toast body populate
-			document.getElementById("toast_body").innerHTML=modal_name + " Details updated!."
+			document.getElementById("toast_body").innerHTML = modal_name + " Details updated!."
 			//display toast
 			$('.toast').toast('show');
 		}
-		function submitRateCardModal(){
-		/*	1. get data from form items  */
+
+		function submitRateCardModal() {
+			/*	1. get data from form items  */
 			let rate_card_id = document.getElementById("mod_id").value;
 			let modal_name = document.getElementById("mod_name").value;
 			let modal_uom = document.getElementById("mod_uom").value;
@@ -853,20 +933,20 @@
 			console.log("rate card")
 			console.log(rate_card_)
 			/*	2. update Rate Card  Global array Attributes for that index ID   */
-				for (var i in rate_card_){
-					if( rate_card_[i].id == rate_card_id){
-						rate_card_[i].description = modal_name
-						rate_card_[i].UOM = modal_uom
-						rate_card_[i].quantity = modal_quantity
-						rate_card_[i].rate = modal_price
-						rate_card_[i].remarks = modal_remarks
-						console.log("updated row")
-						console.log(rate_card_)
-					}
+			for (var i in rate_card_) {
+				if (rate_card_[i].id == rate_card_id) {
+					rate_card_[i].description = modal_name
+					rate_card_[i].UOM = modal_uom
+					rate_card_[i].quantity = modal_quantity
+					rate_card_[i].rate = modal_price
+					rate_card_[i].remarks = modal_remarks
+					console.log("updated row")
+					console.log(rate_card_)
 				}
+			}
 			/*	3. Update materials  table   */
 			var tbody = document.getElementById("rate_card_tbody");
-		let 	ratecard = rate_card_
+			let ratecard = rate_card_
 			var tr = '';
 			var total = 0
 			for (let i = 0; i < ratecard.length; i++) {
@@ -875,7 +955,7 @@
 				var quantity = ratecard[i].quantity
 				var proposed_rate = ratecard[i].rate
 				var remarks = ratecard[i].remarks;
-				var action = '<a onclick="editRow(' + ratecard[i].id +  ', \''+  ratecard[i].description +'\''   +  ', \''+  ratecard[i].quantity+'\''  +  ', \''+   ratecard[i].UOM +'\''  +', \''+  ratecard[i].rate+'\''  +',\' '+  ratecard[i].remarks+'\')"' +
+				var action = '<a onclick="editRow(' + ratecard[i].id + ', \'' + ratecard[i].description + '\'' + ', \'' + ratecard[i].quantity + '\'' + ', \'' + ratecard[i].UOM + '\'' + ', \'' + ratecard[i].rate + '\'' + ',\' ' + ratecard[i].remarks + '\')"' +
 						'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
 						'data-original-title="Edit">' +
 						'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
@@ -888,7 +968,7 @@
 			$('#rateCardModal').modal('hide');
 			/*	5. notify user of update status  */
 			// toast body populate
-			document.getElementById("rate_toast_body").innerHTML= "Item " + description + " Details updated!."
+			document.getElementById("rate_toast_body").innerHTML = "Item " + description + " Details updated!."
 			//display toast
 			$('.toast').toast('show');
 		}

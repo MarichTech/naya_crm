@@ -151,7 +151,25 @@
 	</div>
 </main>
 <footer>
-	www.naya.co.ke
+	<div id="notices">
+		<div style="text-align: left; text-transform: capitalize">Bank Account Details:</div>
+		<div class="notice"
+		><p style="text-align: left; text-transform: lowercase">Bank Name: NCBA Bank Kenya PLC <br>
+				Account Name: Naya Solutions Ltd<br>
+				KES Account Number: 7935650015<br>
+				USD Account Number: 7935650028<br>
+				Branch Name: Westlands<br>
+				Swift Code: CBAFKENX<br>
+				Bank & Branch Code: 07000<br>
+				Bank Address: P.O. Box 30437 -<br>
+				00100 Nairobi, Kenya</p></div>
+	</div>
+	This quote is system generated and is valid without the signature and seal.
+	<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
+	<br>
+<p>	Powered By:<b> Naya Solutions</b></p>
+	<br>
+	U70xDN
 </footer>
 </body>
 </html>
