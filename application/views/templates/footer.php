@@ -17,9 +17,9 @@
 
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
 <script src="<?php echo base_url(); ?>assets/js/libs/jquery-3.1.1.min.js"></script>
-<script src="bootstrap/js/popper.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="<?php echo base_url() ?>bootstrap/js/popper.min.js"></script>
+<script src="<?php echo base_url() ?>bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/app.js"></script>
 <script>
 	$(document).ready(function() {
@@ -30,18 +30,22 @@
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="plugins/apex/apexcharts.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/apex/apexcharts.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dashboard/dash_2.js"></script>
-<script src="assets/js/scrollspyNav.js"></script>
-<script src="plugins/jquery-step/jquery.steps.min.js"></script>
-<script src="plugins/jquery-step/custom-jquery.steps.js"></script>
-<script src="plugins/table/datatable/datatables.js"></script>
-<script src="plugins/select2/select2.min.js"></script>
-<script src="plugins/select2/custom-select2.js"></script>
-<script src="plugins/editors/markdown/simplemde.min.js"></script>
-<script src="plugins/editors/markdown/custom-markdown.js"></script>
-<script src="plugins/sweetalerts/sweetalert2.min.js"></script>
-<script src="plugins/sweetalerts/custom-sweetalert.js"></script>
+<script src="<?php echo base_url() ?>assets/js/scrollspyNav.js"></script>
+<script src="<?php echo base_url() ?>plugins/jquery-step/jquery.steps.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/jquery-step/custom-jquery.steps.js"></script>
+<script src="<?php echo base_url() ?>plugins/table/datatable/datatables.js"></script>
+<script src="<?php echo base_url() ?>plugins/select2/select2.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/select2/custom-select2.js"></script>
+<script src="<?php echo base_url() ?>plugins/editors/markdown/simplemde.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/editors/markdown/custom-markdown.js"></script>
+<script src="<?php echo base_url() ?>plugins/sweetalerts/sweetalert2.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/sweetalerts/custom-sweetalert.js"></script>
+<script src="<?php echo base_url() ?>plugins/dropify/dropify.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/blockui/jquery.blockUI.min.js"></script>
+<!-- <script src="plugins/tagInput/tags-input.js"></script> -->
+<script src="<?php echo base_url() ?>assets/js/users/account-settings.js"></script>
 <script>
 	$('#default-ordering').DataTable( {
 		"oLanguage": {

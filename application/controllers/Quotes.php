@@ -251,5 +251,17 @@ class Quotes extends  Base
 		);
 		echo json_encode($data);
 	}
+	public function view_quote()
+	{
+		$quote_id = $this->uri->segment(2);
+		$params = array(
+			'quote_id' => $quote_id
+		);
+		$quoteDetails = $this->Data->getQuotes($params);
+		$data = array(
+			'quoteDetails' => $quoteDetails
+		);
+		$this->load->view('quotes/view_quote', $data);
+	}
 
 }
