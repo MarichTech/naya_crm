@@ -228,7 +228,7 @@ class Data_model extends CI_Model
 				}
 			}
 		}
-		$this->db->order_by('quotes.date_created', "ASC");
+		$this->db->order_by('quotes.date_created', "DESC");
 		$this->db->group_by('quotes.quote_id');
 		return $this->db->get()->result();
 	}

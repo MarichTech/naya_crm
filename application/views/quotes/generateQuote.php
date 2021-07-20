@@ -14,7 +14,7 @@
 
 				<div id="wizards_pills" class="col-lg-12">
 					<div class="seperator-header">
-						<h4 class="">New Quote</h4>
+<!--						<h4 class="">New Quote</h4>-->
 					</div>
 				</div>
 
@@ -41,18 +41,13 @@
 											<h5 class="info-heading">Selected Quote Type</h5>
 											<p class="info-link badge badge-warning" id="quote_type"></p>
 										</div>
-
-
-
 								</section>
 								<h3>Client/Customer</h3>
 								<section>
 									<p>Select Client</p>
-
 									<select class="form-control  basic" id="clients_select"
 											onchange="loadClientDetails()">
 									</select>
-
 									<div class="infobox-1">
 										<div class="info-icon">
 											<h5 class="info-heading">Client Name</h5>
@@ -84,6 +79,7 @@
 											<h5 class="info-heading">Rep Email</h5>
 											<p class="info-link badge badge-warning" contenteditable="true" id="rep_email"></p>
 										</div>
+
 
 
 								</section>
@@ -451,9 +447,9 @@
 		let vat_ = 0
 		$(document).ready(function () {
 			//hide rate card & job type sections
-			$('#pill-vertical-t-2').attr('hidden', true);
-			$('#pill-vertical-h-2').attr('hidden', true);
-			$('#pill-vertical-p-2').attr('hidden', true);
+			$('#pill-vertical-t-4').attr('hidden', true);
+			$('#pill-vertical-h-4').attr('hidden', true);
+			$('#pill-vertical-p-4').attr('hidden', true);
 
 			$('#pill-vertical-t-3').attr('hidden', true);
 			$('#pill-vertical-h-3').attr('hidden', true);
@@ -492,6 +488,7 @@
 			let select = document.getElementById("quote_type_select");
 			 quote_type_ = select.options[select.selectedIndex].text;
 			document.getElementById("quote_type").innerText = quote_type_
+			filterMenu()
 		}
 		function clients() {
 					let clients = []
@@ -564,14 +561,13 @@
 						document.getElementById("rep_name").innerText = clientDetails["rep_name"];
 						document.getElementById("rep_email").innerText = clientDetails["rep_email"];
 						document.getElementById("payment_terms").value = clientDetails["payment_terms"];
-						filterMenu()
 					})
 		}
 
 		function filterMenu() {
-			let client_type = clientDetails_['client_group']
-			//if client type is Provider, show rate card & job type sections
-			if (client_type == 1) {
+			let quote_type =quote_type_id_
+			//if quote type is Provider(1), show rate card & job type sections
+			if (quote_type == 1) {
 				//provider clients (include rate card & job type)
 				$('#pill-vertical-t-4').attr('hidden', false);
 				$('#pill-vertical-h-4').attr('hidden', false);
