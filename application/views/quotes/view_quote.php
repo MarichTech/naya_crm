@@ -25,8 +25,20 @@
 														<p class="">Client Name</p>
 														<p><span id="clientName"  class="badge badge-warning"> <?php echo $quoteDetails[0]->name ?></span>	</p>
 													</div>
-
 												</div>
+													<div class="item-timeline">
+															<div class="t-meta-date">
+																<p class="">Client Email</p>
+																<p><span id="clientName"  class="badge badge-warning"> <?php echo $quoteDetails[0]->email ?></span>	</p>
+															</div>
+														</div>
+
+														<div class="item-timeline">
+															<div class="t-meta-date">
+																<p class="">Recipient</p>
+																<p><span id="clientName"  class="badge badge-warning"> <?php echo $quoteDetails[0]->rep_name ?></span>	</p>
+															</div>
+														</div>
 
 												<br>
 												<br>
@@ -123,7 +135,7 @@
 											<div class="form-group">
 												<object id="pdf_obj"
 														data="<?php echo base_url() . 'assets/quotes/' . $quoteDetails[0]->quote_ref . '.pdf' ?>"
-														type="application/pdf" height="500px" width="100%">
+														type="application/pdf" height="700px%" width="100%">
 													<p>It appears you don't have Adobe Reader or PDF support in this
 														web
 														browser. <a
@@ -142,33 +154,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="info">
-									<h5 class="">Cover Letter Preview</h5>
-									<div class="row">
-										<div class="col-md-11 mx-auto">
-											<div class="form-group">
-												<object id="pdf_obj"
-														data="<?php echo base_url() . 'assets/cover_letters/' . $quoteDetails[0]->quote_ref . '_cover_letter_' . '.pdf' ?>"
-														type="application/pdf" height="450px" width="100%">
-													<p>It appears you don't have Adobe Reader or PDF support in this
-														web
-														browser. <a
-																href="<?php echo base_url() . 'assets/cover_letters/' . $quoteDetails[0]->quote_ref . '_cover_letter_' . '.pdf' ?>">Click
-															here to download the PDF</a>. Or <a
-																href="http://get.adobe.com/reader/"
-																target="_blank">click here to
-															install Adobe Reader</a>.</p>
-													<embed id="pdf_emb"
-														   type="application/pdf"/>
-												</object>
-
-
-											</div>
-										</div>
-									</div>
-								</div>
-
-
 							</form>
 						</div>
 

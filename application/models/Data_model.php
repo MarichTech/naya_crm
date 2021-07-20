@@ -213,7 +213,8 @@ class Data_model extends CI_Model
 	public function  getQuotes($params = ""){
 		$this->db->select('quotes.quote_id, quotes.quote_ref, quotes.job_no, quotes.title, quotes.job_category, 
 	quotes.job_sub_category, job_subcategories.name as jobSubType, job_categories.name as jobType, quotes.rate_card_id, quotes.additional_materials, 
-		quotes.notes, quotes.assumptions, quotes.payment_terms, quotes.amount, quotes.client_id, clients.name as name, quotes.user_id, users.username, quotes.date_created, quotes.last_modified');
+		quotes.notes, quotes.assumptions, quotes.payment_terms, quotes.amount, quotes.client_id,
+		 clients.name as name, clients.email, clients.mobile, clients.rep_name, clients.rep_mobile, quotes.user_id, users.username, quotes.date_created, quotes.last_modified');
 		$this->db->from('quotes');
 		$this->db->join('job_categories',"quotes.client_id = job_categories.category_id");
 		$this->db->join('job_subcategories',"quotes.client_id = job_subcategories.sub_cat_id");
