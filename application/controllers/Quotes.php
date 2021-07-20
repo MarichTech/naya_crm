@@ -23,6 +23,15 @@ class Quotes extends  Base
 		$this->load->model("Data_model", "Data");
 	}
 
+	public function getQuoteTypes()
+	{
+
+		$quote_types = $this->Data->quoteTypes();
+		$result = array(
+			'quote_types' => $quote_types
+		);
+		echo json_encode($result);
+	}
 	public function getClients()
 	{
 
@@ -32,6 +41,7 @@ class Quotes extends  Base
 		);
 		echo json_encode($result);
 	}
+
 	public function references()
 	{
 		$quote_ref = '';

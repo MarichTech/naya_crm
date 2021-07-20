@@ -57,6 +57,7 @@ $route['new_quote'] = 'Base/new_quote';
 $route['rate_cards'] = 'Base/rate_cards';
 $route['company_settings'] = 'Base/company_settings';
 $route['manage_clients'] = 'Base/manage_clients';
+$route['quote_types'] = 'Quotes/getQuoteTypes';
 $route['clients'] = 'Quotes/getClients';
 $route['references'] = 'Quotes/references';
 $route['getPdfUrl'] = 'Quotes/getPdfUrl';

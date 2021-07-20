@@ -86,8 +86,10 @@ class Data_model extends CI_Model
 	public function getClients($params = "")
 	{
 		$this->db->select('clients.client_id, clients.client_group ,clients.name, clients.email, clients.mobile, clients.rep_name, clients.rep_email,clients.rep_mobile,
-		clients.address, clients.logo as file_name, clients.date_added, clients.last_modified');
+		clients.address,clients.payment_terms, clients.vat_type, clients.logo as file_name, clients.date_added, 
+		clients.last_modified, vat.id as vat_id, vat.description as vat, vat.rate');
 		$this->db->from('clients');
+		$this->db->join("vat", "clients.vat_type = vat.id");
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
 				if ($value != null) {
@@ -97,6 +99,27 @@ class Data_model extends CI_Model
 		}
 		return $this->db->get()->result();
 	}
+
+
+	/**
+	 * Fetch all Quote Types data
+	 *
+	 * @return object[]
+	 */
+	public function quoteTypes($params = "")
+	{
+		$this->db->select('quote_types.id, quote_types.description, quote_types.date_created, quote_types.last_modified');
+		$this->db->from('quote_types');
+		if (($params != '')) {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
+		return $this->db->get()->result();
+	}
+
 
 	/**
 	 * Fetch all company details
@@ -189,7 +212,7 @@ class Data_model extends CI_Model
 	 */
 	public function  getQuotes($params = ""){
 		$this->db->select('quotes.quote_id, quotes.quote_ref, quotes.job_no, quotes.title, quotes.job_category, 
-	quotes.job_subcategory, job_subcategories. name as jobSubType, job_categories.name as jobType, quotes.rate_card_id, quotes.additional_materials, 
+	quotes.job_sub_category, job_subcategories.name as jobSubType, job_categories.name as jobType, quotes.rate_card_id, quotes.additional_materials, 
 		quotes.notes, quotes.assumptions, quotes.payment_terms, quotes.amount, quotes.client_id, clients.name as name, quotes.user_id, users.username, quotes.date_created, quotes.last_modified');
 		$this->db->from('quotes');
 		$this->db->join('job_categories',"quotes.client_id = job_categories.category_id");

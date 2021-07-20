@@ -39,8 +39,11 @@ class Base extends CI_Controller
 
 	public function home()
 	{
-		$this->load->view('dashboard.php');
-
+		$quotes = $this->Data->getQuotes();
+		$data = array(
+			'quotes' => $quotes
+		);
+		$this->load->view('dashboard.php', $data);
 	}
 
 	public function manage_clients()

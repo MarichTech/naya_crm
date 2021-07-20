@@ -29,7 +29,23 @@
 						</div>
 						<div class="widget-content widget-content-area">
 							<div id="pill-vertical">
-								<h3>Select Client</h3>
+								<h3> Quote Type</h3>
+								<section>
+									<p>Select Quote Type</p>
+
+									<select class="form-control  basic" id="quote_type_select" onchange="selectedQuoteType()">
+									</select>
+
+									<div class="infobox-1">
+										<div class="info-icon">
+											<h5 class="info-heading">Selected Quote Type</h5>
+											<p class="info-link badge badge-warning" id="quote_type"></p>
+										</div>
+
+
+
+								</section>
+								<h3>Client/Customer</h3>
 								<section>
 									<p>Select Client</p>
 
@@ -424,6 +440,8 @@
 	<script type="text/javascript">
 		var basePath = "http://localhost/naya_crm";
 		let clientDetails_ = []
+		let quote_type_id_ = []
+		let quote_type_ = []
 		let job_type_details_ = []
 		let job_sub_type_details_ = []
 		let rate_card_ = []
@@ -442,31 +460,57 @@
 			$('#pill-vertical-p-3').attr('hidden', true);
 			$('#vat_icon').attr('hidden', true);
 			//fetch data for dropdowns
+
+			quoteTypes()
 			clients();
 			jobTypes();
 			references();
 			materials()
-
+			quoteTypes()
 		});
 
-		function clients() {
-			let clients = []
-			var select = document.getElementById("clients_select");
-			var options = '<option value="" readonly="readonly" >Select Client</option>'
-			fetch(this.basePath + '/clients')
+		function quoteTypes() {
+			let quote_types = []
+			var select = document.getElementById("quote_type_select");
+			var options = '<option value="" readonly="readonly" >Select Quote Type</option>'
+			fetch(this.basePath + '/quote_types')
 					.then(response => {
 						return response.json()
 					})
 					.then(data => {
-						clients = data["clients"];
-						for (let i = 0; i < clients.length; i++) {
-							let option = '<option value="' + clients[i]["client_id"] + '">' + clients[i]["name"] + '</option>'
+						quote_types = data["quote_types"];
+						for (let i = 0; i < quote_types.length; i++) {
+							let option = '<option value="' + quote_types[i]["id"] + '">' + quote_types[i]["description"] + '</option>'
 							options += option;
 						}
 						select.innerHTML = options;
-						sortClients()
 					})
 		}
+		function selectedQuoteType(){
+			//show user selection
+			 quote_type_id_ = $("#quote_type_select").val();
+			let select = document.getElementById("quote_type_select");
+			 quote_type_ = select.options[select.selectedIndex].text;
+			document.getElementById("quote_type").innerText = quote_type_
+		}
+		function clients() {
+					let clients = []
+					var select = document.getElementById("clients_select");
+					var options = '<option value="" readonly="readonly" >Select Client</option>'
+					fetch(this.basePath + '/clients')
+							.then(response => {
+								return response.json()
+							})
+							.then(data => {
+								clients = data["clients"];
+								for (let i = 0; i < clients.length; i++) {
+									let option = '<option value="' + clients[i]["client_id"] + '">' + clients[i]["name"] + '</option>'
+									options += option;
+								}
+								select.innerHTML = options;
+								sortClients()
+							})
+				}
 
 		function references() {
 			let ref_id = ""
@@ -510,6 +554,8 @@
 						let clientDetails = data["client"][0];
 						//populate global variable
 						clientDetails_ = clientDetails
+						vat_ = clientDetails['rate']
+						//populate client data fields
 						document.getElementById("client_name").innerText = clientDetails["name"];
 						document.getElementById("client_email").innerText = clientDetails["email"];
 						document.getElementById("client_mobile").innerText = clientDetails["mobile"];
@@ -517,8 +563,8 @@
 						document.getElementById("rep_mobile").innerText = clientDetails["rep_mobile"];
 						document.getElementById("rep_name").innerText = clientDetails["rep_name"];
 						document.getElementById("rep_email").innerText = clientDetails["rep_email"];
+						document.getElementById("payment_terms").value = clientDetails["payment_terms"];
 						filterMenu()
-
 					})
 		}
 
@@ -527,9 +573,9 @@
 			//if client type is Provider, show rate card & job type sections
 			if (client_type == 1) {
 				//provider clients (include rate card & job type)
-				$('#pill-vertical-t-2').attr('hidden', false);
-				$('#pill-vertical-h-2').attr('hidden', false);
-				$('#pill-vertical-p-2').attr('hidden', false);
+				$('#pill-vertical-t-4').attr('hidden', false);
+				$('#pill-vertical-h-4').attr('hidden', false);
+				$('#pill-vertical-p-4').attr('hidden', false);
 
 				$('#pill-vertical-t-3').attr('hidden', false);
 				$('#pill-vertical-h-3').attr('hidden', false);
@@ -539,9 +585,9 @@
 				//non-provider clients
 				//	$("#pill-vertical").steps("remove", 3);
 				//	$("#pill-vertical").steps("remove", 2);
-				$('#pill-vertical-t-2').attr('hidden', true);
-				$('#pill-vertical-h-2').attr('hidden', true);
-				$('#pill-vertical-p-2').attr('hidden', true);
+				$('#pill-vertical-t-4').attr('hidden', true);
+				$('#pill-vertical-h-4').attr('hidden', true);
+				$('#pill-vertical-p-4').attr('hidden', true);
 
 				$('#pill-vertical-t-3').attr('hidden', true);
 				$('#pill-vertical-h-3').attr('hidden', true);
