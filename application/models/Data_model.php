@@ -298,7 +298,7 @@ class Data_model extends CI_Model
 	}
 	public function getUsers(){
 		$this->db->select('users.user_id, users.username, users.password, users.usergroup as user_group_id, 
-		 user_groups.name as usergroup, users.date_added, users.last_modified');
+		 user_groups.name as usergroup, users.date_created, users.last_modified');
 		$this->db->from('users');
 		$this->db->join('user_groups', "users.usergroup = user_groups.group_id");
 		return $this->db->get()->result();
@@ -312,6 +312,39 @@ class Data_model extends CI_Model
 			return true;
 		}catch (Exception $exception){
 
+			return false;
+		}
+	}
+
+	/**
+	 * Get all currencies data
+	 * @param string $params
+	 * @return array|array[]|object|object[]
+	 */
+	public function getCurrencies($params = "")
+	{
+		$this->db->select('*');
+		$this->db->from('currencies');
+		$this->db->order_by("currencies.id", "ASC");
+		if ($params != '') {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
+		return $this->db->get()->result();
+	}
+
+	public function dataExists($table, $column, $quote_ref)
+	{
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->where($column, $quote_ref);
+		$query =$this->db->get();
+		if($query->num_rows >0){
+			return true;
+		}else{
 			return false;
 		}
 	}

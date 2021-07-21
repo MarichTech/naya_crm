@@ -14,7 +14,7 @@
 
 				<div id="wizards_pills" class="col-lg-12">
 					<div class="seperator-header">
-<!--						<h4 class="">New Quote</h4>-->
+						<!--						<h4 class="">New Quote</h4>-->
 					</div>
 				</div>
 
@@ -33,7 +33,8 @@
 								<section>
 									<p>Select Quote Type</p>
 
-									<select class="form-control  basic" id="quote_type_select" onchange="selectedQuoteType()">
+									<select class="form-control  basic" id="quote_type_select"
+											onchange="selectedQuoteType()">
 									</select>
 
 									<div class="infobox-1">
@@ -68,18 +69,20 @@
 										</div>
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Name</h5>
-											<p class="info-link badge badge-warning" contenteditable="true" id="rep_name"></p>
+											<p class="info-link badge badge-warning" contenteditable="true"
+											   id="rep_name"></p>
 										</div>
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Mobile</h5>
-											<p class="info-link badge badge-warning"  contenteditable="true" id="rep_mobile"></p>
+											<p class="info-link badge badge-warning" contenteditable="true"
+											   id="rep_mobile"></p>
 										</div>
 
 										<div class="info-icon">
 											<h5 class="info-heading">Rep Email</h5>
-											<p class="info-link badge badge-warning" contenteditable="true" id="rep_email"></p>
+											<p class="info-link badge badge-warning" contenteditable="true"
+											   id="rep_email"></p>
 										</div>
-
 
 
 								</section>
@@ -187,6 +190,53 @@
 										</table>
 									</div>
 								</section>
+								<h3>Hardware & Software Items</h3>
+								<section>
+									<p> Add H/ware or S/ware Line Item</p>
+									<div class="table-responsive mb-4 mt-4">
+										<a onclick="add_line_item_modal()">
+											<svg xmlns="http://www.w3.org/2000/svg"
+												 viewBox="0 0 24 24" width="24" height="24">
+												<path fill="none" d="M0 0h24v24H0z"/>
+												<path d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
+													  fill="rgba(226,160,63,1)"/>
+											</svg>
+											Add Row</a>
+										<br>
+										<table id="rate_card_table" class="table table-bordered table-striped mb-4"
+											   style="width:100%">
+											<thead>
+											<tr>
+												<th>#</th>
+												<th>Description</th>
+												<th>Buying Price</th>
+												<th>Quantity</th>
+												<th>Selling Price</th>
+												<th>Remarks</th>
+												<th>VAT</th>
+											</tr>
+											</thead>
+											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
+												<div class="toast toast-primary fade hide" role="alert"
+													 data-delay="6000" aria-live="assertive" aria-atomic="true">
+													<div class="toast-header">
+														<strong class="mr-auto">Line Items </strong>
+														<button type="button" class="ml-2 mb-1 close"
+																data-dismiss="toast" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="toast-body">
+														<h5><p id="line_item_toast_body" class="text-success"></p></h5>
+													</div>
+												</div>
+											</div>
+											<tbody id="line_item_tbody">
+											</tbody>
+										</table>
+									</div>
+								</section>
+
 
 								<h3>Additional Materials</h3>
 								<section>
@@ -231,6 +281,10 @@
 								<h3>Add Notes & Payment Terms</h3>
 								<section>
 									<p>Enter Payment Terms & Additional Notes</p>
+										<p class="input-group-text">Choose Currency Options</p>
+										<br>
+										<div class="n-chk" id="currencies_div">
+										</div>
 									<div class="input-group mb-4">
 										<div class="input-group-prepend">
 											<span class="input-group-text">Payment Terms</span>
@@ -238,6 +292,8 @@
 										<textarea id="payment_terms" class="form-control"
 												  aria-label="Payment Terms"></textarea>
 									</div>
+
+
 									<div class="input-group mb-4">
 										<div class="input-group-prepend">
 											<span class="input-group-text">Notes </span>
@@ -325,6 +381,57 @@
 		</div>
 	</div>
 
+	<!-- Modal  Add Line Item Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="line_item_modal" tabindex="-1"
+		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" id="standardModalLabel">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="icon-content">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="feather feather-bell">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
+					</div>
+					<h5 class="modal-title">Enter Line Item Details</h5>
+					<br>
+					<br>
+					<form id="create_form">
+
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Description</label><br>
+								<input id="row_name" type="text" class="form-control  basic " name="desc" required>
+
+							</div>
+							<div class="form-group col-md-6">
+								<label>Buying Price</label><br>
+								<input id="row_buying_price" type="number" class="form-control  basic "
+									   name="buying_price" required>
+							</div>
+
+							<div class="form-group col-md-6">
+								<label>Quantity</label><br>
+								<input id="row_quantity" type="number" class="form-control  basic " name="quantity"
+									   required>
+							</div>
+							<div class="form-group col-md-12">
+								<label>Remarks</label><br>
+								<input id="row_remarks" type="text" class="form-control  basic " name="remarks">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+					<button type="button" onclick="add_line_item()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Modal  Update Row-->
 	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1"
 		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
@@ -441,12 +548,22 @@
 		let job_type_details_ = []
 		let job_sub_type_details_ = []
 		let rate_card_ = []
+		let line_items_ = []
 		let materials_ = []
+		let currencies_ = []
+		let currencies_to_show_ = []
 		let radiovalues_ = []
 		let referenceDetails_ = []
+		let markup_ = 1.2
 		let vat_ = 0
+		let vat_include_ = []
+		let clients_ = []
 		$(document).ready(function () {
-			//hide rate card & job type sections
+			//hide rate card & job type & materials sections
+			$('#pill-vertical-t-6').attr('hidden', true);
+			$('#pill-vertical-h-6').attr('hidden', true);
+			$('#pill-vertical-p-6').attr('hidden', true);
+
 			$('#pill-vertical-t-4').attr('hidden', true);
 			$('#pill-vertical-h-4').attr('hidden', true);
 			$('#pill-vertical-p-4').attr('hidden', true);
@@ -458,10 +575,10 @@
 			//fetch data for dropdowns
 
 			quoteTypes()
-			clients();
 			jobTypes();
 			references();
 			materials()
+			currencies()
 			quoteTypes()
 		});
 
@@ -482,32 +599,118 @@
 						select.innerHTML = options;
 					})
 		}
-		function selectedQuoteType(){
+
+		function currencies() {
+			let headers = {
+				'Content-Type': 'application/json;charset=utf-8'
+			};
+			fetch(this.basePath + '/loadCurrencies', {
+				method: 'POST',
+				headers: headers,
+			})
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						currencies_ = data["currencies"];
+						$.each(currencies_, function (index, value) {
+							if (value.abbreviation == "KES") {
+								console.log("Hiding KES...")
+							} else {
+								// console.log("Showing Other Currencies..")
+								// console.log(value.abbreviation)
+								// console.log(value.conversion_rate)
+								$("input[name=' +name + ']:checkbox").prop('checked', false);
+								$("#currencies_div").append("<label class='new-control new-checkbox new-checkbox-rounded checkbox-outline-warning'>" +
+										"<input type='checkbox' class='new-control-input'  name='currency_radio_" + value.id + "' id='currency_radio' onclick='includeCurrency(" + value.id + ")'>" +
+										"<span class='new-control-indicator'></span><span class='badge badge-warning'>" + value.name + '</span></label>');
+							}
+						});
+
+					})
+
+		}
+
+		function includeCurrency(id) {
+			let name = "currency_radio_" + id;
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				currencies_to_show_.push(id);
+			} else {
+				let index = currencies_to_show_.indexOf(id)
+				//remove id from currencies array
+				currencies_to_show_.splice(index, 1)
+				//hide currency column
+			}
+			console.log(currencies_to_show_);
+		}
+
+
+		function selectedQuoteType() {
+			clients();
 			//show user selection
-			 quote_type_id_ = $("#quote_type_select").val();
+			quote_type_id_ = $("#quote_type_select").val();
 			let select = document.getElementById("quote_type_select");
-			 quote_type_ = select.options[select.selectedIndex].text;
+			quote_type_ = select.options[select.selectedIndex].text;
 			document.getElementById("quote_type").innerText = quote_type_
 			filterMenu()
 		}
+
 		function clients() {
-					let clients = []
-					var select = document.getElementById("clients_select");
-					var options = '<option value="" readonly="readonly" >Select Client</option>'
-					fetch(this.basePath + '/clients')
-							.then(response => {
-								return response.json()
-							})
-							.then(data => {
-								clients = data["clients"];
-								for (let i = 0; i < clients.length; i++) {
-									let option = '<option value="' + clients[i]["client_id"] + '">' + clients[i]["name"] + '</option>'
-									options += option;
+			let clients = []
+			var select = document.getElementById("clients_select");
+			var options = '<option value="" readonly="readonly" >Select Client</option>'
+			fetch(this.basePath + '/clients')
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						clients = data["clients"];
+						clients_ = clients
+						//hide clients on dropdown depending onn quote Type selection
+						if (quote_type_id_ == 1) {
+							//hide non-provider clients
+							console.log("clients_ before")
+							console.log(clients_)
+							for (let i = 0; i < clients_.length; i++) {
+								if (clients_[i]['client_group'] != 1) {
+									clients_.splice(i, 1)
+									console.log("clients_")
+									console.log(clients_)
 								}
-								select.innerHTML = options;
-								sortClients()
-							})
+							}
+						} else {
+							//hide provider clients
+							for (let i = 0; i < clients_.length; i++) {
+								if (clients_[i]['client_group'] == 1) {
+									clients_.splice(i, 1)
+									console.log("clients_")
+									console.log(clients_)
+								}
+							}
+						}
+						for (let i = 0; i < clients_.length; i++) {
+							let option = '<option value="' + clients_[i]["client_id"] + '">' + clients_[i]["name"] + '</option>'
+							options += option;
+						}
+						select.innerHTML = options;
+						sortClients()
+					})
+		}
+
+		function filterClients() {
+			if (quote_type_id_ == 1) {
+				console.log("clients_ before")
+				console.log(clients_)
+				for (let i = 0; i < clients_.length; i++) {
+					if (clients_[i]['client_group'] != 1) {
+						clients_.splice(i, 1)
+						console.log("clients_")
+						console.log(clients_)
+					}
 				}
+			}
+		}
 
 		function references() {
 			let ref_id = ""
@@ -565,7 +768,7 @@
 		}
 
 		function filterMenu() {
-			let quote_type =quote_type_id_
+			let quote_type = quote_type_id_
 			//if quote type is Provider(1), show rate card & job type sections
 			if (quote_type == 1) {
 				//provider clients (include rate card & job type)
@@ -577,10 +780,14 @@
 				$('#pill-vertical-h-3').attr('hidden', false);
 				$('#pill-vertical-p-3').attr('hidden', false);
 
-			}else{
+			} else {
 				//non-provider clients
 				//	$("#pill-vertical").steps("remove", 3);
 				//	$("#pill-vertical").steps("remove", 2);
+				$('#pill-vertical-t-6').attr('hidden', true);
+				$('#pill-vertical-h-6').attr('hidden', true);
+				$('#pill-vertical-p-6').attr('hidden', true);
+
 				$('#pill-vertical-t-4').attr('hidden', true);
 				$('#pill-vertical-h-4').attr('hidden', true);
 				$('#pill-vertical-p-4').attr('hidden', true);
@@ -757,12 +964,37 @@
 				//remove ID from materials to be included array
 				radiovalues_.splice(index, 1)
 				// toast body populate
-				document.getElementById("vat_toast_body").innerHTML = " VAT Included. removed."
+				document.getElementById("vat_toast_body").innerHTML = " VAT Removed."
 				//display toast
 				$('.toast').toast('show');
 			}
 			console.log(vat_);
 		}
+
+		function vat_include_line_item(id) {
+			let name = "vat_radio_" + id;
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				//add index to array
+				vat_include_.push(id)
+				vat_ = 1;
+				// toast body populate
+				document.getElementById("line_item_toast_body").innerHTML = "VAT included."
+				//display toast
+				$('.toast').toast('show');
+			} else {
+				let index = vat_include_.indexOf(id)
+				//remove ID from global array
+				vat_include_.splice(index, 1)
+				// toast body populate
+				document.getElementById("line_item_toast_body").innerHTML = " VAT Removed."
+				//display toast
+				$('.toast').toast('show');
+			}
+			console.log("vat_include_");
+			console.log(vat_include_);
+		}
+
 
 		function generateQuote() {
 			/*	step 1. Collect all Quote Data from form fields   */
@@ -775,6 +1007,15 @@
 			let rate_card = rate_card_
 			let materials_to_show = radiovalues_
 			let materials = materials_
+			let quote_type = quote_type_
+			let quote_type_id = quote_type_id_
+			let currencies = currencies_
+			let currencies_to_show = currencies_to_show_
+			let markup = markup_
+			let line_items = line_items_
+			let vat = vat_
+			let vat_include = vat_include_
+			let uid = document.getElementById("quote_uid").value
 			let notes = document.getElementById("demo2").value;
 			let payment_terms = document.getElementById("payment_terms").value;
 			let title = document.getElementById("quote_title").value;
@@ -799,7 +1040,7 @@
 			console.log("payment_terms")
 			console.log(payment_terms)
 			/*	step 2. Send Data For processing  */
-			if (clientDetails === '') {
+			if (clientDetails === ''  || uid === '') {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
 					html: 'No Client selected',
@@ -826,7 +1067,15 @@
 			let data = {
 				quote_references: referenceDetails_,
 				title: title,
-				vat: vat_,
+				quote_type_id : quote_type_id,
+				quote_type : quote_type,
+				currencies : currencies,
+				currencies_to_show : currencies_to_show,
+				markup : markup,
+				line_items : line_items,
+				vat_include : vat_include,
+				uid : uid,
+				vat: vat,
 				clientDetails: clientDetails,
 				jobTypeName: jobTypeName,
 				job_type_id: job_type_id,
@@ -894,6 +1143,11 @@
 			/*step 2*/
 			$('#rateCardModal').modal('show');
 		}
+
+		function add_line_item_modal() {
+			$('#line_item_modal').modal('show');
+		}
+
 
 		function submitModal() {
 			/*	1. get data from form items  */
@@ -1015,7 +1269,60 @@
 			$('.toast').toast('show');
 		}
 
-		function add_row_modal() {
+		function add_line_item() {
+			/*	1. get data from modal form items  */
+			let row_name = document.getElementById("row_name").value;
+			let row_buying_price = document.getElementById("row_buying_price").value;
+			let row_quantity = document.getElementById("row_quantity").value;
+			// let row_selling_price = document.getElementById("row_selling_price").value;
+			let row_remarks = document.getElementById("row_remarks").value;
+			console.log("row_name")
+			console.log(row_name)
+			console.log("row_buying_price")
+			console.log(row_buying_price)
+			console.log("row_quantity")
+			console.log(row_quantity)
+			console.log("row_remarks")
+			console.log(row_remarks)
+			/*	2. Push Data Line Items Global array  */
+			let data = []
+			data = {
+				description: row_name,
+				buying_price: row_buying_price,
+				quantity: row_quantity,
+				selling_price: row_buying_price * row_quantity * markup_,
+				remarks: row_remarks,
+			}
+			let index = line_items_.length + 1
+			line_items_.push(data)
+			console.log("created index")
+			console.log(line_items_)
+			/*	3. Update  table   */
+			var tbody = document.getElementById("line_item_tbody");
+			let line_items = line_items_
+			var tr = '';
+			var total = 0
+			for (let i = 0; i < line_items.length; i++) {
+				var description = line_items[i].description
+				var buying_price = line_items[i].buying_price
+				var quantity = line_items[i].quantity
+				var selling_price = line_items[i].selling_price
+				var remarks = line_items[i].remarks;
+				var vat = '<div class="n-chk"><label class="new-control new-checkbox checkbox-outline-warning">' +
+						'<input type="checkbox"  name="vat_radio_' + i + '"  id="vat_radio_' + i + '"  onclick="vat_include_line_item(' + i + ')" class="new-control-input">' +
+						'<span class="new-control-indicator"></span>Include VAT</label></div>'
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + buying_price +
+						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + selling_price + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + vat + "</td></tr>"
+			}
+			tbody.innerHTML = tr;
+			/*	4. Reset && hide modal  */
+			document.getElementById("create_form").reset();
+			$('#line_item_modal').modal('hide');
+			/*	5. notify user of update status  */
+			// toast body populate
+			document.getElementById("line_item_toast_body").innerHTML = "Item " + description + " Details Added Succesfully!."
+			//display toast
+			$('.toast').toast('show');
 		}
 
 		function disableRow() {

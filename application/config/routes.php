@@ -67,6 +67,7 @@ $route['jobSubTypes'] = 'Quotes/jobSubTypes';
 $route['ratecard'] = 'Quotes/ratecard';
 $route['material'] = 'Quotes/material';
 $route['quote'] = 'Quotes/quote';
+$route['loadCurrencies'] = 'Quotes/currencies';
 $route['view_quote/(:any)'] = 'Quotes/view_quote/$1';
 
 $route['job_categories'] = 'Base/job_categories';

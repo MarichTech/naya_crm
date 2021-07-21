@@ -87,6 +87,15 @@ class Quotes extends  Base
 		echo json_encode($result);
 	}
 
+public function currencies()
+	{
+		$currencies = $this->Data->getCurrencies();
+		$result = array(
+			'currencies' => $currencies
+		);
+		echo json_encode($result);
+	}
+
 
 		public function ratecard()
 	{
@@ -124,7 +133,6 @@ class Quotes extends  Base
 		$input = file_get_contents("php://input");
 		$decoded = json_decode($input);
 		$title   = $decoded->title;
-		$vat   = $decoded->vat;
 		$references   = $decoded->quote_references;
 		$quote_ref = $references->quote_ref;
 		$date = $references->date;
@@ -137,6 +145,15 @@ class Quotes extends  Base
 		$job_sub_type_name  = $decoded->job_sub_type_name;
 		$rate_card  = $decoded->rate_card;
 		$materials_to_show  = $decoded->materials_to_show;
+		$quote_type = $decoded->quote_type;
+		$quote_type_id = $decoded->quote_type_id;
+		$currencies = $decoded->currencies;
+		$currencies_to_show = $decoded->currencies_to_show;
+		$markup = $decoded->markup;
+		$line_items = $decoded->line_items;
+		$vat_include = $decoded->vat_include;
+		$uid = $decoded->uid;
+		$vat = $decoded->vat;
 		$materials  = $decoded->materials;
 		$notes  = $decoded->notes;
 		$payment_terms  = $decoded->payment_terms;
@@ -145,6 +162,7 @@ class Quotes extends  Base
 		$quotesTableData = array(
 			'quote_ref' => $quote_ref,
 			'title' => $title,
+			'quote_type' => $quote_type_id,
 			'job_category' => $job_type_id,
 			'job_sub_category' => $job_sub_type_id,
 //			'rate_card_id' => implode(",", $rate_card),
@@ -171,11 +189,15 @@ class Quotes extends  Base
 			'date_created' => date("Y-m-d H:i:s"),
 			'last_modified' => date("Y-m-d H:i:s"),
 		);
-		$qt_table_insert = $this->Data->insert('quotes', $quotesTableData);
-		$qt_status_table_insert = $this->Data->insert('quote_status', $qt_status_table_data);
-		$qt_refs_table_insert = $this->Data->insert('quote_references', $qt_refs_table_data);
-		/*	- Audit Trail  table - */
-		$user_id = 1;
+
+		//check if quote exists in dB table
+		$quoteExists = $this->Data->dataExists('quotes','quote_ref', $quote_ref);
+		if($quoteExists == false){
+			$qt_table_insert = $this->Data->insert('quotes', $quotesTableData);
+			$qt_status_table_insert = $this->Data->insert('quote_status', $qt_status_table_data);
+			$qt_refs_table_insert = $this->Data->insert('quote_references', $qt_refs_table_data);
+			/*	- Audit Trail  table - */
+			$user_id = 1;
 			if(!$qt_table_insert){
 				$this->createTrail('Create Quote', $user_id, "Fail");
 			}else if(!$qt_refs_table_insert){
@@ -185,37 +207,49 @@ class Quotes extends  Base
 			}else{
 				$this->createTrail('Create Quote', $user_id, "Success");
 			}
-
 			//var_dump($materials);
-		/* 3. Prepare Data for PDF  */
-		$PDFData = array(
-			'quote_ref' => $quote_ref,
-			'title' => $title,
-			'vat' => $vat,
-			'job_category' => $job_type_id,
-			'job_type_name' => $jobTypeName,
-			'job_sub_category' => $job_sub_type_id,
-			'job_sub_type_name' => $job_sub_type_name,
-			'rate_card' => $rate_card,
-			'materials' => $materials,
-			'materials_to_show' => $materials_to_show,
-			'notes' => $notes,
-			'payment_terms' => $payment_terms,
-			'amount' => 0 ,
-			'client_details' => $clientDetails,
-			'client_id' => $client_id,
-			'client_name' => $client_name,
-			'user_id' => 1,
-			'username' => "Admin",
-			'date_created' =>$date,
-		);
-		//var_dump($PDFData);
-		/*4.Generate & Store PDF */
-		try {
-			$this->generatePdf($PDFData);
-		} catch (MpdfException $e) {
-			echo $e->getMessage();
+			$user =$this->Data->getUsers(array('user_id'=> $user_id));
+			/* 3. Prepare Data for PDF  */
+			$PDFData = array(
+				'quote_ref' => $quote_ref,
+				'title' => $title,
+				'quote_type' => $quote_type,
+				'quote_type_id' => $quote_type_id,
+				'currencies' => $currencies,
+				'currencies_to_show' => $currencies_to_show,
+				'markup' => $markup,
+				'line_items' => $line_items,
+				'vat_include' => $vat_include,
+				'vat' => $vat,
+				'uid' => $uid,
+				'job_category' => $job_type_id,
+				'job_type_name' => $jobTypeName,
+				'job_sub_category' => $job_sub_type_id,
+				'job_sub_type_name' => $job_sub_type_name,
+				'rate_card' => $rate_card,
+				'materials' => $materials,
+				'materials_to_show' => $materials_to_show,
+				'notes' => $notes,
+				'payment_terms' => $payment_terms,
+				'amount' => 0 ,
+				'client_details' => $clientDetails,
+				'client_id' => $client_id,
+				'client_name' => $client_name,
+				'user_id' => $user_id,
+				'username' => $user[0]->username,
+				'date_created' =>$date,
+			);
+			//var_dump($PDFData);
+			/*4.Generate & Store PDF */
+			try {
+				$this->generatePdf($PDFData);
+			} catch (MpdfException $e) {
+				echo $e->getMessage();
+			}
+		}else{
+			return false;
 		}
+
 	}
 
 	private function generatePdf(array $PDFData)
@@ -227,7 +261,13 @@ class Quotes extends  Base
 		$data = array(
 			'data' => $PDFData
 		);
-		$html = $this->load->view('quotes/template', $data);// pass the data array as the parameter
+		$html = '';
+		if($PDFData['quote_type_id'] == 1){
+			$html = $this->load->view('quotes/template', $data);// pass the data array as the parameter
+		}elseif ($PDFData['quote_type_id'] == 2){
+			$html = $this->load->view('quotes/hware_sware_template', $data);// pass the data array as the parameter
+
+		}
 		$string_version = serialize($html);
 		$mpdf->charset_in = 'utf-8';
 		$mpdf->WriteHTML($string_version);

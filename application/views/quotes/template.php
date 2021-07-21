@@ -34,8 +34,9 @@
 	</div>
 	<div>
 		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['title'] ?>
+			<br>
+		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['uid'] ?>
 	</div>
-
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 		<tr>
@@ -69,20 +70,20 @@
 		$id = sizeof($data['rate_card']);
 		for ($x = 0; $x < sizeof($data['materials'])  ; $x++) {
 			if (!empty($data['materials_to_show'])) {
-		//		var_dump($data['materials_to_show']);
-		//		var_dump($data['materials']);
+				//		var_dump($data['materials_to_show']);
+				//		var_dump($data['materials']);
 				for ($y = 0; $y < sizeof($data['materials_to_show']); $y++) {
 					if ($data['materials_to_show'][$y] == $data['materials'][$x]->id) {
-					?>
-					<tr>
-						<td class="no"><?php echo $id; ?></td>
-						<td class="desc"><h3><?php echo $data['materials'][$x]->description ?></h3></td>
-						<td class="qty"><?php echo $data['materials'][$x]->quantity ?></td>
-						<td class="qty"><?php echo number_format(($data['materials'][$x]->rate), 2) ?></td>
-						<td class="total"><?php echo number_format($data['materials'][$x]->quantity * $data['materials'][$x]->rate, '2') ?></td>
-					</tr>
-					<?php
-					$id++;
+						?>
+						<tr>
+							<td class="no"><?php echo $id; ?></td>
+							<td class="desc"><h3><?php echo $data['materials'][$x]->description ?></h3></td>
+							<td class="qty"><?php echo $data['materials'][$x]->quantity ?></td>
+							<td class="qty"><?php echo number_format(($data['materials'][$x]->rate), 2) ?></td>
+							<td class="total"><?php echo number_format($data['materials'][$x]->quantity * $data['materials'][$x]->rate, '2') ?></td>
+						</tr>
+						<?php
+						$id++;
 					}
 				}
 			}
