@@ -44,8 +44,11 @@
 <script src="<?php echo base_url() ?>plugins/sweetalerts/custom-sweetalert.js"></script>
 <script src="<?php echo base_url() ?>plugins/dropify/dropify.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/blockui/jquery.blockUI.min.js"></script>
+<script src="<?php echo base_url() ?>plugins/file-upload/file-upload-with-preview.min.js"></script>
+
 <!-- <script src="plugins/tagInput/tags-input.js"></script> -->
 <script src="<?php echo base_url() ?>assets/js/users/account-settings.js"></script>
+
 <script>
 	$('#default-ordering').DataTable( {
 		"oLanguage": {

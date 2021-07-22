@@ -39,7 +39,8 @@
 	<link href="<?php echo base_url() ?>assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>plugins/dropify/dropify.min.css">
 	<link href="<?php echo base_url() ?>assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
-
+	<link href="<?php echo base_url() ?>assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url() ?>plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
 	<style>
 		#formValidate .wizard > .content {min-height: 25em;}
 		#example-vertical.wizard > .content {min-height: 24.5em;}

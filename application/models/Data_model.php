@@ -241,11 +241,13 @@ class Data_model extends CI_Model
 	 */
 	public function getRateCards($params = ""){
 //		var_dump($params);
-		$this->db->select('rate_cards.id,rate_cards.description, rate_cards.unit_of_measurement as UOM, quantity, svg,  proposed_rate as rate, remarks,
-		rate_cards.sub_cat_id, job_subcategories.name as subType, job_categories.name as jobType, rate_cards.date_created, rate_cards.last_modified');
+		$this->db->select('rate_cards.id,rate_cards.description, rate_cards.unit_of_measurement as UOM, rate_cards.client_id, quantity, svg,  proposed_rate as rate, remarks,
+		rate_cards.sub_cat_id, job_subcategories.name as subType, job_categories.name as jobType, rate_cards.date_created,
+		 rate_cards.last_modified, clients.name as provider');
 		$this->db->from('rate_cards');
 		$this->db->join("job_subcategories", "rate_cards.sub_cat_id = job_subcategories.sub_cat_id");
 		$this->db->join("job_categories", "job_subcategories.category_id = job_categories.category_id");
+		$this->db->join("clients", "rate_cards.client_id = clients.client_id");
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
 				if ($value != null) {
@@ -258,7 +260,7 @@ class Data_model extends CI_Model
 	}
 	public function getRateCard($params = ""){
 		$this->db->select('rate_cards.id,rate_cards.description, rate_cards.unit_of_measurement as UOM, quantity, svg,  proposed_rate as rate, remarks,
-		rate_cards.sub_cat_id,, rate_cards.date_created, rate_cards.last_modified, job_subcategories.name as subType,');
+		rate_cards.sub_cat_id,rate_cards.date_created, rate_cards.last_modified, job_subcategories.name as subType,');
 		$this->db->from('rate_cards');
 		$this->db->join("job_subcategories", "rate_cards.sub_cat_id = job_subcategories.sub_cat_id");
 

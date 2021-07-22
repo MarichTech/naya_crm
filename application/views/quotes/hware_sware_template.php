@@ -97,19 +97,18 @@
 			<td colspan="2"></td>
 			<td colspan="2">SUBTOTAL</td>
 			<td>KES <?php
+				$subtotal = $subtotal + $accessories + $installation;
 				echo number_format($subtotal, 2);
 				?></td>
 		</tr>
 		<tr>
 			<?php
 			$tax = 0;
-			if(isset($data['vat'])){
-		//	var_dump($data['client_details']);
+			//	var_dump($data['client_details']);
 			$vat_type = $data['client_details']->vat_id;
-		//	var_dump($vat_type);
-			if($data['vat'] == 1){  ?>
+			?>
 			<td colspan="2"></td>
-		<?php	if($vat_type == 1){  ?>
+			<?php	if($vat_type == 1){  ?>
 			<td colspan="2"> Zero Rated VAT</td>
 			<td>KES <?php
 				$tax = 0;
@@ -129,9 +128,7 @@
 			<td>KES <?php
 				$tax = 0.14 * $subtotal;
 				echo number_format($tax, 2);
-				}
-				}
-				}?></td>
+				} ?></td>
 		</tr>
 		<tr>
 			<td colspan="2"></td>
@@ -185,10 +182,7 @@
 				Bank & Branch Code: 03106&nbsp;
 				Bank Address: P.O. Box 30120 -&nbsp;
 				00100 Nairobi, Kenya&nbsp;
-				MPESA  Paybill:  303030
-
-		</textarea>&nbsp;
-
+				MPESA  Paybill:  303030</textarea>&nbsp;
 
 	<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
 		This quote is system generated and is valid without the signature and seal.
@@ -197,6 +191,7 @@
 	<p>	Powered By:<b> Naya Solutions</b></p>
 	<br>
 	U70xDN
+	</div>
 </footer>
 </body>
 </html>

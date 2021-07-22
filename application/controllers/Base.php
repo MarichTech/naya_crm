@@ -85,9 +85,11 @@ class Base extends CI_Controller
 	public function rate_cards()
 		{
 			$ratecards = $this->Data->getRateCards();
+			$providers= $this->Data->getClients(array('client_group' => 1));
 
 			$data = array(
-				'ratecards' => $ratecards
+				'ratecards' => $ratecards,
+				'providers' => $providers
 			);
 			$this->load->view('jobs/rate_cards.php', $data);
 

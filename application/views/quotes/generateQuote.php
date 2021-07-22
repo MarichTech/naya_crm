@@ -86,7 +86,7 @@
 
 
 								</section>
-								<h3>Quote Referencing</h3>
+								<h3>Quote Info</h3>
 								<section>
 									<div class="infobox-1">
 										<div class="info-icon">
@@ -99,8 +99,29 @@
 											<h5 class="info-heading">Title</h5>
 											<input type="text" class="form-control" id="quote_title">
 											<br>
-											<h5 class="info-heading">Unique ID</h5>
+											<h5 class="info-heading" id="uuid_title">Unique ID</h5>
 											<input type="text" class="form-control" id="quote_uid">
+											<br>
+											<h5 class="info-heading" id="support_title">Support Duration</h5>
+											<input type="text" class="form-control" id="support_duration">
+											<br>
+
+											<h5 class="info-heading" id="charge_title">Monthly Charge</h5>
+											<input type="text" class="form-control" id="support_charge">
+											<br>
+											<br>
+											<h5 class="info-heading" id="charge_title"> Support Docs Upload</h5>
+
+											<div class="custom-file-container" data-upload-id="myFirstImage">
+												<label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+												<label class="custom-file-container__custom-file" >
+													<input type="file" class="custom-file-container__custom-file__custom-file-input" name="file" id="support_doc" accept="image/*,.pdf, .doc">
+													<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+													<span class="custom-file-container__custom-file__custom-file-control"></span>
+												</label>
+												<div class="custom-file-container__image-preview"></div>
+											</div>
+
 											<br>
 											<br>
 											<div class="n-chk" id="vat_icon">
@@ -236,8 +257,6 @@
 										</table>
 									</div>
 								</section>
-
-
 								<h3>Additional Materials</h3>
 								<section>
 									<p>Additional Materials </p>
@@ -278,10 +297,54 @@
 										</table>
 									</div>
 								</section>
+								<h3>Professional Services</h3>
+								<section>
+									<p> Add Support Line Item</p>
+									<div class="table-responsive mb-4 mt-4">
+										<a onclick="add_support_line_item_modal()">
+											<svg xmlns="http://www.w3.org/2000/svg"
+												 viewBox="0 0 24 24" width="24" height="24">
+												<path fill="none" d="M0 0h24v24H0z"/>
+												<path d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
+													  fill="rgba(226,160,63,1)"/>
+											</svg>
+											Add Row</a>
+										<br>
+										<table id="support_table" class="table table-bordered table-striped mb-4"
+											   style="width:100%">
+											<thead>
+											<tr>
+												<th>#</th>
+												<th>Description</th>
+												<th>Quantity</th>
+												<th>Unit Price</th>
+												<th>Total</th>
+											</tr>
+											</thead>
+											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
+												<div class="toast toast-primary fade hide" role="alert"
+													 data-delay="6000" aria-live="assertive" aria-atomic="true">
+													<div class="toast-header">
+														<strong class="mr-auto">Line Items </strong>
+														<button type="button" class="ml-2 mb-1 close"
+																data-dismiss="toast" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="toast-body">
+														<h5><p id="support_toast_body" class="text-success"></p></h5>
+													</div>
+												</div>
+											</div>
+											<tbody id="support_tbody">
+											</tbody>
+										</table>
+									</div>
+								</section>
 								<h3>Add Notes & Payment Terms</h3>
 								<section>
-									<p>Enter Payment Terms & Additional Notes</p>
-										<p class="input-group-text">Choose Currency Options</p>
+<!--									<p>Enter Payment Terms & Additional Notes</p>-->
+										<p>Choose Currency Options</p>
 										<br>
 										<div class="n-chk" id="currencies_div">
 										</div>
@@ -432,6 +495,57 @@
 			</div>
 		</div>
 	</div>
+
+
+	<!-- Modal Support Item Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="support_modal" tabindex="-1"
+		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" id="standardModalLabel">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="icon-content">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="feather feather-bell">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
+					</div>
+					<h5 class="modal-title">Enter Support Details</h5>
+					<br>
+					<br>
+					<form id="support_form">
+
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Description</label><br>
+								<input id="supp_name" type="text" class="form-control  basic " name="desc" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label>Quantity</label><br>
+								<input id="supp_quantity" type="number" class="form-control  basic " name="quantity"
+									   required>
+							</div>
+							<div class="form-group col-md-6">
+								<label>Unit Price</label><br>
+								<input id="supp_unit_price" type="number" class="form-control  basic " name="unit_price"
+									   required>
+							</div>
+
+
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+					<button type="button" onclick="add_support_item()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- Modal  Update Row-->
 	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1"
 		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
@@ -549,6 +663,10 @@
 		let job_sub_type_details_ = []
 		let rate_card_ = []
 		let line_items_ = []
+		let support_items_ = []
+		let support_charge_ = 0
+		let support_duration_ = 0
+		let support_doc_ = ''
 		let materials_ = []
 		let currencies_ = []
 		let currencies_to_show_ = []
@@ -562,18 +680,22 @@
 			//hide rate card & job type & materials sections
 			$('#pill-vertical-t-6').attr('hidden', true);
 			$('#pill-vertical-h-6').attr('hidden', true);
-			$('#pill-vertical-p-6').attr('hidden', true);
+
+			$('#pill-vertical-t-7').attr('hidden', true);
+			$('#pill-vertical-h-7').attr('hidden', true);
 
 			$('#pill-vertical-t-4').attr('hidden', true);
 			$('#pill-vertical-h-4').attr('hidden', true);
-			$('#pill-vertical-p-4').attr('hidden', true);
 
 			$('#pill-vertical-t-3').attr('hidden', true);
 			$('#pill-vertical-h-3').attr('hidden', true);
-			$('#pill-vertical-p-3').attr('hidden', true);
+
+			$('#pill-vertical-p-2').attr('hidden', false);
+			$('#pill-vertical-t-2').attr('hidden', false);
+			$('#pill-vertical-h-2').attr('hidden', false);
+
 			$('#vat_icon').attr('hidden', true);
 			//fetch data for dropdowns
-
 			quoteTypes()
 			jobTypes();
 			references();
@@ -771,22 +893,47 @@
 			let quote_type = quote_type_id_
 			//if quote type is Provider(1), show rate card & job type sections
 			if (quote_type == 1) {
+
+				//hide Support Duration
+				$('#support_duration').attr('hidden', true);
+				$('#support_title').attr('hidden', true);
+				//hide Monthly Charge
+				$('#support_charge').attr('hidden', true);
+				$('#charge_title').attr('hidden', true);
 				//provider clients (include rate card & job type)
+				$('#pill-vertical-t-6').attr('hidden', false);
+				$('#pill-vertical-h-6').attr('hidden', false);
+
+				$('#pill-vertical-t-5').attr('hidden', true);
+				$('#pill-vertical-h-5').attr('hidden', true);
+				$('#pill-vertical-p-5').attr('hidden', true);
+
 				$('#pill-vertical-t-4').attr('hidden', false);
 				$('#pill-vertical-h-4').attr('hidden', false);
-				$('#pill-vertical-p-4').attr('hidden', false);
 
 				$('#pill-vertical-t-3').attr('hidden', false);
 				$('#pill-vertical-h-3').attr('hidden', false);
-				$('#pill-vertical-p-3').attr('hidden', false);
 
-			} else {
+			} else if (quote_type == 2){
 				//non-provider clients
+				//hide UID
+				$('#quote_uid').attr('hidden', true);
+				$('#uuid_title').attr('hidden', true);
+					//hide Support Duration
+				$('#support_duration').attr('hidden', true);
+				$('#support_title').attr('hidden', true);
+					//hide Monthly Charge
+				$('#support_charge').attr('hidden', true);
+				$('#charge_title').attr('hidden', true);
+
 				//	$("#pill-vertical").steps("remove", 3);
 				//	$("#pill-vertical").steps("remove", 2);
+
 				$('#pill-vertical-t-6').attr('hidden', true);
 				$('#pill-vertical-h-6').attr('hidden', true);
-				$('#pill-vertical-p-6').attr('hidden', true);
+
+				$('#pill-vertical-t-5').attr('hidden', false);
+				$('#pill-vertical-h-5').attr('hidden', false);
 
 				$('#pill-vertical-t-4').attr('hidden', true);
 				$('#pill-vertical-h-4').attr('hidden', true);
@@ -795,7 +942,43 @@
 				$('#pill-vertical-t-3').attr('hidden', true);
 				$('#pill-vertical-h-3').attr('hidden', true);
 				$('#pill-vertical-p-3').attr('hidden', true);
+
+				$('#pill-vertical-p-2').attr('hidden', false);
+				$('#pill-vertical-t-2').attr('hidden', false);
+				$('#pill-vertical-h-2').attr('hidden', false);
 			}
+			else if (quote_type == 3){
+				//non-provider clients
+				//hide UID
+				$('#quote_uid').attr('hidden', true);
+				$('#uuid_title').attr('hidden', true);
+
+
+				//	$("#pill-vertical").steps("remove", 3);
+				//	$("#pill-vertical").steps("remove", 2);
+
+				$('#pill-vertical-t-6').attr('hidden', true);
+				$('#pill-vertical-h-6').attr('hidden', true);
+				$('#pill-vertical-p-6').attr('hidden', true);
+
+				$('#pill-vertical-t-5').attr('hidden', true);
+				$('#pill-vertical-h-5').attr('hidden', true);
+				$('#pill-vertical-p-5').attr('hidden', true);
+
+				$('#pill-vertical-t-4').attr('hidden', true);
+				$('#pill-vertical-h-4').attr('hidden', true);
+				$('#pill-vertical-p-4').attr('hidden', true);
+
+				$('#pill-vertical-t-3').attr('hidden', true);
+				$('#pill-vertical-h-3').attr('hidden', true);
+				$('#pill-vertical-p-3').attr('hidden', true);
+
+				$('#pill-vertical-p-2').attr('hidden', false);
+				$('#pill-vertical-t-2').attr('hidden', false);
+				$('#pill-vertical-h-2').attr('hidden', false);
+			}
+
+
 		}
 
 
@@ -1015,10 +1198,14 @@
 			let line_items = line_items_
 			let vat = vat_
 			let vat_include = vat_include_
+			let support_items = support_items_
 			let uid = document.getElementById("quote_uid").value
 			let notes = document.getElementById("demo2").value;
 			let payment_terms = document.getElementById("payment_terms").value;
 			let title = document.getElementById("quote_title").value;
+			 support_duration_ = document.getElementById("support_duration").value;
+			 support_charge_ = document.getElementById("support_charge").value;
+			 support_doc_ = document.getElementById("support_doc").value;
 
 			console.log("clientDetails")
 			console.log(clientDetails)
@@ -1040,7 +1227,7 @@
 			console.log("payment_terms")
 			console.log(payment_terms)
 			/*	step 2. Send Data For processing  */
-			if (clientDetails === ''  || uid === '') {
+			if (clientDetails === '') {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
 					html: 'No Client selected',
@@ -1067,6 +1254,10 @@
 			let data = {
 				quote_references: referenceDetails_,
 				title: title,
+				support_charge : support_charge_,
+				support_duration: support_duration_,
+				support_doc: support_doc_,
+				support_items : support_items,
 				quote_type_id : quote_type_id,
 				quote_type : quote_type,
 				currencies : currencies,
@@ -1147,6 +1338,9 @@
 		function add_line_item_modal() {
 			$('#line_item_modal').modal('show');
 		}
+		function add_support_line_item_modal() {
+					$('#support_modal').modal('show');
+				}
 
 
 		function submitModal() {
@@ -1324,7 +1518,50 @@
 			//display toast
 			$('.toast').toast('show');
 		}
+		function add_support_item() {
+			/*	1. get data from modal form items  */
+			let supp_name = document.getElementById("supp_name").value;
+			let supp_quantity = document.getElementById("supp_quantity").value;
+			let supp_unit_price = document.getElementById("supp_unit_price").value;
 
+			/*	2. Push Data Line Items Global array  */
+			let data = []
+			data = {
+				description: supp_name,
+				quantity: supp_quantity,
+				unit_price : supp_unit_price * supp_quantity * markup_,
+			}
+			let index = support_items_.length + 1
+			support_items_.push(data)
+			console.log("created index")
+			console.log(support_items_)
+			/*	3. Update  table   */
+			var tbody = document.getElementById("support_tbody");
+			let line_items = support_items_
+			var tr = '';
+			var total = 0
+			for (let i = 0; i < line_items.length; i++) {
+				var description = line_items[i].description
+				var quantity = line_items[i].quantity
+				var unit_price = line_items[i].unit_price
+				var vat = '<div class="n-chk"><label class="new-control new-checkbox checkbox-outline-warning">' +
+						'<input type="checkbox"  name="vat_radio_' + i + '"  id="vat_radio_' + i + '"  onclick="vat_include_supp_item(' + i + ')" class="new-control-input">' +
+						'<span class="new-control-indicator"></span>Include VAT</label></div>'
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_quantity'>" + quantity + "</td><td id='td_unit_price'>" + Math.round(unit_price) + "</td><td >" + vat + "</td></tr>"
+			}
+			tbody.innerHTML = tr;
+			/*	4. Reset && hide modal  */
+			document.getElementById("support_form").reset();
+			$('#support_modal').modal('hide');
+			/*	5. notify user of update status  */
+			// toast body populate
+			document.getElementById("support_toast_body").innerHTML = "Item " + description + " Details Added Succesfully!."
+			//display toast
+			$('.toast').toast('show');
+		}
+		function vat_include_supp_item(){
+
+		}
 		function disableRow() {
 
 		}
@@ -1338,4 +1575,10 @@
 						return (at > bt) ? 1 : ((at < bt) ? -1 : 0);
 					}));
 		}
+	</script>
+
+	<script>
+		//First upload
+		var firstUpload = new FileUploadWithPreview('myFirstImage')
+
 	</script>

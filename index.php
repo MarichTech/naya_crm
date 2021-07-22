@@ -304,7 +304,15 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+/*
+ * --------------------------------------------------------------------
+ * SET Default Timezone
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ */
 
+date_default_timezone_set('Africa/Nairobi');
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

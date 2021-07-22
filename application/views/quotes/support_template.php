@@ -35,7 +35,7 @@
 	<div>
 		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['title'] ?>
 			<br>
-		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['uid'] ?>
+			<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['uid'] ?>
 	</div>
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -43,79 +43,29 @@
 			<th class="no">#</th>
 			<th class="desc">DESCRIPTION</th>
 			<th class="qty">QUANTITY</th>
-			<th class="unit">UNIT PRICE</th>
+			<th class="qty">UNIT PRICE</th>
 			<th class="total">TOTAL</th>
 		</tr>
 		</thead>
 		<tbody>
 		<?php
+		$subtotal = 0;
+		$k = 0;
 		$count = 0;
 		$total = 0;
-		for ($x = 0; $x < sizeof($data['rate_card']) - 1; $x++) {
+		foreach ($data['support_items'] as $dat){
 			?>
 			<tr>
-				<td class="no"><?php echo $x + 1; ?></td>
-				<td class="desc"><h3><?php echo $data['rate_card'][$x]->description ?></h3></td>
-				<td class="qty"><?php echo $data['rate_card'][$x]->quantity ?></td>
-				<td class="qty"><?php echo number_format(($data['rate_card'][$x]->rate), 2) ?></td>
-				<td class="total"><?php $total = number_format($data['rate_card'][$x]->quantity *
-							$data['rate_card'][$x]->rate, '2');
-					echo $total;
-					?></td>
+				<td class="no"><?php echo $k + 1; ?></td>
+				<td class="desc"><h3><?php echo $dat->description ?></h3></td>
+				<td class="qty"><?php echo $dat->quantity ?></td>
+				<td class="qty"><?php echo number_format($dat->unit_price, 2) ?></td>
+				<td class="total"><?php echo number_format( ($dat->quantity  *$dat->unit_price ) , 2)?></td>
 			</tr>
 			<?php
+			$subtotal += ($dat->quantity  *$dat->unit_price ) ;
+			$k++;
 		} ?>
-
-		<?php
-		$id = sizeof($data['rate_card']);
-		for ($x = 0; $x < sizeof($data['materials'])  ; $x++) {
-			if (!empty($data['materials_to_show'])) {
-				//		var_dump($data['materials_to_show']);
-				//		var_dump($data['materials']);
-				for ($y = 0; $y < sizeof($data['materials_to_show']); $y++) {
-					if ($data['materials_to_show'][$y] == $data['materials'][$x]->id) {
-						?>
-						<tr>
-							<td class="no"><?php echo $id; ?></td>
-							<td class="desc"><h3><?php echo $data['materials'][$x]->description ?></h3></td>
-							<td class="qty"><?php echo $data['materials'][$x]->quantity ?></td>
-							<td class="qty"><?php echo number_format(($data['materials'][$x]->rate), 2) ?></td>
-							<td class="total"><?php echo number_format($data['materials'][$x]->quantity * $data['materials'][$x]->rate, '2') ?></td>
-						</tr>
-						<?php
-						$id++;
-					}
-				}
-			}
-		} ?>
-
-		<tr>
-			<td class="no"><?php echo sizeof($data['rate_card']) + (sizeof($data['materials_to_show']))  + 1; ?></td>
-			<td class="desc"><h3><?php echo "Accessories" ?></h3></td>
-			<td class="qty"><?php echo "Lot" ?></td>
-			<td class="qty"><?php
-				$subtotal = 0;
-				foreach ($data['rate_card']  as $dat) {
-					$subtotal += ($dat->quantity * $dat->rate);
-				}
-				foreach ($data['materials']  as $dat) {
-					if (!empty($data['materials_to_show'])) {
-						$subtotal += ($dat->quantity * $dat->rate);
-					}
-				}
-				$accessories = (0.15) * $subtotal;
-				echo number_format(($accessories ), 2) ?></td>
-			<td class="total"><?php echo number_format(($accessories ), 2) ?></td>
-		</tr>
-		<tr>
-			<td class="no"><?php echo sizeof($data['rate_card']) + (sizeof($data['materials_to_show']))   + 2; ?></td>
-			<td class="desc"><h3><?php echo "Installation & Configuration Costs " ?></h3></td>
-			<td class="qty"><?php echo 1 ?></td>
-			<td class="qty"><?php
-				$installation = (0.20) * $subtotal;
-				echo number_format(($installation), 2) ?></td>
-			<td class="total"><?php echo number_format(($installation ), 2) ?></td>
-		</tr>
 		</tbody>
 		<tfoot>
 		<?php
@@ -126,17 +76,15 @@
 			<td colspan="2"></td>
 			<td colspan="2">SUBTOTAL</td>
 			<td>KES <?php
-				$subtotal = $subtotal + $accessories + $installation;
 				echo number_format($subtotal, 2);
 				?></td>
 		</tr>
-
 		<tr>
 			<?php
 			$tax = 0;
 			//	var_dump($data['client_details']);
 			$vat_type = $data['client_details']->vat_id;
-		 ?>
+			?>
 			<td colspan="2"></td>
 			<?php	if($vat_type == 1){  ?>
 			<td colspan="2"> Zero Rated VAT</td>
@@ -160,37 +108,43 @@
 				echo number_format($tax, 2);
 				} ?></td>
 		</tr>
-		<tr>
+		<!--<tr>
 			<td colspan="2"></td>
 			<td colspan="2">3% Sales Discount</td>
 			<td>KES <?php
-				$discount = (0.03) * $subtotal;
+/*				$discount = (0.03) * $subtotal;
 				echo number_format(($discount), 2);
 
-				?></td>
-		</tr>
-
+				*/?></td>
+		</tr>-->
 		<tr>
 			<td colspan="2"></td>
 			<td colspan="2">GRAND TOTAL</td>
 			<td>KES <?php
-				echo number_format( ($subtotal + $tax+ $discount), 2); ?>
-				</td>
+				echo number_format( ($subtotal + $tax), 2) ?></td>
+			<?php
+			?>
 		</tr>
 		</tfoot>
 	</table>
 	<div><h4 style="font-style: italic ; color: black; text-align: left; text-transform: capitalize">Prepared By: <?php echo $data['username'] ?></div>
 	<div id="notices">
+		<div style="text-align: left; text-transform: capitalize">Support Terms:</div>
+		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['support_charge'] ?></p></div>
+		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['support_duration'] ?></p></div>
+	</div>
+	<div id="notices">
 		<div style="text-align: left; text-transform: capitalize">Payment Terms:</div>
 		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['payment_terms'] ?></p></div>
 	</div>
+
+
 	<div id="notices">
 		<div>Notes:</div>
 		<div class="notice"><p style="text-align: left;; text-transform: lowercase""><?php echo $data['notes'] ?></p></div>
 	</div>
 </main>
 <footer>
-
 	<div id="notices">
 		<div style="text-align: left; text-transform: capitalize">Bank Account Details:</div>
 		<textarea rows="20" cols="42.5" style=" border: 1px solid #000; text-decoration-color: white; overflow-y: scroll;">Bank Name: NCBA Bank Kenya PLC &nbsp;
@@ -214,6 +168,7 @@
 				Bank Address: P.O. Box 30120 -&nbsp;
 				00100 Nairobi, Kenya&nbsp;
 				MPESA  Paybill:  303030</textarea>&nbsp;
+
 		<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
 		This quote is system generated and is valid without the signature and seal.
 
@@ -222,7 +177,6 @@
 		<br>
 		U70xDN
 	</div>
-
 </footer>
 </body>
 </html>

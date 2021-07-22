@@ -133,6 +133,15 @@ public function currencies()
 		$input = file_get_contents("php://input");
 		$decoded = json_decode($input);
 		$title   = $decoded->title;
+		$support_charge   = $decoded->support_charge;
+		$support_duration   = $decoded->support_duration;
+		$support_items   = $decoded->support_items;
+		$support_doc   = $_FILES['support_doc'];
+
+		var_dump($support_charge);
+		var_dump($support_duration);
+		var_dump($support_items);
+		var_dump($support_doc);
 		$references   = $decoded->quote_references;
 		$quote_ref = $references->quote_ref;
 		$date = $references->date;
@@ -213,6 +222,10 @@ public function currencies()
 			$PDFData = array(
 				'quote_ref' => $quote_ref,
 				'title' => $title,
+				'support_doc' => $support_doc,
+				'support_items' => $support_items,
+				'support_duration' => $support_duration,
+				'support_charge' => $support_charge,
 				'quote_type' => $quote_type,
 				'quote_type_id' => $quote_type_id,
 				'currencies' => $currencies,
@@ -266,6 +279,9 @@ public function currencies()
 			$html = $this->load->view('quotes/template', $data);// pass the data array as the parameter
 		}elseif ($PDFData['quote_type_id'] == 2){
 			$html = $this->load->view('quotes/hware_sware_template', $data);// pass the data array as the parameter
+
+		}elseif ($PDFData['quote_type_id'] == 3){
+			$html = $this->load->view('quotes/support_template', $data);// pass the data array as the parameter
 
 		}
 		$string_version = serialize($html);
