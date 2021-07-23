@@ -60,7 +60,7 @@
 				<td class="desc"><h3><?php echo $dat->description ?></h3></td>
 				<td class="qty"><?php echo $dat->quantity ?></td>
 				<td class="qty"><?php echo number_format($dat->unit_price, 2) ?></td>
-				<td class="total"><?php echo number_format( ($dat->quantity  *$dat->unit_price ) , 2)?></td>
+				<td class="total"><?php echo number_format( ($dat->quantity  * $dat->unit_price ) , 2)?></td>
 			</tr>
 			<?php
 			$subtotal += ($dat->quantity  *$dat->unit_price ) ;
@@ -170,7 +170,7 @@
 				MPESA  Paybill:  303030</textarea>&nbsp;
 
 		<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
-		This quote is system generated and is valid without the signature and seal.
+		This quote is system generated and does not require a signature or stamp.
 
 		<br>
 		<p>	Powered By:<b> Naya Solutions</b></p>

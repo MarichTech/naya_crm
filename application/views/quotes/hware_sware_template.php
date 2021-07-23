@@ -185,7 +185,7 @@
 				MPESA  Paybill:  303030</textarea>&nbsp;
 
 	<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
-		This quote is system generated and is valid without the signature and seal.
+		This quote is system generated and does not require a signature or stamp.
 
 		<br>
 	<p>	Powered By:<b> Naya Solutions</b></p>

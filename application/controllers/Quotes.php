@@ -166,6 +166,19 @@ public function currencies()
 		$materials  = $decoded->materials;
 		$notes  = $decoded->notes;
 		$payment_terms  = $decoded->payment_terms;
+
+		//non-provider job types
+
+		if($quote_type_id == 2){
+			$job_type_id = 4;
+			$job_sub_type_id = 5;
+		}elseif (($quote_type_id ==3 )){
+			$job_type_id = 5;
+			$job_sub_type_id = 6;
+		}elseif (($quote_type_id ==4)){
+			$job_type_id = 6;
+			$job_sub_type_id = 7;
+		}
 		/* 2. Insert to dB tables  */
 		/*	-  Quotes table -  */
 		$quotesTableData = array(
@@ -267,6 +280,8 @@ public function currencies()
 
 	private function generatePdf(array $PDFData)
 	{
+
+		var_dump($PDFData['quote_type_id'] );
 		$mpdf = new Mpdf(array('tempDir' => APPPATH . '/views/quotes/temp'));
 		$mpdf->debug = false;
 		$mpdf->shrink_tables_to_fit = 0;

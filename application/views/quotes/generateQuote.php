@@ -96,23 +96,33 @@
 											<h5 class="info-heading">Date</h5>
 											<p><span id="quote_date" class="badge badge-warning"> </span>
 											</p>
-											<h5 class="info-heading">Title</h5>
+											<h5 class="info-heading" id="title_title">Title</h5>
 											<input type="text" class="form-control" id="quote_title">
 											<br>
 											<h5 class="info-heading" id="uuid_title">Unique ID</h5>
 											<input type="text" class="form-control" id="quote_uid">
 											<br>
-											<h5 class="info-heading" id="support_title">Support Duration</h5>
+											<h5 class="info-heading" id="support_title">Support Duration (Months)</h5>
 											<input type="text" class="form-control" id="support_duration">
 											<br>
 
-											<h5 class="info-heading" id="charge_title">Monthly Charge</h5>
+											<h5 class="info-heading" id="charge_title">Monthly Charge (KES)</h5>
 											<input type="text" class="form-control" id="support_charge">
+											<h5 class="info-heading" id="rentee_title">Rentee</h5>
+											<input type="text" class="form-control" id="rent_person">
+											<br>
+											<h5 class="info-heading" id="id_num_title">Registration Document Number</h5>
+											<input type="text" class="form-control" id="rent_id_num">
+											<br>
+											<h5 class="info-heading" id="rent_duration_title">Rental Duration (Days)</h5>
+											<input type="text" class="form-control" id="rent_duration">
+											<br>
+											<h5 class="info-heading" id="rent_charge_title">Daily Charge (KES)</h5>
+											<input type="text" class="form-control" id="rent_charge">
 											<br>
 											<br>
-											<h5 class="info-heading" id="charge_title"> Support Docs Upload</h5>
-
-											<div class="custom-file-container" data-upload-id="myFirstImage">
+											<h5 class="info-heading" id="support_docs_title"> Support Docs Upload</h5>
+											<div class="custom-file-container" data-upload-id="myFirstImage" id="support_div">
 												<label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
 												<label class="custom-file-container__custom-file" >
 													<input type="file" class="custom-file-container__custom-file__custom-file-input" name="file" id="support_doc" accept="image/*,.pdf, .doc">
@@ -122,8 +132,24 @@
 												<div class="custom-file-container__image-preview"></div>
 											</div>
 
+											<h5 class="info-heading" id="rent_docs_title"> Equipment Rental Docs Upload</h5>
+
+											<div class="custom-file-container" data-upload-id="myFirstImage" id="rent_div">
+												<label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+												<label class="custom-file-container__custom-file" >
+													<input type="file" class="custom-file-container__custom-file__custom-file-input" name="file" id="rent_doc" accept="image/*,.pdf, .doc">
+													<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+													<span class="custom-file-container__custom-file__custom-file-control"></span>
+												</label>
+												<div class="custom-file-container__image-preview"></div>
+											</div>
+
 											<br>
 											<br>
+											<a class="btn btn-success mb-4 col-md-12" onclick="generateRentDoc()" id="rent_btn">
+
+												<b style="color: black">Generate Equipment Rent Agreement Doc</b>
+											</a>
 											<div class="n-chk" id="vat_icon">
 												<label
 														class="new-control new-checkbox new-checkbox-rounded checkbox-success">
@@ -297,7 +323,7 @@
 										</table>
 									</div>
 								</section>
-								<h3>Professional Services</h3>
+								<h3>Professional Services - Support</h3>
 								<section>
 									<p> Add Support Line Item</p>
 									<div class="table-responsive mb-4 mt-4">
@@ -341,6 +367,8 @@
 										</table>
 									</div>
 								</section>
+
+
 								<h3>Add Notes & Payment Terms</h3>
 								<section>
 <!--									<p>Enter Payment Terms & Additional Notes</p>-->
@@ -667,6 +695,8 @@
 		let support_charge_ = 0
 		let support_duration_ = 0
 		let support_doc_ = ''
+		let rent_duration_ = ''
+		let rent_charge_ = ''
 		let materials_ = []
 		let currencies_ = []
 		let currencies_to_show_ = []
@@ -676,6 +706,9 @@
 		let vat_ = 0
 		let vat_include_ = []
 		let clients_ = []
+		let jobTypes_ = []
+		let jobSubTypes_ = []
+
 		$(document).ready(function () {
 			//hide rate card & job type & materials sections
 			$('#pill-vertical-t-6').attr('hidden', true);
@@ -683,6 +716,7 @@
 
 			$('#pill-vertical-t-7').attr('hidden', true);
 			$('#pill-vertical-h-7').attr('hidden', true);
+			$('#pill-vertical-p-7').attr('hidden', true);
 
 			$('#pill-vertical-t-4').attr('hidden', true);
 			$('#pill-vertical-h-4').attr('hidden', true);
@@ -776,8 +810,32 @@
 			quote_type_ = select.options[select.selectedIndex].text;
 			document.getElementById("quote_type").innerText = quote_type_
 			filterMenu()
+			filterJobTypes()
 		}
+		function filterJobTypes() {
+			if (quote_type_id_ == 1) {
+				console.log("JobTypes  before")
+				console.log(jobTypes_)
+				for (let i = 0; i < jobTypes_.length; i++) {
+					let category = jobTypes_[i]['category_id']
+					if (category == 2 || category == 4 || category == 6) {
+						jobTypes_.splice(i, 1)
 
+					}
+				}
+				console.log("jobTypes_")
+				console.log(jobTypes_)
+			}else{
+				for (let i = 0; i < jobTypes_.length; i++) {
+					let category = jobTypes_[i]['category_id']
+					if (category == 1 || category == 3 || category == 5) {
+						jobTypes_.splice(i, 1)
+					}
+				}
+				console.log("jobTypes_")
+				console.log(jobTypes_)
+			}
+		}
 		function clients() {
 			let clients = []
 			var select = document.getElementById("clients_select");
@@ -833,6 +891,7 @@
 				}
 			}
 		}
+
 
 		function references() {
 			let ref_id = ""
@@ -894,15 +953,36 @@
 			//if quote type is Provider(1), show rate card & job type sections
 			if (quote_type == 1) {
 
-				//hide Support Duration
+				//hide Support Details
 				$('#support_duration').attr('hidden', true);
 				$('#support_title').attr('hidden', true);
 				//hide Monthly Charge
 				$('#support_charge').attr('hidden', true);
 				$('#charge_title').attr('hidden', true);
+				$('#support_div').attr('hidden', true);
+				$('#support_docs_title').attr('hidden', true);
+
+				//hide Rental Details
+				$('#rent_div').attr('hidden', true);
+				$('#rent_person').attr('hidden', true);
+				$('#rent_charge').attr('hidden', true);
+				$('#rent_duration').attr('hidden', true);
+				$('#rent_docs_title').attr('hidden', true);
+				$('#rent_charge_title').attr('hidden', true);
+				$('#rent_duration_title').attr('hidden', true);
+				$('#rentee_title').attr('hidden', true);
+				$('#id_num_title').attr('hidden', true);
+				$('#rent_id_num').attr('hidden', true);
+				$('#rent_btn').attr('hidden', true);
+
 				//provider clients (include rate card & job type)
+				$('#pill-vertical-t-8').attr('hidden', false);
+				$('#pill-vertical-h-8').attr('hidden', false);
+				$('#pill-vertical-p-8').attr('hidden', false);
+
 				$('#pill-vertical-t-6').attr('hidden', false);
 				$('#pill-vertical-h-6').attr('hidden', false);
+				$('#pill-vertical-p-6').attr('hidden', false);
 
 				$('#pill-vertical-t-5').attr('hidden', true);
 				$('#pill-vertical-h-5').attr('hidden', true);
@@ -910,27 +990,53 @@
 
 				$('#pill-vertical-t-4').attr('hidden', false);
 				$('#pill-vertical-h-4').attr('hidden', false);
+				$('#pill-vertical-p-4').attr('hidden', false);
+
 
 				$('#pill-vertical-t-3').attr('hidden', false);
 				$('#pill-vertical-h-3').attr('hidden', false);
+
+
+				$('#pill-vertical-p-1').attr('hidden', false);
+				$('#pill-vertical-t-1').attr('hidden', false);
+				$('#pill-vertical-h-1').attr('hidden', false);
 
 			} else if (quote_type == 2){
 				//non-provider clients
 				//hide UID
 				$('#quote_uid').attr('hidden', true);
 				$('#uuid_title').attr('hidden', true);
-					//hide Support Duration
+				//hide Support Details
 				$('#support_duration').attr('hidden', true);
 				$('#support_title').attr('hidden', true);
-					//hide Monthly Charge
+				//hide Monthly Charge
 				$('#support_charge').attr('hidden', true);
 				$('#charge_title').attr('hidden', true);
+				$('#support_div').attr('hidden', true);
+				$('#support_docs_title').attr('hidden', true);
+
+				//hide Rental Details
+				$('#rent_div').attr('hidden', true);
+				$('#rent_person').attr('hidden', true);
+				$('#rent_charge').attr('hidden', true);
+				$('#rent_duration').attr('hidden', true);
+				$('#rent_docs_title').attr('hidden', true);
+				$('#rent_charge_title').attr('hidden', true);
+				$('#rent_duration_title').attr('hidden', true);
+				$('#rentee_title').attr('hidden', true);
+				$('#id_num_title').attr('hidden', true);
+				$('#rent_id_num').attr('hidden', true);
+				$('#rent_btn').attr('hidden', true);
 
 				//	$("#pill-vertical").steps("remove", 3);
 				//	$("#pill-vertical").steps("remove", 2);
+				$('#pill-vertical-t-8').attr('hidden', false);
+				$('#pill-vertical-h-8').attr('hidden', false);
+				$('#pill-vertical-p-8').attr('hidden', false);
 
 				$('#pill-vertical-t-6').attr('hidden', true);
 				$('#pill-vertical-h-6').attr('hidden', true);
+				$('#pill-vertical-p-6').attr('hidden', true);
 
 				$('#pill-vertical-t-5').attr('hidden', false);
 				$('#pill-vertical-h-5').attr('hidden', false);
@@ -946,6 +1052,10 @@
 				$('#pill-vertical-p-2').attr('hidden', false);
 				$('#pill-vertical-t-2').attr('hidden', false);
 				$('#pill-vertical-h-2').attr('hidden', false);
+
+				$('#pill-vertical-p-1').attr('hidden', false);
+				$('#pill-vertical-t-1').attr('hidden', false);
+				$('#pill-vertical-h-1').attr('hidden', false);
 			}
 			else if (quote_type == 3){
 				//non-provider clients
@@ -953,9 +1063,91 @@
 				$('#quote_uid').attr('hidden', true);
 				$('#uuid_title').attr('hidden', true);
 
+				//hide Rental Details
+				$('#rent_div').attr('hidden', true);
+				$('#rent_person').attr('hidden', true);
+				$('#rent_charge').attr('hidden', true);
+				$('#rent_duration').attr('hidden', true);
+				$('#rent_docs_title').attr('hidden', true);
+				$('#rent_charge_title').attr('hidden', true);
+				$('#rent_duration_title').attr('hidden', true);
+				$('#rentee_title').attr('hidden', true);
+				$('#id_num_title').attr('hidden', true);
+				$('#rent_id_num').attr('hidden', true);
+				$('#rent_btn').attr('hidden', true);
 
 				//	$("#pill-vertical").steps("remove", 3);
 				//	$("#pill-vertical").steps("remove", 2);
+				$('#pill-vertical-t-8').attr('hidden', false);
+				$('#pill-vertical-h-8').attr('hidden', false);
+				$('#pill-vertical-p-8').attr('hidden', false);
+
+					$('#pill-vertical-t-7').attr('hidden', true);
+				$('#pill-vertical-h-7').attr('hidden', true);
+				$('#pill-vertical-p-7').attr('hidden', true);
+
+
+				$('#pill-vertical-t-6').attr('hidden', true);
+				$('#pill-vertical-h-6').attr('hidden', true);
+				$('#pill-vertical-p-6').attr('hidden', true);
+
+				$('#pill-vertical-t-5').attr('hidden', false);
+				$('#pill-vertical-h-5').attr('hidden', false);
+				$('#pill-vertical-p-5').attr('hidden', false);
+
+				$('#pill-vertical-t-4').attr('hidden', true);
+				$('#pill-vertical-h-4').attr('hidden', true);
+				$('#pill-vertical-p-4').attr('hidden', true);
+
+				$('#pill-vertical-t-3').attr('hidden', true);
+				$('#pill-vertical-h-3').attr('hidden', true);
+				$('#pill-vertical-p-3').attr('hidden', true);
+
+				$('#pill-vertical-p-2').attr('hidden', false);
+				$('#pill-vertical-t-2').attr('hidden', false);
+				$('#pill-vertical-h-2').attr('hidden', false);
+
+				$('#pill-vertical-p-1').attr('hidden', false);
+				$('#pill-vertical-t-1').attr('hidden', false);
+				$('#pill-vertical-h-1').attr('hidden', false);
+			} else if (quote_type == 4){
+				//non-provider clients
+				//hide UID
+				$('#quote_uid').attr('hidden', true);
+				$('#uuid_title').attr('hidden', true);
+				//hide Title
+				$('#title_title').attr('hidden', true);
+				$('#quote_title').attr('hidden', true);
+				//hide Support Duration
+				$('#support_duration').attr('hidden', true);
+				$('#support_title').attr('hidden', true);
+				//hide Monthly Charge
+				$('#support_charge').attr('hidden', true);
+				$('#charge_title').attr('hidden', true);
+				//hide Docs Upload
+				$('#support_div').attr('hidden', true);
+				$('#support_docs_title').attr('hidden', true);
+
+
+				//Show Rental Details
+				$('#rent_div').attr('hidden', false);
+				$('#rent_person').attr('hidden', false);
+				$('#rent_charge').attr('hidden', false);
+				$('#rent_duration').attr('hidden', false);
+				$('#rent_docs_title').attr('hidden', false);
+				$('#rent_charge_title').attr('hidden', false);
+				$('#rent_duration_title').attr('hidden', false);
+				$('#rentee_title').attr('hidden', false);
+				$('#id_num_title').attr('hidden', false);
+				$('#rent_id_num').attr('hidden', false);
+				$('#rent_btn').attr('hidden', false);
+
+				//	$("#pill-vertical").steps("remove", 3);
+				//	$("#pill-vertical").steps("remove", 2);
+
+				$('#pill-vertical-t-8').attr('hidden', true);
+				$('#pill-vertical-h-8').attr('hidden', true);
+				$('#pill-vertical-p-8').attr('hidden', true);
 
 				$('#pill-vertical-t-6').attr('hidden', true);
 				$('#pill-vertical-h-6').attr('hidden', true);
@@ -976,6 +1168,12 @@
 				$('#pill-vertical-p-2').attr('hidden', false);
 				$('#pill-vertical-t-2').attr('hidden', false);
 				$('#pill-vertical-h-2').attr('hidden', false);
+
+				$('#pill-vertical-p-1').attr('hidden', true);
+				$('#pill-vertical-t-1').attr('hidden', true);
+				$('#pill-vertical-h-1').attr('hidden', true);
+
+
 			}
 
 
@@ -993,9 +1191,9 @@
 					.then(data => {
 
 						jobTypes = data["jobTypes"];
-
-						for (let i = 0; i < jobTypes.length; i++) {
-							let option = '<option value="' + jobTypes[i]["category_id"] + '">' + jobTypes[i]["name"] + '</option>'
+						jobTypes_ = jobTypes
+						for (let i = 0; i < jobTypes_.length; i++) {
+							let option = '<option value="' + jobTypes_[i]["category_id"] + '">' + jobTypes_[i]["name"] + '</option>'
 							options += option;
 						}
 						select.innerHTML = options;
@@ -1311,6 +1509,9 @@
 					})
 		}
 
+		function generateRentDoc(){
+
+		}
 		function editRow(id, desc, quantity, uom, rate, remarks) {
 			/*step 1: Populate Modal */
 			document.getElementById("modal_id").setAttribute("value", id)

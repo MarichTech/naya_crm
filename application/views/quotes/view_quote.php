@@ -53,7 +53,8 @@
 												<div class="item-timeline">
 													<div class="t-meta-date">
 														<p class="">Quote Category</p>
-														<p><span id="clientName"  class="badge badge-success"> <?php echo $quoteDetails[0]->jobType ?></span>	</p>
+														<p><span id="clientName"  class="badge badge-success"> <?php
+																echo $quoteDetails[0]->jobType ?></span>	</p>
 													</div>
 
 												</div>

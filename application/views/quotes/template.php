@@ -31,11 +31,13 @@
 			<h1><?php echo $data['quote_ref'] ?></h1>
 			<div class="date">Date: <?php echo $data['date_created'] ?></div>
 		</div>
-	</div>
-	<div>
-		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['title'] ?>
-			<br>
-		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['uid'] ?>
+
+		<div id="title">
+			<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif; " >Title:- <?php echo $data['title'] ?>
+				<br>
+				<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif;">Provider Request No :-  <?php echo $data['uid'] ?>
+		</div
+
 	</div>
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -215,7 +217,7 @@
 				00100 Nairobi, Kenya&nbsp;
 				MPESA  Paybill:  303030</textarea>&nbsp;
 		<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
-		This quote is system generated and is valid without the signature and seal.
+		This quote is system generated and does not require a signature or stamp.
 
 		<br>
 		<p>	Powered By:<b> Naya Solutions</b></p>

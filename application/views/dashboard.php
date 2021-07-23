@@ -31,6 +31,7 @@
 									<th>#</th>
 									<th>Quote Ref</th>
 									<th>Client</th>
+									<th>Quote Type</th>
 									<th>Category</th>
 									<th>Subcategory</th>
 									<th>Done By</th>
@@ -40,13 +41,14 @@
 								</tr>
 								</thead>
 								<tbody>
-								<?php $i = 1;
+								<?php $i = 0;
 								foreach ( $quotes as $quote) {
 									?>
 									<tr>
-										<td><?php echo $i ?></td>
+										<td><?php echo $i + 1; ?></td>
 										<td><?php echo $quote->quote_ref ?></td>
 										<td><?php echo $quote->name ?></td>
+										<td><?php echo $quote->quote_type ?></td>
 										<td><?php echo $quote->jobType ?></td>
 										<td><?php echo $quote->jobSubType ?></td>
 										<td><?php echo $quote->username ?></td>
