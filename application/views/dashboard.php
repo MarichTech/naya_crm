@@ -42,6 +42,7 @@
 								</thead>
 								<tbody>
 								<?php $i = 0;
+								if(isset($quotes)){
 								foreach ( $quotes as $quote) {
 									?>
 									<tr>
@@ -57,7 +58,8 @@
 										<td class="text-center"><a href="<?php echo base_url() .'view_quote/'.$quote->quote_id ?>"><button  class="btn btn-primary">View</button> </a></td>
 									</tr>
 									<?php $i++;
-								} ?>
+								} 
+							}?>
 
 								</tbody>
 								<tfoot>
