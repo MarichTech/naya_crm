@@ -31,13 +31,13 @@
 			<h1><?php echo $data['quote_ref'] ?></h1>
 			<div class="date">Date: <?php echo $data['date_created'] ?></div>
 		</div>
-
-		<div id="title">
-			<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif; " >Title:- <?php echo $data['title'] ?>
+<!--
+		<div id="invoice">
+			<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif; " >Title:- <?php /*echo $data['title'] */?>
 				<br>
-				<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif;">Provider Request No :-  <?php echo $data['uid'] ?>
+				<h3 style="color: black; text-transform: uppercase; font-family: SourceSansPro,sans-serif;">Provider Request No :-  <?php /*echo $data['uid'] */?>
 		</div
-
+-->
 	</div>
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -116,7 +116,7 @@
 			<td class="qty"><?php
 				$installation = (0.20) * $subtotal;
 				echo number_format(($installation), 2) ?></td>
-			<td class="total"><?php echo number_format(($installation ), 2) ?></td>
+			<td class="total"><b><?php echo number_format(($installation ), 2) ?></b></td>
 		</tr>
 		</tbody>
 		<tfoot>
@@ -127,10 +127,10 @@
 		<tr>
 			<td colspan="2"></td>
 			<td colspan="2">SUBTOTAL</td>
-			<td>KES <?php
+			<td>KES <b><?php
 				$subtotal = $subtotal + $accessories + $installation;
 				echo number_format($subtotal, 2);
-				?></td>
+				?></b></td>
 		</tr>
 
 		<tr>
@@ -165,19 +165,19 @@
 		<tr>
 			<td colspan="2"></td>
 			<td colspan="2">3% Sales Discount</td>
-			<td>KES <?php
+			<td>KES ( <?php
 				$discount = (0.03) * $subtotal;
 				echo number_format(($discount), 2);
 
-				?></td>
+				?> )</td>
 		</tr>
 
 		<tr>
 			<td colspan="2"></td>
-			<td colspan="2">GRAND TOTAL</td>
-			<td>KES <?php
+			<td colspan="2"><b>GRAND TOTAL </b></td>
+			<td>  <b>KES  <?php
 				echo number_format( ($subtotal + $tax+ $discount), 2); ?>
-				</td>
+				</b></td>
 		</tr>
 		</tfoot>
 	</table>

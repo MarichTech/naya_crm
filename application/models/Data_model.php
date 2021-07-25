@@ -353,6 +353,50 @@ class Data_model extends CI_Model
 			return false;
 		}
 	}
+	public function update($table, $column, $field_id, $data)
+	{
+		$this->db->where($column, $field_id);
+		try{
+		$this->db->update($table, $data);
+		return  true;
+	}catch (Exception $exception) {
+			//var_dump($this->db->error());
+			return false;
+
+		}
+
+	}
+
+
+	public function getClientGroups($params= "")
+	{
+		$this->db->select('*');
+		$this->db->from('client_groups');
+		$this->db->order_by("client_groups.id", "ASC");
+		if ($params != '') {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
+		return $this->db->get()->result();
+	}
+
+	public function getVatTypes($params= "")
+	{
+		$this->db->select('*');
+		$this->db->from('vat');
+		$this->db->order_by("vat.id", "ASC");
+		if ($params != '') {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
+		return $this->db->get()->result();
+	}
 
 
 }

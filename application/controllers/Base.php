@@ -54,6 +54,24 @@ class Base extends CI_Controller
 		);
 		$this->load->view('clients/manage_clients.php', $data);
 	}
+	public function client_types()
+	{
+
+		$client_types = $this->Data->getClientGroups();
+		$result = array(
+			'client_types' => $client_types
+		);
+		echo json_encode($result);
+	}
+	public function vat_types()
+	{
+
+		$vat_types = $this->Data->getVatTypes();
+		$result = array(
+			'vat_types' => $vat_types
+		);
+		echo json_encode($result);
+	}
 
 	public function job_categories()
 	{

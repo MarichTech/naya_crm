@@ -13,8 +13,9 @@
 	"require": {
 		"php": ">=5.3.7",
 		"ext-json": "*",
-	  "mpdf/mpdf": "^8.0"
-	},
+	  "mpdf/mpdf": "^8.0",
+      "ext-mbstring": "*"
+    },
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
 	},

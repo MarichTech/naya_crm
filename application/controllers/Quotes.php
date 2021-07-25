@@ -281,7 +281,6 @@ public function currencies()
 	private function generatePdf(array $PDFData)
 	{
 
-		var_dump($PDFData['quote_type_id'] );
 		$mpdf = new Mpdf(array('tempDir' => APPPATH . '/views/quotes/temp'));
 		$mpdf->debug = false;
 		$mpdf->shrink_tables_to_fit = 0;

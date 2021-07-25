@@ -49,6 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+/*Base*/
+
 $route['default_controller'] = 'Base';
 $route['home'] = 'Base/home';
 $route['users'] = 'Base/users';
@@ -57,6 +59,11 @@ $route['new_quote'] = 'Base/new_quote';
 $route['rate_cards'] = 'Base/rate_cards';
 $route['company_settings'] = 'Base/company_settings';
 $route['manage_clients'] = 'Base/manage_clients';
+$route['vat_types'] = 'Base/vat_types';
+$route['client_types'] = 'Base/client_types';
+$route['job_categories'] = 'Base/job_categories';
+$route['job_subcategories'] = 'Base/job_subcategories';
+/*Quotes*/
 $route['quote_types'] = 'Quotes/getQuoteTypes';
 $route['clients'] = 'Quotes/getClients';
 $route['references'] = 'Quotes/references';
@@ -70,7 +77,8 @@ $route['quote'] = 'Quotes/quote';
 $route['loadCurrencies'] = 'Quotes/currencies';
 $route['view_quote/(:any)'] = 'Quotes/view_quote/$1';
 
-$route['job_categories'] = 'Base/job_categories';
-$route['job_subcategories'] = 'Base/job_subcategories';
+/*Settings*/
+$route['update/(:any)'] = 'Settings/update/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
