@@ -309,11 +309,11 @@ class Data_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
-	public function insert($table, array $quotesTableData)
+	public function insert($table, array $data)
 	{
 		try{
 
-			$this->db->insert($table, $quotesTableData);
+			$this->db->insert($table, $data);
 			return true;
 		}catch (Exception $exception){
 

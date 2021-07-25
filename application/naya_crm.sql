@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2021 at 10:35 AM
+-- Generation Time: Jul 25, 2021 at 11:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `audit_trail` (
-  `id` int(255) NOT NULL,
-  `action` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `time_of_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `ip_address` varchar(255) NOT NULL,
-  `user_id` int(255) NOT NULL,
-  `username` varchar(255) NOT NULL
+                               `id` int(255) NOT NULL,
+                               `action` varchar(255) NOT NULL,
+                               `status` varchar(255) NOT NULL,
+                               `time_of_action` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                               `ip_address` varchar(255) NOT NULL,
+                               `user_id` int(255) NOT NULL,
+                               `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -423,7 +423,65 @@ INSERT INTO `audit_trail` (`id`, `action`, `status`, `time_of_action`, `ip_addre
 (379, 'Create Quote', 'Success', '2021-07-23 07:55:41', '127.0.0.1', 1, ''),
 (380, 'Create Quote', 'Success', '2021-07-23 07:56:20', '127.0.0.1', 1, ''),
 (381, 'Create Quote', 'Success', '2021-07-23 07:57:56', '127.0.0.1', 1, ''),
-(382, 'Create Quote', 'Success', '2021-07-23 08:19:26', '127.0.0.1', 1, '');
+(382, 'Create Quote', 'Success', '2021-07-23 08:19:26', '127.0.0.1', 1, ''),
+(383, 'Create Quote', 'Success', '2021-07-23 10:36:37', '127.0.0.1', 1, ''),
+(384, 'Create Quote', 'Success', '2021-07-23 11:34:01', '127.0.0.1', 1, ''),
+(385, 'Create Quote', 'Success', '2021-07-23 11:36:17', '127.0.0.1', 1, ''),
+(386, 'Create Quote', 'Success', '2021-07-23 11:52:49', '127.0.0.1', 1, ''),
+(387, 'Create Quote', 'Success', '2021-07-23 11:53:13', '127.0.0.1', 1, ''),
+(388, 'Create Quote', 'Success', '2021-07-23 11:56:38', '127.0.0.1', 1, ''),
+(389, 'Create Quote', 'Success', '2021-07-23 12:38:14', '127.0.0.1', 1, ''),
+(390, 'Create Quote', 'Success', '2021-07-23 12:40:05', '127.0.0.1', 1, ''),
+(391, 'Create Quote', 'Success', '2021-07-23 12:43:53', '127.0.0.1', 1, ''),
+(392, 'Create Quote', 'Success', '2021-07-23 12:46:03', '127.0.0.1', 1, ''),
+(393, 'Create Quote', 'Success', '2021-07-23 12:47:10', '127.0.0.1', 1, ''),
+(394, 'Create Quote', 'Success', '2021-07-23 12:48:01', '127.0.0.1', 1, ''),
+(395, 'Create Quote', 'Success', '2021-07-23 12:48:40', '127.0.0.1', 1, ''),
+(396, 'Create Quote', 'Success', '2021-07-23 12:49:37', '127.0.0.1', 1, ''),
+(397, 'Create Quote', 'Success', '2021-07-23 12:50:36', '127.0.0.1', 1, ''),
+(398, 'Create Quote', 'Success', '2021-07-23 12:50:51', '127.0.0.1', 1, ''),
+(399, 'Create Quote', 'Success', '2021-07-23 12:51:37', '127.0.0.1', 1, ''),
+(400, 'Create Quote', 'Success', '2021-07-23 12:52:30', '127.0.0.1', 1, ''),
+(401, 'Create Quote', 'Success', '2021-07-23 12:55:42', '127.0.0.1', 1, ''),
+(402, 'Create Quote', 'Success', '2021-07-23 12:56:50', '127.0.0.1', 1, ''),
+(403, 'Create Quote', 'Success', '2021-07-23 12:57:36', '127.0.0.1', 1, ''),
+(404, 'Create Quote', 'Success', '2021-07-23 12:57:56', '127.0.0.1', 1, ''),
+(405, 'Create Quote', 'Success', '2021-07-23 12:58:36', '127.0.0.1', 1, ''),
+(406, 'Create Quote', 'Success', '2021-07-23 12:59:46', '127.0.0.1', 1, ''),
+(407, 'Create Quote', 'Success', '2021-07-23 13:01:40', '127.0.0.1', 1, ''),
+(408, 'Create Quote', 'Success', '2021-07-23 13:02:59', '127.0.0.1', 1, ''),
+(409, 'Create Quote', 'Success', '2021-07-23 13:05:22', '127.0.0.1', 1, ''),
+(410, 'Create Quote', 'Success', '2021-07-23 13:05:51', '127.0.0.1', 1, ''),
+(411, 'Create Quote', 'Success', '2021-07-23 13:06:35', '127.0.0.1', 1, ''),
+(412, 'Create Quote', 'Success', '2021-07-23 13:09:31', '127.0.0.1', 1, ''),
+(413, 'Create Quote', 'Success', '2021-07-23 13:09:50', '127.0.0.1', 1, ''),
+(414, 'Create Quote', 'Success', '2021-07-23 13:11:20', '127.0.0.1', 1, ''),
+(415, 'Create Quote', 'Success', '2021-07-23 13:12:01', '127.0.0.1', 1, ''),
+(416, 'Create Quote', 'Success', '2021-07-23 13:15:29', '127.0.0.1', 1, ''),
+(417, 'Create Quote', 'Success', '2021-07-23 13:15:49', '127.0.0.1', 1, ''),
+(418, 'Create Quote', 'Success', '2021-07-23 13:18:13', '127.0.0.1', 1, ''),
+(419, 'Create Quote', 'Success', '2021-07-23 13:18:38', '127.0.0.1', 1, ''),
+(420, 'Create Quote', 'Success', '2021-07-23 13:19:08', '127.0.0.1', 1, ''),
+(421, 'Create Quote', 'Success', '2021-07-23 13:20:25', '127.0.0.1', 1, ''),
+(422, 'Create Quote', 'Success', '2021-07-23 13:21:50', '127.0.0.1', 1, ''),
+(423, 'Create Quote', 'Success', '2021-07-23 13:22:18', '127.0.0.1', 1, ''),
+(424, 'Create Quote', 'Success', '2021-07-23 13:23:11', '127.0.0.1', 1, ''),
+(425, 'Create Quote', 'Success', '2021-07-23 13:24:54', '127.0.0.1', 1, ''),
+(426, 'Create Quote', 'Success', '2021-07-23 13:25:40', '127.0.0.1', 1, ''),
+(427, 'Create Quote', 'Success', '2021-07-23 13:26:18', '127.0.0.1', 1, ''),
+(428, 'Create Quote', 'Success', '2021-07-23 13:26:38', '127.0.0.1', 1, ''),
+(429, 'Create Quote', 'Success', '2021-07-23 13:27:31', '127.0.0.1', 1, ''),
+(430, 'Create Quote', 'Success', '2021-07-23 13:28:00', '127.0.0.1', 1, ''),
+(431, 'Create Quote', 'Success', '2021-07-23 13:37:29', '127.0.0.1', 1, ''),
+(432, 'Create Quote', 'Success', '2021-07-23 13:38:15', '127.0.0.1', 1, ''),
+(433, 'Create Quote', 'Success', '2021-07-23 13:45:26', '127.0.0.1', 1, ''),
+(434, 'Create Quote', 'Success', '2021-07-23 13:59:40', '127.0.0.1', 1, ''),
+(435, 'Create Quote', 'Success', '2021-07-23 14:01:09', '127.0.0.1', 1, ''),
+(436, 'Create Quote', 'Success', '2021-07-23 14:04:14', '127.0.0.1', 1, ''),
+(437, 'Create Quote', 'Success', '2021-07-23 14:05:11', '127.0.0.1', 1, ''),
+(438, 'Create Quote', 'Success', '2021-07-23 14:06:22', '127.0.0.1', 1, ''),
+(439, 'Create Quote', 'Success', '2021-07-23 14:06:54', '127.0.0.1', 1, ''),
+(440, 'Added New Client', '1', '2021-07-25 09:21:16', '127.0.0.1', 0, '');
 
 -- --------------------------------------------------------
 
@@ -432,20 +490,20 @@ INSERT INTO `audit_trail` (`id`, `action`, `status`, `time_of_action`, `ip_addre
 --
 
 CREATE TABLE `clients` (
-  `client_id` int(255) NOT NULL,
-  `name` varchar(1000) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mobile` varchar(255) NOT NULL,
-  `rep_name` varchar(255) NOT NULL,
-  `rep_email` varchar(255) NOT NULL,
-  `rep_mobile` varchar(255) NOT NULL,
-  `payment_terms` mediumtext NOT NULL,
-  `vat_type` int(255) NOT NULL,
-  `client_group` int(255) NOT NULL,
-  `address` varchar(1000) NOT NULL,
-  `logo` varchar(2000) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                           `client_id` int(255) NOT NULL,
+                           `name` varchar(1000) NOT NULL,
+                           `email` varchar(255) NOT NULL,
+                           `mobile` varchar(255) NOT NULL,
+                           `rep_name` varchar(255) NOT NULL,
+                           `rep_email` varchar(255) NOT NULL,
+                           `rep_mobile` varchar(255) NOT NULL,
+                           `payment_terms` mediumtext NOT NULL,
+                           `vat_type` int(255) NOT NULL,
+                           `client_group` int(255) NOT NULL,
+                           `address` varchar(1000) NOT NULL,
+                           `logo` varchar(2000) NOT NULL,
+                           `date_added` datetime NOT NULL DEFAULT current_timestamp(),
+                           `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -454,7 +512,9 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`client_id`, `name`, `email`, `mobile`, `rep_name`, `rep_email`, `rep_mobile`, `payment_terms`, `vat_type`, `client_group`, `address`, `logo`, `date_added`, `last_modified`) VALUES
 (1, 'Liquid Intelligence Telecom', 'info@liquidtelecom.com', '07200000', 'Person X', 'x@liquidtelecom.com', '0722112334', '50% Deposit', 1, 1, '77 Rimiru Drive', 'logo.jpg', '2021-07-02 11:31:45', '2021-07-02 11:30:20'),
-(2, 'NCBA', 'info@ncba.com', '07227738282', 'Jerry Rice', 'jerice@gmail.com', '08273844', '60% Deposit', 2, 2, '83 Fortis Suite ', '', '2021-07-17 16:10:40', '2021-07-17 16:09:12');
+(2, 'NCBA', 'info@ncba.com', '07227738282', 'Jerry Rice', 'jerice@gmail.com', '08273844', '60% Deposit', 3, 2, '83 Fortis Suite ', '', '2021-07-17 16:10:40', '2021-07-25 11:02:27'),
+(3, 'Nairobi Garage', 'helpdesk@nbigarage.com,', '0746332234', 'Sheila ', 'sheila@bigarage.com', '072233345', '40% Deposit, 40% on delivery, 20% on completion', 3, 2, '12 Watermark Garden Karen', '', '2021-07-25 12:15:49', '2021-07-25 12:15:49'),
+(4, 'AEY Group', 'info@aey.group', '072579903', 'Oshwal', 'oshwal@aey.group', '073344488', '70% Deposit', 4, 1, 'Genral Mathenge Drive', '', '2021-07-25 12:21:16', '2021-07-25 12:21:16');
 
 -- --------------------------------------------------------
 
@@ -463,10 +523,10 @@ INSERT INTO `clients` (`client_id`, `name`, `email`, `mobile`, `rep_name`, `rep_
 --
 
 CREATE TABLE `client_groups` (
-  `id` int(255) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                 `id` int(255) NOT NULL,
+                                 `description` varchar(500) NOT NULL,
+                                 `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                 `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -485,14 +545,14 @@ INSERT INTO `client_groups` (`id`, `description`, `date_created`, `last_modified
 --
 
 CREATE TABLE `company_details` (
-  `company_id` int(255) NOT NULL,
-  `name` varchar(1000) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mobile` varchar(255) NOT NULL,
-  `address` varchar(1000) NOT NULL,
-  `logo` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                   `company_id` int(255) NOT NULL,
+                                   `name` varchar(1000) NOT NULL,
+                                   `email` varchar(255) NOT NULL,
+                                   `mobile` varchar(255) NOT NULL,
+                                   `address` varchar(1000) NOT NULL,
+                                   `logo` varchar(255) NOT NULL,
+                                   `date_added` datetime NOT NULL DEFAULT current_timestamp(),
+                                   `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -509,11 +569,11 @@ INSERT INTO `company_details` (`company_id`, `name`, `email`, `mobile`, `address
 --
 
 CREATE TABLE `currencies` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `abbreviation` varchar(255) NOT NULL,
-  `conversion_rate` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+                              `id` int(11) NOT NULL,
+                              `name` varchar(255) NOT NULL,
+                              `abbreviation` varchar(255) NOT NULL,
+                              `conversion_rate` varchar(255) NOT NULL,
+                              `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -537,11 +597,11 @@ INSERT INTO `currencies` (`id`, `name`, `abbreviation`, `conversion_rate`, `date
 --
 
 CREATE TABLE `job_categories` (
-  `category_id` int(255) NOT NULL,
-  `name` varchar(1000) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                  `category_id` int(255) NOT NULL,
+                                  `name` varchar(1000) NOT NULL,
+                                  `description` varchar(1000) NOT NULL,
+                                  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                  `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -563,13 +623,13 @@ INSERT INTO `job_categories` (`category_id`, `name`, `description`, `date_create
 --
 
 CREATE TABLE `job_subcategories` (
-  `sub_cat_id` int(255) NOT NULL,
-  `name` varchar(1000) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `category_id` int(255) NOT NULL,
-  `svg` longtext NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                     `sub_cat_id` int(255) NOT NULL,
+                                     `name` varchar(1000) NOT NULL,
+                                     `description` varchar(1000) NOT NULL,
+                                     `category_id` int(255) NOT NULL,
+                                     `svg` longtext NOT NULL,
+                                     `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                     `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -592,15 +652,15 @@ INSERT INTO `job_subcategories` (`sub_cat_id`, `name`, `description`, `category_
 --
 
 CREATE TABLE `materials` (
-  `id` int(255) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `unit_of_measurement` varchar(255) NOT NULL,
-  `quantity` int(255) NOT NULL,
-  `proposed_rate` varchar(255) NOT NULL,
-  `remarks` varchar(1000) NOT NULL,
-  `sub_cat_id` int(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                             `id` int(255) NOT NULL,
+                             `description` varchar(1000) NOT NULL,
+                             `unit_of_measurement` varchar(255) NOT NULL,
+                             `quantity` int(255) NOT NULL,
+                             `proposed_rate` varchar(255) NOT NULL,
+                             `remarks` varchar(1000) NOT NULL,
+                             `sub_cat_id` int(255) NOT NULL,
+                             `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                             `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -619,23 +679,23 @@ INSERT INTO `materials` (`id`, `description`, `unit_of_measurement`, `quantity`,
 --
 
 CREATE TABLE `quotes` (
-  `quote_id` int(255) NOT NULL,
-  `quote_ref` varchar(255) NOT NULL,
-  `job_no` varchar(255) NOT NULL,
-  `title` varchar(1000) NOT NULL,
-  `quote_type` int(255) NOT NULL,
-  `job_category` int(255) DEFAULT NULL,
-  `job_sub_category` int(255) DEFAULT NULL,
-  `rate_card_id` int(255) DEFAULT NULL,
-  `additional_materials` int(255) DEFAULT NULL,
-  `notes` varchar(1000) NOT NULL,
-  `assumptions` varchar(1000) NOT NULL,
-  `payment_terms` varchar(1000) NOT NULL,
-  `amount` varchar(255) NOT NULL,
-  `client_id` int(255) NOT NULL,
-  `user_id` int(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                          `quote_id` int(255) NOT NULL,
+                          `quote_ref` varchar(255) NOT NULL,
+                          `job_no` varchar(255) NOT NULL,
+                          `title` varchar(1000) NOT NULL,
+                          `quote_type` int(255) NOT NULL,
+                          `job_category` int(255) DEFAULT NULL,
+                          `job_sub_category` int(255) DEFAULT NULL,
+                          `rate_card_id` int(255) DEFAULT NULL,
+                          `additional_materials` int(255) DEFAULT NULL,
+                          `notes` varchar(1000) NOT NULL,
+                          `assumptions` varchar(1000) NOT NULL,
+                          `payment_terms` varchar(1000) NOT NULL,
+                          `amount` varchar(255) NOT NULL,
+                          `client_id` int(255) NOT NULL,
+                          `user_id` int(255) NOT NULL,
+                          `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                          `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -645,7 +705,64 @@ CREATE TABLE `quotes` (
 INSERT INTO `quotes` (`quote_id`, `quote_ref`, `job_no`, `title`, `quote_type`, `job_category`, `job_sub_category`, `rate_card_id`, `additional_materials`, `notes`, `assumptions`, `payment_terms`, `amount`, `client_id`, `user_id`, `date_created`, `last_modified`) VALUES
 (382, 'QT8176', '', 'hfgyf', 2, 4, 5, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 10:16:19', '2021-07-23 10:16:19'),
 (384, 'QT3741', '', 'Sample Provder Quote', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 10:56:19', '2021-07-23 10:56:19'),
-(386, 'QT7178', '', 'Support Tester', 3, 5, 6, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 11:19:25', '2021-07-23 11:19:25');
+(386, 'QT7178', '', 'Support Tester', 3, 5, 6, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 11:19:25', '2021-07-23 11:19:25'),
+(387, 'QT4213', '', 'LO098765', 1, 1, 1, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 13:36:37', '2021-07-23 13:36:37'),
+(388, 'QT1263', '', '', 2, 4, 5, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 14:34:00', '2021-07-23 14:34:00'),
+(389, 'QT1263', '', '', 2, 4, 5, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 14:36:17', '2021-07-23 14:36:17'),
+(390, 'QT1263', '', '', 2, 4, 5, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 14:52:49', '2021-07-23 14:52:49'),
+(391, 'QT3741', '', 'Sample Provder Quote', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 14:53:12', '2021-07-23 14:53:12'),
+(392, 'QT1263', '', '', 2, 4, 5, NULL, 0, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '60% Deposit', '0', 2, 1, '2021-07-23 14:56:38', '2021-07-23 14:56:38'),
+(393, 'QT3741', '', 'Sample Provder Quote', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:38:14', '2021-07-23 15:38:14'),
+(394, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:40:05', '2021-07-23 15:40:05'),
+(395, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:43:53', '2021-07-23 15:43:53'),
+(396, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:46:03', '2021-07-23 15:46:03'),
+(397, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:47:09', '2021-07-23 15:47:09'),
+(398, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:48:01', '2021-07-23 15:48:01'),
+(399, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:48:39', '2021-07-23 15:48:39'),
+(400, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:49:37', '2021-07-23 15:49:37'),
+(401, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:50:35', '2021-07-23 15:50:35'),
+(402, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:50:51', '2021-07-23 15:50:51'),
+(403, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:51:37', '2021-07-23 15:51:37'),
+(404, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:52:30', '2021-07-23 15:52:30'),
+(405, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:55:42', '2021-07-23 15:55:42'),
+(406, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:56:49', '2021-07-23 15:56:49'),
+(407, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:57:35', '2021-07-23 15:57:35'),
+(408, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:57:55', '2021-07-23 15:57:55'),
+(409, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:58:36', '2021-07-23 15:58:36'),
+(410, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 15:59:45', '2021-07-23 15:59:45'),
+(411, 'QT1460', '', 'Pasdding test', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:01:40', '2021-07-23 16:01:40'),
+(412, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:02:59', '2021-07-23 16:02:59'),
+(413, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:05:22', '2021-07-23 16:05:22'),
+(414, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:05:51', '2021-07-23 16:05:51'),
+(415, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:06:35', '2021-07-23 16:06:35'),
+(416, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:09:30', '2021-07-23 16:09:30'),
+(417, 'QT3709', '', 'Font Check', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:09:50', '2021-07-23 16:09:50'),
+(418, 'QT6148', '', 'This is a long long long long long long long long long long long long long long long titile', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:11:19', '2021-07-23 16:11:19'),
+(419, 'QT6148', '', 'This is a long long long long long long long long long long long long long long long titile', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:12:01', '2021-07-23 16:12:01'),
+(420, 'QT6148', '', 'This is a long long long long long long long long long long long long long long long titile', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:15:28', '2021-07-23 16:15:28'),
+(421, 'QT6148', '', 'This is a long long long long long long long long long long long long long long long titile', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:15:48', '2021-07-23 16:15:48'),
+(422, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:18:13', '2021-07-23 16:18:13'),
+(423, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:18:38', '2021-07-23 16:18:38'),
+(424, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:19:08', '2021-07-23 16:19:08'),
+(425, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:20:25', '2021-07-23 16:20:25'),
+(426, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:21:50', '2021-07-23 16:21:50'),
+(427, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:22:17', '2021-07-23 16:22:17'),
+(428, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:23:11', '2021-07-23 16:23:11'),
+(429, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:24:54', '2021-07-23 16:24:54'),
+(430, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:25:40', '2021-07-23 16:25:40'),
+(431, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:26:18', '2021-07-23 16:26:18'),
+(432, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:26:37', '2021-07-23 16:26:37'),
+(433, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:27:31', '2021-07-23 16:27:31'),
+(434, 'QT8396', '', 'fgrehyusirkyrysteusgdsfhjdafgshdjeretysuyewqwwretwayruawetraysthjr', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:28:00', '2021-07-23 16:28:00'),
+(435, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:37:29', '2021-07-23 16:37:29'),
+(436, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:38:15', '2021-07-23 16:38:15'),
+(437, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:45:26', '2021-07-23 16:45:26'),
+(438, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 16:59:39', '2021-07-23 16:59:39'),
+(439, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 17:01:09', '2021-07-23 17:01:09'),
+(440, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 17:04:14', '2021-07-23 17:04:14'),
+(441, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 17:05:09', '2021-07-23 17:05:09'),
+(442, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 17:06:21', '2021-07-23 17:06:21'),
+(443, 'QT4810', '', 'etryutrueyiurouo', 1, 1, 1, NULL, 1, '									# Autosaving!\n									Enter Notes Here\n                                ', '', '50% Deposit', '0', 1, 1, '2021-07-23 17:06:54', '2021-07-23 17:06:54');
 
 -- --------------------------------------------------------
 
@@ -654,11 +771,11 @@ INSERT INTO `quotes` (`quote_id`, `quote_ref`, `job_no`, `title`, `quote_type`, 
 --
 
 CREATE TABLE `quote_references` (
-  `ref_id` int(255) NOT NULL,
-  `index_id` int(255) NOT NULL,
-  `quote_ref` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                    `ref_id` int(255) NOT NULL,
+                                    `index_id` int(255) NOT NULL,
+                                    `quote_ref` varchar(255) NOT NULL,
+                                    `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                    `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1051,7 +1168,64 @@ INSERT INTO `quote_references` (`ref_id`, `index_id`, `quote_ref`, `date_created
 (383, 0, 'QT3741', '2021-07-23 10:55:41', '2021-07-23 10:55:41'),
 (384, 0, 'QT3741', '2021-07-23 10:56:19', '2021-07-23 10:56:19'),
 (385, 0, 'QT8031', '2021-07-23 10:57:55', '2021-07-23 10:57:55'),
-(386, 0, 'QT7178', '2021-07-23 11:19:25', '2021-07-23 11:19:25');
+(386, 0, 'QT7178', '2021-07-23 11:19:25', '2021-07-23 11:19:25'),
+(387, 0, 'QT4213', '2021-07-23 13:36:37', '2021-07-23 13:36:37'),
+(388, 0, 'QT1263', '2021-07-23 14:34:00', '2021-07-23 14:34:00'),
+(389, 0, 'QT1263', '2021-07-23 14:36:17', '2021-07-23 14:36:17'),
+(390, 0, 'QT1263', '2021-07-23 14:52:49', '2021-07-23 14:52:49'),
+(391, 0, 'QT3741', '2021-07-23 14:53:12', '2021-07-23 14:53:12'),
+(392, 0, 'QT1263', '2021-07-23 14:56:38', '2021-07-23 14:56:38'),
+(393, 0, 'QT3741', '2021-07-23 15:38:14', '2021-07-23 15:38:14'),
+(394, 0, 'QT3709', '2021-07-23 15:40:05', '2021-07-23 15:40:05'),
+(395, 0, 'QT3709', '2021-07-23 15:43:53', '2021-07-23 15:43:53'),
+(396, 0, 'QT3709', '2021-07-23 15:46:03', '2021-07-23 15:46:03'),
+(397, 0, 'QT3709', '2021-07-23 15:47:09', '2021-07-23 15:47:09'),
+(398, 0, 'QT3709', '2021-07-23 15:48:01', '2021-07-23 15:48:01'),
+(399, 0, 'QT3709', '2021-07-23 15:48:39', '2021-07-23 15:48:39'),
+(400, 0, 'QT3709', '2021-07-23 15:49:37', '2021-07-23 15:49:37'),
+(401, 0, 'QT3709', '2021-07-23 15:50:35', '2021-07-23 15:50:35'),
+(402, 0, 'QT3709', '2021-07-23 15:50:51', '2021-07-23 15:50:51'),
+(403, 0, 'QT3709', '2021-07-23 15:51:37', '2021-07-23 15:51:37'),
+(404, 0, 'QT3709', '2021-07-23 15:52:30', '2021-07-23 15:52:30'),
+(405, 0, 'QT3709', '2021-07-23 15:55:42', '2021-07-23 15:55:42'),
+(406, 0, 'QT3709', '2021-07-23 15:56:49', '2021-07-23 15:56:49'),
+(407, 0, 'QT3709', '2021-07-23 15:57:35', '2021-07-23 15:57:35'),
+(408, 0, 'QT3709', '2021-07-23 15:57:55', '2021-07-23 15:57:55'),
+(409, 0, 'QT3709', '2021-07-23 15:58:36', '2021-07-23 15:58:36'),
+(410, 0, 'QT3709', '2021-07-23 15:59:45', '2021-07-23 15:59:45'),
+(411, 0, 'QT1460', '2021-07-23 16:01:40', '2021-07-23 16:01:40'),
+(412, 0, 'QT3709', '2021-07-23 16:02:59', '2021-07-23 16:02:59'),
+(413, 0, 'QT3709', '2021-07-23 16:05:22', '2021-07-23 16:05:22'),
+(414, 0, 'QT3709', '2021-07-23 16:05:51', '2021-07-23 16:05:51'),
+(415, 0, 'QT3709', '2021-07-23 16:06:35', '2021-07-23 16:06:35'),
+(416, 0, 'QT3709', '2021-07-23 16:09:30', '2021-07-23 16:09:30'),
+(417, 0, 'QT3709', '2021-07-23 16:09:50', '2021-07-23 16:09:50'),
+(418, 0, 'QT6148', '2021-07-23 16:11:19', '2021-07-23 16:11:19'),
+(419, 0, 'QT6148', '2021-07-23 16:12:01', '2021-07-23 16:12:01'),
+(420, 0, 'QT6148', '2021-07-23 16:15:28', '2021-07-23 16:15:28'),
+(421, 0, 'QT6148', '2021-07-23 16:15:48', '2021-07-23 16:15:48'),
+(422, 0, 'QT8396', '2021-07-23 16:18:13', '2021-07-23 16:18:13'),
+(423, 0, 'QT8396', '2021-07-23 16:18:38', '2021-07-23 16:18:38'),
+(424, 0, 'QT8396', '2021-07-23 16:19:08', '2021-07-23 16:19:08'),
+(425, 0, 'QT8396', '2021-07-23 16:20:25', '2021-07-23 16:20:25'),
+(426, 0, 'QT8396', '2021-07-23 16:21:50', '2021-07-23 16:21:50'),
+(427, 0, 'QT8396', '2021-07-23 16:22:17', '2021-07-23 16:22:17'),
+(428, 0, 'QT8396', '2021-07-23 16:23:11', '2021-07-23 16:23:11'),
+(429, 0, 'QT8396', '2021-07-23 16:24:54', '2021-07-23 16:24:54'),
+(430, 0, 'QT8396', '2021-07-23 16:25:40', '2021-07-23 16:25:40'),
+(431, 0, 'QT8396', '2021-07-23 16:26:18', '2021-07-23 16:26:18'),
+(432, 0, 'QT8396', '2021-07-23 16:26:37', '2021-07-23 16:26:37'),
+(433, 0, 'QT8396', '2021-07-23 16:27:31', '2021-07-23 16:27:31'),
+(434, 0, 'QT8396', '2021-07-23 16:28:00', '2021-07-23 16:28:00'),
+(435, 0, 'QT4810', '2021-07-23 16:37:29', '2021-07-23 16:37:29'),
+(436, 0, 'QT4810', '2021-07-23 16:38:15', '2021-07-23 16:38:15'),
+(437, 0, 'QT4810', '2021-07-23 16:45:26', '2021-07-23 16:45:26'),
+(438, 0, 'QT4810', '2021-07-23 16:59:39', '2021-07-23 16:59:39'),
+(439, 0, 'QT4810', '2021-07-23 17:01:09', '2021-07-23 17:01:09'),
+(440, 0, 'QT4810', '2021-07-23 17:04:14', '2021-07-23 17:04:14'),
+(441, 0, 'QT4810', '2021-07-23 17:05:09', '2021-07-23 17:05:09'),
+(442, 0, 'QT4810', '2021-07-23 17:06:21', '2021-07-23 17:06:21'),
+(443, 0, 'QT4810', '2021-07-23 17:06:54', '2021-07-23 17:06:54');
 
 -- --------------------------------------------------------
 
@@ -1060,11 +1234,11 @@ INSERT INTO `quote_references` (`ref_id`, `index_id`, `quote_ref`, `date_created
 --
 
 CREATE TABLE `quote_status` (
-  `id` int(255) NOT NULL,
-  `quote_ref` int(255) NOT NULL,
-  `status_id` int(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                `id` int(255) NOT NULL,
+                                `quote_ref` int(255) NOT NULL,
+                                `status_id` int(255) NOT NULL,
+                                `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1457,7 +1631,64 @@ INSERT INTO `quote_status` (`id`, `quote_ref`, `status_id`, `date_created`, `las
 (383, 0, 1, '2021-07-23 10:55:41', '2021-07-23 10:55:41'),
 (384, 0, 1, '2021-07-23 10:56:19', '2021-07-23 10:56:19'),
 (385, 0, 1, '2021-07-23 10:57:55', '2021-07-23 10:57:55'),
-(386, 0, 1, '2021-07-23 11:19:25', '2021-07-23 11:19:25');
+(386, 0, 1, '2021-07-23 11:19:25', '2021-07-23 11:19:25'),
+(387, 0, 1, '2021-07-23 13:36:37', '2021-07-23 13:36:37'),
+(388, 0, 1, '2021-07-23 14:34:00', '2021-07-23 14:34:00'),
+(389, 0, 1, '2021-07-23 14:36:17', '2021-07-23 14:36:17'),
+(390, 0, 1, '2021-07-23 14:52:49', '2021-07-23 14:52:49'),
+(391, 0, 1, '2021-07-23 14:53:12', '2021-07-23 14:53:12'),
+(392, 0, 1, '2021-07-23 14:56:38', '2021-07-23 14:56:38'),
+(393, 0, 1, '2021-07-23 15:38:14', '2021-07-23 15:38:14'),
+(394, 0, 1, '2021-07-23 15:40:05', '2021-07-23 15:40:05'),
+(395, 0, 1, '2021-07-23 15:43:53', '2021-07-23 15:43:53'),
+(396, 0, 1, '2021-07-23 15:46:03', '2021-07-23 15:46:03'),
+(397, 0, 1, '2021-07-23 15:47:09', '2021-07-23 15:47:09'),
+(398, 0, 1, '2021-07-23 15:48:01', '2021-07-23 15:48:01'),
+(399, 0, 1, '2021-07-23 15:48:39', '2021-07-23 15:48:39'),
+(400, 0, 1, '2021-07-23 15:49:37', '2021-07-23 15:49:37'),
+(401, 0, 1, '2021-07-23 15:50:35', '2021-07-23 15:50:35'),
+(402, 0, 1, '2021-07-23 15:50:51', '2021-07-23 15:50:51'),
+(403, 0, 1, '2021-07-23 15:51:37', '2021-07-23 15:51:37'),
+(404, 0, 1, '2021-07-23 15:52:30', '2021-07-23 15:52:30'),
+(405, 0, 1, '2021-07-23 15:55:42', '2021-07-23 15:55:42'),
+(406, 0, 1, '2021-07-23 15:56:49', '2021-07-23 15:56:49'),
+(407, 0, 1, '2021-07-23 15:57:35', '2021-07-23 15:57:35'),
+(408, 0, 1, '2021-07-23 15:57:55', '2021-07-23 15:57:55'),
+(409, 0, 1, '2021-07-23 15:58:36', '2021-07-23 15:58:36'),
+(410, 0, 1, '2021-07-23 15:59:45', '2021-07-23 15:59:45'),
+(411, 0, 1, '2021-07-23 16:01:40', '2021-07-23 16:01:40'),
+(412, 0, 1, '2021-07-23 16:02:59', '2021-07-23 16:02:59'),
+(413, 0, 1, '2021-07-23 16:05:22', '2021-07-23 16:05:22'),
+(414, 0, 1, '2021-07-23 16:05:51', '2021-07-23 16:05:51'),
+(415, 0, 1, '2021-07-23 16:06:35', '2021-07-23 16:06:35'),
+(416, 0, 1, '2021-07-23 16:09:30', '2021-07-23 16:09:30'),
+(417, 0, 1, '2021-07-23 16:09:50', '2021-07-23 16:09:50'),
+(418, 0, 1, '2021-07-23 16:11:19', '2021-07-23 16:11:19'),
+(419, 0, 1, '2021-07-23 16:12:01', '2021-07-23 16:12:01'),
+(420, 0, 1, '2021-07-23 16:15:28', '2021-07-23 16:15:28'),
+(421, 0, 1, '2021-07-23 16:15:48', '2021-07-23 16:15:48'),
+(422, 0, 1, '2021-07-23 16:18:13', '2021-07-23 16:18:13'),
+(423, 0, 1, '2021-07-23 16:18:38', '2021-07-23 16:18:38'),
+(424, 0, 1, '2021-07-23 16:19:08', '2021-07-23 16:19:08'),
+(425, 0, 1, '2021-07-23 16:20:25', '2021-07-23 16:20:25'),
+(426, 0, 1, '2021-07-23 16:21:50', '2021-07-23 16:21:50'),
+(427, 0, 1, '2021-07-23 16:22:17', '2021-07-23 16:22:17'),
+(428, 0, 1, '2021-07-23 16:23:11', '2021-07-23 16:23:11'),
+(429, 0, 1, '2021-07-23 16:24:54', '2021-07-23 16:24:54'),
+(430, 0, 1, '2021-07-23 16:25:40', '2021-07-23 16:25:40'),
+(431, 0, 1, '2021-07-23 16:26:18', '2021-07-23 16:26:18'),
+(432, 0, 1, '2021-07-23 16:26:37', '2021-07-23 16:26:37'),
+(433, 0, 1, '2021-07-23 16:27:31', '2021-07-23 16:27:31'),
+(434, 0, 1, '2021-07-23 16:28:00', '2021-07-23 16:28:00'),
+(435, 0, 1, '2021-07-23 16:37:29', '2021-07-23 16:37:29'),
+(436, 0, 1, '2021-07-23 16:38:15', '2021-07-23 16:38:15'),
+(437, 0, 1, '2021-07-23 16:45:26', '2021-07-23 16:45:26'),
+(438, 0, 1, '2021-07-23 16:59:39', '2021-07-23 16:59:39'),
+(439, 0, 1, '2021-07-23 17:01:09', '2021-07-23 17:01:09'),
+(440, 0, 1, '2021-07-23 17:04:14', '2021-07-23 17:04:14'),
+(441, 0, 1, '2021-07-23 17:05:09', '2021-07-23 17:05:09'),
+(442, 0, 1, '2021-07-23 17:06:21', '2021-07-23 17:06:21'),
+(443, 0, 1, '2021-07-23 17:06:54', '2021-07-23 17:06:54');
 
 -- --------------------------------------------------------
 
@@ -1466,10 +1697,10 @@ INSERT INTO `quote_status` (`id`, `quote_ref`, `status_id`, `date_created`, `las
 --
 
 CREATE TABLE `quote_types` (
-  `id` int(255) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                               `id` int(255) NOT NULL,
+                               `description` varchar(500) NOT NULL,
+                               `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                               `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1477,7 +1708,7 @@ CREATE TABLE `quote_types` (
 --
 
 INSERT INTO `quote_types` (`id`, `description`, `date_created`, `last_modified`) VALUES
-(1, 'Provider', '2021-07-17 15:52:48', '2021-07-17 15:52:10'),
+(1, 'Provider Installations', '2021-07-17 15:52:48', '2021-07-17 15:52:10'),
 (2, 'Hardware & Software', '2021-07-17 15:52:48', '2021-07-17 15:52:10'),
 (3, 'Professional Services', '2021-07-17 15:53:42', '2021-07-17 15:53:52'),
 (4, 'Equipment Rental', '2021-07-17 15:53:42', '2021-07-17 15:54:07');
@@ -1489,16 +1720,16 @@ INSERT INTO `quote_types` (`id`, `description`, `date_created`, `last_modified`)
 --
 
 CREATE TABLE `rate_cards` (
-  `id` int(255) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `unit_of_measurement` varchar(255) NOT NULL,
-  `quantity` int(255) NOT NULL,
-  `proposed_rate` varchar(255) NOT NULL,
-  `remarks` varchar(1000) NOT NULL,
-  `sub_cat_id` int(255) NOT NULL,
-  `client_id` int(255) NOT NULL DEFAULT 1,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                              `id` int(255) NOT NULL,
+                              `description` varchar(1000) NOT NULL,
+                              `unit_of_measurement` varchar(255) NOT NULL,
+                              `quantity` int(255) NOT NULL,
+                              `proposed_rate` varchar(255) NOT NULL,
+                              `remarks` varchar(1000) NOT NULL,
+                              `sub_cat_id` int(255) NOT NULL,
+                              `client_id` int(255) NOT NULL DEFAULT 1,
+                              `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                              `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1526,14 +1757,14 @@ INSERT INTO `rate_cards` (`id`, `description`, `unit_of_measurement`, `quantity`
 --
 
 CREATE TABLE `staff` (
-  `staff_id` int(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mobile` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `usergroup` int(255) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+                         `staff_id` int(255) NOT NULL,
+                         `name` varchar(255) NOT NULL,
+                         `email` varchar(255) NOT NULL,
+                         `mobile` varchar(255) NOT NULL,
+                         `department` varchar(255) NOT NULL,
+                         `usergroup` int(255) NOT NULL,
+                         `date_added` datetime NOT NULL DEFAULT current_timestamp(),
+                         `last_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1550,11 +1781,11 @@ INSERT INTO `staff` (`staff_id`, `name`, `email`, `mobile`, `department`, `userg
 --
 
 CREATE TABLE `status_flags` (
-  `status_id` int(255) NOT NULL,
-  `name` varchar(1000) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                                `status_id` int(255) NOT NULL,
+                                `name` varchar(1000) NOT NULL,
+                                `description` varchar(1000) NOT NULL,
+                                `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                                `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1571,12 +1802,12 @@ INSERT INTO `status_flags` (`status_id`, `name`, `description`, `date_created`, 
 --
 
 CREATE TABLE `users` (
-  `user_id` int(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `usergroup` int(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                         `user_id` int(255) NOT NULL,
+                         `username` varchar(255) NOT NULL,
+                         `password` varchar(255) NOT NULL,
+                         `usergroup` int(255) NOT NULL,
+                         `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                         `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1593,11 +1824,11 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `usergroup`, `date_creat
 --
 
 CREATE TABLE `user_groups` (
-  `group_id` int(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                               `group_id` int(255) NOT NULL,
+                               `name` varchar(255) NOT NULL,
+                               `description` varchar(1000) NOT NULL,
+                               `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                               `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1614,11 +1845,11 @@ INSERT INTO `user_groups` (`group_id`, `name`, `description`, `date_created`, `l
 --
 
 CREATE TABLE `vat` (
-  `id` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `rate` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `last_modified` datetime NOT NULL
+                       `id` int(11) NOT NULL,
+                       `description` varchar(255) NOT NULL,
+                       `rate` varchar(255) NOT NULL,
+                       `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+                       `last_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1639,109 +1870,109 @@ INSERT INTO `vat` (`id`, `description`, `rate`, `date_created`, `last_modified`)
 -- Indexes for table `audit_trail`
 --
 ALTER TABLE `audit_trail`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`client_id`);
+    ADD PRIMARY KEY (`client_id`);
 
 --
 -- Indexes for table `client_groups`
 --
 ALTER TABLE `client_groups`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `company_details`
 --
 ALTER TABLE `company_details`
-  ADD PRIMARY KEY (`company_id`);
+    ADD PRIMARY KEY (`company_id`);
 
 --
 -- Indexes for table `currencies`
 --
 ALTER TABLE `currencies`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `job_categories`
 --
 ALTER TABLE `job_categories`
-  ADD PRIMARY KEY (`category_id`);
+    ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `job_subcategories`
 --
 ALTER TABLE `job_subcategories`
-  ADD PRIMARY KEY (`sub_cat_id`);
+    ADD PRIMARY KEY (`sub_cat_id`);
 
 --
 -- Indexes for table `materials`
 --
 ALTER TABLE `materials`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `quotes`
 --
 ALTER TABLE `quotes`
-  ADD PRIMARY KEY (`quote_id`);
+    ADD PRIMARY KEY (`quote_id`);
 
 --
 -- Indexes for table `quote_references`
 --
 ALTER TABLE `quote_references`
-  ADD PRIMARY KEY (`ref_id`);
+    ADD PRIMARY KEY (`ref_id`);
 
 --
 -- Indexes for table `quote_status`
 --
 ALTER TABLE `quote_status`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `quote_types`
 --
 ALTER TABLE `quote_types`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `rate_cards`
 --
 ALTER TABLE `rate_cards`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`staff_id`);
+    ADD PRIMARY KEY (`staff_id`);
 
 --
 -- Indexes for table `status_flags`
 --
 ALTER TABLE `status_flags`
-  ADD PRIMARY KEY (`status_id`);
+    ADD PRIMARY KEY (`status_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+    ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  ADD PRIMARY KEY (`group_id`);
+    ADD PRIMARY KEY (`group_id`);
 
 --
 -- Indexes for table `vat`
 --
 ALTER TABLE `vat`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1751,109 +1982,109 @@ ALTER TABLE `vat`
 -- AUTO_INCREMENT for table `audit_trail`
 --
 ALTER TABLE `audit_trail`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `client_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `client_groups`
 --
 ALTER TABLE `client_groups`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `company_details`
 --
 ALTER TABLE `company_details`
-  MODIFY `company_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `company_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `job_categories`
 --
 ALTER TABLE `job_categories`
-  MODIFY `category_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `category_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `job_subcategories`
 --
 ALTER TABLE `job_subcategories`
-  MODIFY `sub_cat_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+    MODIFY `sub_cat_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `quotes`
 --
 ALTER TABLE `quotes`
-  MODIFY `quote_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+    MODIFY `quote_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
 
 --
 -- AUTO_INCREMENT for table `quote_references`
 --
 ALTER TABLE `quote_references`
-  MODIFY `ref_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+    MODIFY `ref_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
 
 --
 -- AUTO_INCREMENT for table `quote_status`
 --
 ALTER TABLE `quote_status`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
 
 --
 -- AUTO_INCREMENT for table `quote_types`
 --
 ALTER TABLE `quote_types`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rate_cards`
 --
 ALTER TABLE `rate_cards`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `staff_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `status_flags`
 --
 ALTER TABLE `status_flags`
-  MODIFY `status_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `status_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `group_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `group_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vat`
 --
 ALTER TABLE `vat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
