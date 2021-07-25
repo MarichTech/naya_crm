@@ -33,7 +33,7 @@ class Settings extends  Base
 			$vat_type = $this->input->post('vat_type');
 			$client_group =  $this->input->post('client_group');
 			/*  2. Prepare dB row update data  */
-			$data = array(
+			$insert_data = array(
 				'name'=> $name,
 				'email'=> $email,
 				'mobile'=> $mobile,
@@ -46,7 +46,8 @@ class Settings extends  Base
 				'client_group'=> $client_group,
 				'last_modified'=> date("Y-m-d H:i:s"),
 			);
-			$status = $this->Data->update("clients", 'client_id', $client_id, $data);
+			/*update dB data*/
+			$status = $this->Data->update("clients", 'client_id', $client_id, $insert_data);
 			if ($status == true) {
 				/*insert audit trail log*/
 				$action = 'Client Details Updated';
@@ -62,13 +63,18 @@ class Settings extends  Base
 				$messageType = 2;
 				$message = "Client Details Not Updated";
 			}
-			$data = array(
+			
+
+		}else if($option == "material"){
+
+		}else if($option =="user"){
+
+		}
+		$data = array(
 				'status' => $status,
 				'messageType' => $messageType,
 				'message' => $message
 			);
-
-		}
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));
  }
  public function create(){
@@ -123,6 +129,12 @@ class Settings extends  Base
 			 'messageType' => $messageType,
 			 'message' => $message
 		 );
+
+	 }
+	 elseif($option == "material"){
+
+	 }
+	 elseif($option == "user"){
 
 	 }
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));

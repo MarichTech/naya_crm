@@ -110,7 +110,6 @@
 					<br>
 					<form id="create_form">
 					<div class="form-row">
-						<input id="modal_id" type="hidden" class="form-control  basic " name="client_id" required>
 						<div class="form-group col-md-12">
 							<label>Name</label><br>
 							<input id="modal_name" type="text" class="form-control  basic " name="name" required>

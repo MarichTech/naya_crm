@@ -341,11 +341,11 @@ class Data_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
-	public function dataExists($table, $column, $quote_ref)
+	public function dataExists($table, $column, $value)
 	{
 		$this->db->select('*');
 		$this->db->from($table);
-		$this->db->where($column, $quote_ref);
+		$this->db->where($column, $value);
 		$query =$this->db->get();
 		if($query->num_rows >0){
 			return true;
