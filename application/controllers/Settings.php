@@ -66,7 +66,43 @@ class Settings extends  Base
 			
 
 		}else if($option == "material"){
+			/*  1. Get input fields  */
+			$material_id = $this->input->post('material_id');
+			$description = $this->input->post('description');
+			$unit_of_measurement = $this->input->post('UOM');
+			$quantity = $this->input->post('quantity');
+			$proposed_rate = $this->input->post('proposed_rate');
+			$remarks = $this->input->post('remarks') ;
+			
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'description'=> $description,
+				'unit_of_measurement'=> $unit_of_measurement,
+				'quantity'=> $quantity,
+				'proposed_rate'=> $proposed_rate,
+				'remarks'=> $remarks,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/*update dB data*/
+			$status = $this->Data->update("clients", 'client_id', $client_id, $insert_data);
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Client Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Client Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Failed Client Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Client Details Not Updated";
+			}
+			
 
+		
 		}else if($option =="user"){
 
 		}
@@ -96,7 +132,7 @@ class Settings extends  Base
 		 $client_group =  $this->input->post('client_group');
 		 /*  2. Prepare dB row update data  */
 		 $data = array(
-			 'name'=> $name,
+			'name'=> $name,
 			 'email'=> $email,
 			 'mobile'=> $mobile,
 			 'address'=> $address,
@@ -107,7 +143,8 @@ class Settings extends  Base
 			 'vat_type'=> $vat_type,
 			 'client_group'=> $client_group,
 			 'last_modified'=> date("Y-m-d H:i:s"),
-		 );
+			'last_modified'=> date("Y-m-d H:i:s"),
+		);
 		 $status = $this->Data->insert("clients", $data);
 		 if ($status == true) {
 			 /*insert audit trail log*/
@@ -132,7 +169,43 @@ class Settings extends  Base
 
 	 }
 	 elseif($option == "material"){
-
+		/*  1. Get input fields  */
+		$description = $this->input->post('description');
+		$unit_of_measurement =$this->input->post('UOM');
+		$quantity = $this->input->post('quantity');
+		$proposed_rate = $this->input->post('proposed_rate');
+		$remarks = $this->input->post('remarks') ;
+		
+		/*  2. Prepare dB row update data  */
+		$data = array(
+			'description'=> $description,
+			'unit_of_measurement'=> $unit_of_measurement,
+			'quantity'=> $quantity,
+			'proposed_rate'=> $proposed_rate,
+			'remarks'=> $remarks,
+			'last_modified'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("materials", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Material';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Material Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Material Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Material Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
 	 }
 	 elseif($option == "user"){
 

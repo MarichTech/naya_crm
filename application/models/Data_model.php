@@ -171,9 +171,9 @@ class Data_model extends CI_Model
 	 */
 	public function getMaterials($params = ""){
 		$this->db->select('materials.id,materials.description, materials.unit_of_measurement as UOM, quantity, proposed_rate as rate, remarks,
-		materials.sub_cat_id, job_subcategories.name as subType, materials.date_created, materials.last_modified');
+		materials.sub_cat_id, materials.date_created, materials.last_modified');
 		$this->db->from('materials');
-		$this->db->join("job_subcategories", "materials.sub_cat_id = job_subcategories.sub_cat_id");
+		//$this->db->join("job_subcategories", "materials.sub_cat_id = job_subcategories.sub_cat_id");
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
 				if ($value != null) {
