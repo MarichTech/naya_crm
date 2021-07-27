@@ -28,11 +28,7 @@ class Base extends CI_Controller
 	public function index()
 	
 	{
-		$quotes = $this->Data->getQuotes();
-		$data = array(
-			'quotes' => $quotes
-		);
-		$this->load->view('dashboard.php', $data);
+		$this->login();
 	}
 
 	public function new_quote()
@@ -136,13 +132,91 @@ class Base extends CI_Controller
 		$this->load->view('settings/company_settings.php', $data);
 	}
 
+	public  function login(){
 
-	public function logout()
+		$this->load->view('login/login.php');
+
+	}
+	public function authentication(){
+		/*1. Get Post Data*/
+		$post_data = file_get_contents("php://input");
+		$decoded_post_data = json_decode($post_data);
+		$username = $this->input->post('username');
+		$password =$this->input->post('password');
+		$data = array();
+		/*2. Login Validation */
+		$status = $this->Data->login_validation($username, $password);
+		if ($status == false) {
+			/*3. Handle Invalid Login*/
+			/*3.1 reload page showing error message*/
+			$message = 'Log in failed!! Invalid Credentials';
+			$status = false;
+			$messageType = 2;
+			/* 3.2. Audit Trail Log  */
+			$action = 'Login Failed';
+			$user = "Unknown";
+			$this->createTrail($action, $user, $status);
+		}else{
+			/*3. Handle valid login */
+			$userID = $status->user_id;
+			$usergroup = $status->usergroup;
+			$username = $status->username;
+			/* 3.1. Set Session Data */
+			$this->session->set_userdata('status', 'true');
+			$this->session->set_userdata('username', $username);
+			$this->session->set_userdata('userID', $userID);
+			$this->session->set_userdata('usergroup', $usergroup);
+
+			/* 3.2. Audit Trail Log  */
+			$action = 'Login Successful';
+			$this->createTrail($action, $userID, true);
+			/* 3.3 Start session in dB*/
+			$session_id= md5(uniqid(rand(), true));
+			$this->session->set_userdata('session_id', $session_id);
+
+			$session_data = array(
+				'user_id' => $userID,
+				'start_time' => date("Y-m-d H:i:s"),
+				'session_id' => $session_id,
+			);
+			$this->Data->insert('active_sessions', $session_data);
+			$message = 'Log in Successful';
+			$status = true;
+			$messageType = 1;
+		}
+
+		/*4. Send back Reponse*/
+		$data = array(
+			"status" => $status,
+			"messageType" => $messageType,
+			"message" => $message
+		);
+		echo json_encode($data);
+	}
+	public function unset_session()
 	{
-		//unset all user & session data and redirect to index page
+		$active_sessions = $this->Data->get_active_sessions();
+
+		//end session in DB
+		$session_id = $this->session->userdata("session_id");
+		$data= array(
+			'end_time' => date("Y-m-d H:i:s")
+		);
+		$unset = $this->Data->update('active_sessions', 'session_id', $session_id, $data);
+		if($unset){
+			$this->logout();
+		}
+	}
+	public function logout(){
+		//unset all user data & destroy session
 		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('status');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('userID');
+		$this->session->unset_userdata('usergroup');
 		$this->session->sess_destroy();
-		$this->load->view('login.php');
+		//redirect to index page
+		$this->login();
 	}
 	/*Audit Trail */
 	/**

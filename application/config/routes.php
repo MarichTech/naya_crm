@@ -52,6 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*Base*/
 
 $route['default_controller'] = 'Base';
+$route['login'] = 'Base/login';
+$route['logout'] = 'Base/logout';
+$route['unset'] = 'Base/unset_session';
+$route['auth'] = 'Base/authentication';
 $route['home'] = 'Base/home';
 $route['users'] = 'Base/users';
 $route['materials'] = 'Base/materials';

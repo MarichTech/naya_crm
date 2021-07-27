@@ -398,5 +398,45 @@ class Data_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
+    public function login_validation($username, $password)
+    {
+		$this->db->select("*");
+		$this->db->from("users");
+		$this->db->where("username", $username);
+		$result = $this->db->get()->row();
+		if (($result != null)) {
+			$hashed = $result->password;
+			if ($this->bcrypt->compare($password, $hashed)) {
+			/*	echo "bcrypt match";  */
+				return $result;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+    }
+    public function get_active_sessions($params= ""){
+		$now = date('Y-m-d H:i:s');
+		$this->db->select("*");
+		$this->db->from("active_sessions");
+		$this->db->where("start_time <", $now);
+		$this->db->like("end_time", "0000-00-00 00:00:00");
+		if ($params != '') {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
+		$query = $this->db->get();
+		if($query->num_rows() >0 ){
+			return $query->result();
+		}else{
+			return 0;
+		}
+	}
+
+
 
 }
