@@ -45,6 +45,7 @@
 		#formValidate .wizard > .content {min-height: 25em;}
 		#example-vertical.wizard > .content {min-height: 24.5em;}
 	</style>
+	
 	<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
 </head>

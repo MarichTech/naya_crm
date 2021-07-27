@@ -1,5 +1,8 @@
 <?php $this->load->view('templates/header'); ?>
 <?php $this->load->view('templates/navbar'); ?>
+<script		  src="https://code.jquery.com/jquery-3.6.0.js"
+			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
 <!--  BEGIN CONTENT PART  -->
 <div id="content" class="main-content">
 	<div class="layout-px-spacing">
@@ -110,26 +113,26 @@
 						
 						<div class="form-group col-md-12">
 							<label>Description</label><br>
-							<input id="modal_description" type="text" class="form-control  basic " name="name" required>
+							<input id="modal_description" type="text" class="form-control  basic " name="description" required>
 
 						</div>
 						<div class="form-group col-md-6">
 							<label>UOM</label><br>
-							<input id="modal_UOM" type="text" class="form-control  basic " name="email"  required>
+							<input id="modal_uom" type="text" class="form-control  basic " name="UOM"  required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label>Quantity</label><br>
-							<input id="modal_quantity" type="text" class="form-control  basic " name="mobile"   required>
+							<input id="modal_quantity" type="text" class="form-control  basic " name="quantity"   required>
 						</div>
 						<div class="form-group col-md-6">
 							<label>Proposed Rate</label><br>
-							<input id="modal_proposed_rate" type="text" class="form-control  basic " name="address"   required>
+							<input id="modal_proposed_rate" type="text" class="form-control  basic " name="proposed_rate"   required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label>Remarks</label><br>
-							<input id="modal_remarks" type="text" class="form-control  basic " name="rep_name"  >
+							<input id="modal_remarks" type="text" class="form-control  basic " name="remarks"  >
 						</div>
 							
 					</div>
@@ -161,32 +164,33 @@
 					<br>
 					<br>
 					<form id="update_form">
-						
+					<div class="form-row">
+
 						<div class="form-group col-md-12">
-							<input id="mod_id" type="text" class="form-control  basic " name="mod_id" required hidden>
+							<input id="mod_id" type="text" class="form-control  basic " name="id" required hidden>
 							<label>Description</label><br>
-							<input id="mod_description" type="text" class="form-control  basic " name="mod_description" required>
+							<input id="mod_description" type="text" class="form-control  basic " name="description" required>
 
 						</div>
 						<div class="form-group col-md-6">
 							<label>UOM</label><br>
-							<input id="mod_uom" type="text" class="form-control  basic " name="mod_uom"  required>
+							<input id="mod_uom" type="text" class="form-control  basic " name="uom"  required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label>Quantity</label><br>
-							<input id="mod_quantity" type="text" class="form-control  basic " name="mod_quantity"   required>
+							<input id="mod_quantity" type="text" class="form-control  basic " name="quantity"   required>
 						</div>
 						<div class="form-group col-md-6">
 							<label>Proposed Rate</label><br>
-							<input id="mod_proposed_rate" type="text" class="form-control  basic " name="mod_proposed_rate"   required>
+							<input id="mod_proposed_rate" type="text" class="form-control  basic " name="proposed_rate"   required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label>Remarks</label><br>
-							<input id="mod_remarks" type="text" class="form-control  basic " name="mod_remarks"  >
+							<input id="mod_remarks" type="text" class="form-control  basic " name="remarks"  >
 						</div>
-						</div>
+					</div>
 					</form>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -200,15 +204,11 @@
 	<?php $this->load->view('templates/footer'); ?>
 
 	<script type="text/javascript">
+
 		var basePath = "http://localhost/naya_crm";
-		let clientDetails_ = []
-		let vat_types_ = []
-		let client_types_ =[]
+	
 		$(document).ready(function () {
-			vat_types()
-			client_groups()
-			vat_types_create()
-			client_groups_create()
+		
 
 		})
 		
@@ -280,18 +280,19 @@
 				}
 			});
 		}
-		function updateModal(material_id, description, UOM, quantity, proposed_rate, remarks){
+		function updateModal(material_id, description, uom, quantity, proposed_rate, remarks){
 			/*get html elements in the modal*/
-			let material_id = document.getElementById("mod_id");
-			let description = document.getElementById("mod_description");
-			let UOM  = document.getElementById("mod_uom");
-			let quantity = document.getElementById("mod_quantity");
-			let proposed_rate = document.getElementById("mod_proposed_rate");
-			let remarks = document.getElementById("mod_remarks");
+			let mod_id = document.getElementById("mod_id");
+			let mod_description = document.getElementById("mod_description");
+			let mod_UOM  = document.getElementById("mod_uom");
+			let mod_quantity = document.getElementById("mod_quantity");
+			let mod_proposed_rate = document.getElementById("mod_proposed_rate");
+			let mod_remarks = document.getElementById("mod_remarks");
 			
 		/*	populate modal elements with data */
-			mod_description.value = descriptiom;
-			mod_UOM.value = UOM;
+			mod_id.value = material_id;
+			mod_description.value = description;
+			mod_UOM.value = uom;
 			mod_quantity.value = quantity;
 			mod_proposed_rate.value = proposed_rate;
 			mod_remarks.value = remarks;
@@ -302,13 +303,12 @@
 		}
 		function update(){
 			/*	1. get values of update modal*/
-			let material_id = document.getElementById("mod_id");
+			let material_id = document.getElementById("mod_id").value;
 			let description = document.getElementById("mod_description").value;
 			let UOM  = document.getElementById("mod_uom").value;
 			let quantity = document.getElementById("mod_quantity").value;
 			let proposed_rate = document.getElementById("mod_proposed_rate").value;
 			let remarks = document.getElementById("mod_remarks").value;
-			/*	2. Update data  */
 
 			Swal.fire({
 				title: 'Updating ....',

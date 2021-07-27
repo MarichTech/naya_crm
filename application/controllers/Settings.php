@@ -84,21 +84,21 @@ class Settings extends  Base
 				'last_modified'=> date("Y-m-d H:i:s"),
 			);
 			/*update dB data*/
-			$status = $this->Data->update("clients", 'client_id', $client_id, $insert_data);
+			$status = $this->Data->update("materials", 'id', $material_id, $insert_data);
 			if ($status == true) {
 				/*insert audit trail log*/
-				$action = 'Client Details Updated';
+				$action = 'Material Details Updated';
 				$this->createTrail($action, $username, $status);
 				/*insert audit trail log*/
 				$messageType = 1;
-				$message = "Client Details Updated Successfully";
+				$message = "Material Details Updated Successfully";
 			} else {
 				/*insert audit trail log*/
-				$action = 'Failed Client Details Update Attempt';
+				$action = 'Failed Material Details Update Attempt';
 				$this->createTrail($action, $username, $status);
 				/*insert audit trail log*/
 				$messageType = 2;
-				$message = "Client Details Not Updated";
+				$message = "Material Details Not Updated";
 			}
 			
 
