@@ -683,7 +683,9 @@
 
 	<?php $this->load->view('templates/footer'); ?>
 	<script type="text/javascript">
-		var basePath = "http://localhost/naya_crm";
+	//	var basePath = "http://localhost/naya_crm";
+		var basePath = "https://41.72.206.78/naya_crm";
+
 		let clientDetails_ = []
 		let quote_type_id_ = []
 		let quote_type_ = []

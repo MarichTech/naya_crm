@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-	<title>Naya Solutions || CRM Application</title>
+	<title>Naya Solutions |CRM Application</title>
 	<link rel="icon" type="image/x-icon" href="<?php echo base_url() ?>assets/img/favicon.ico"/>
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
@@ -92,7 +92,9 @@
 </body>
 </html>
 <script type="text/javascript">
-	var basePath = "http://localhost/naya_crm";
+//	var basePath = "http://localhost/naya_crm";
+	var basePath = "https://41.72.206.78/naya_crm";
+
 	$("#login_form").submit(function(e){
 		//prevent form default submission @u70xdn
 		return false;

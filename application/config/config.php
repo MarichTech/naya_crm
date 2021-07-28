@@ -23,7 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/naya_crm';
+// $config['base_url'] = 'http://localhost/naya_crm';
+$config['base_url'] = 'https://41.72.206.78/naya_crm';
+
 
 /*
 |--------------------------------------------------------------------------
