@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2021 at 11:30 AM
+-- Generation Time: Jul 28, 2021 at 12:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `naya_crm`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `active_sessions`
+--
+
+CREATE TABLE `active_sessions` (
+                                   `id` int(255) NOT NULL,
+                                   `user_id` int(255) NOT NULL,
+                                   `start_time` datetime NOT NULL,
+                                   `end_time` datetime NOT NULL,
+                                   `session_id` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `active_sessions`
+--
+
+INSERT INTO `active_sessions` (`id`, `user_id`, `start_time`, `end_time`, `session_id`) VALUES
+(1, 1, '2021-07-26 13:14:33', '2021-07-26 13:44:30', 'cc0c5e5cfb5ee7491582267c377818fa'),
+(2, 1, '2021-07-26 13:14:45', '2021-07-26 13:44:30', '383a72f3b8845a928bcded79d2e25f2a'),
+(3, 1, '2021-07-26 13:15:53', '2021-07-26 13:44:30', '91c60cbd89646173d9ca457ba40fd2b0'),
+(4, 1, '2021-07-26 13:24:36', '2021-07-26 13:44:30', 'd39c3eca28a3a7277495649ff52f7370'),
+(5, 1, '2021-07-26 13:31:00', '2021-07-26 13:44:30', '7918de73db0c794c42087e2563bb70b8'),
+(6, 1, '2021-07-26 13:40:11', '2021-07-26 13:44:30', '54b026830fb1544e6f8e34708cad9da1'),
+(7, 1, '2021-07-26 13:42:09', '2021-07-26 13:44:30', 'e3593f8b8222c356343c752b6de0f43a'),
+(8, 1, '2021-07-26 13:45:46', '2021-07-26 13:46:01', 'e3287c16108008c076934ae5710490e2'),
+(9, 1, '2021-07-26 13:48:42', '2021-07-26 14:32:23', 'f3365452d7f121b36f033863bb4277c3'),
+(10, 1, '2021-07-26 14:34:43', '0000-00-00 00:00:00', 'c20dfb8c8fc0a98853e6e9cdb9791de1');
 
 -- --------------------------------------------------------
 
@@ -481,7 +511,22 @@ INSERT INTO `audit_trail` (`id`, `action`, `status`, `time_of_action`, `ip_addre
 (437, 'Create Quote', 'Success', '2021-07-23 14:05:11', '127.0.0.1', 1, ''),
 (438, 'Create Quote', 'Success', '2021-07-23 14:06:22', '127.0.0.1', 1, ''),
 (439, 'Create Quote', 'Success', '2021-07-23 14:06:54', '127.0.0.1', 1, ''),
-(440, 'Added New Client', '1', '2021-07-25 09:21:16', '127.0.0.1', 0, '');
+(440, 'Added New Client', '1', '2021-07-25 09:21:16', '127.0.0.1', 0, ''),
+(441, 'login', '0', '2021-07-26 09:46:58', '127.0.0.1', 0, ''),
+(442, 'login', '0', '2021-07-26 09:47:21', '127.0.0.1', 0, ''),
+(443, 'login', '0', '2021-07-26 09:47:42', '127.0.0.1', 0, ''),
+(444, 'Login Successful', '1', '2021-07-26 10:14:33', '127.0.0.1', 1, ''),
+(445, 'Login Successful', '1', '2021-07-26 10:14:45', '127.0.0.1', 1, ''),
+(446, 'Login Successful', '1', '2021-07-26 10:15:52', '127.0.0.1', 1, ''),
+(447, 'Login Successful', '1', '2021-07-26 10:24:36', '127.0.0.1', 1, ''),
+(448, 'Login Failed', '0', '2021-07-26 10:24:48', '127.0.0.1', 0, ''),
+(449, 'Login Failed', '0', '2021-07-26 10:26:00', '127.0.0.1', 0, ''),
+(450, 'Login Successful', '1', '2021-07-26 10:31:00', '127.0.0.1', 1, ''),
+(451, 'Login Successful', '1', '2021-07-26 10:40:11', '127.0.0.1', 1, ''),
+(452, 'Login Successful', '1', '2021-07-26 10:42:09', '127.0.0.1', 1, ''),
+(453, 'Login Successful', '1', '2021-07-26 10:45:46', '127.0.0.1', 1, ''),
+(454, 'Login Successful', '1', '2021-07-26 10:48:41', '127.0.0.1', 1, ''),
+(455, 'Login Successful', '1', '2021-07-26 11:34:42', '127.0.0.1', 1, '');
 
 -- --------------------------------------------------------
 
@@ -1815,7 +1860,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `usergroup`, `date_created`, `last_modified`) VALUES
-(1, 'mwaura', '12345', 1, '2021-07-02 11:25:58', '2021-07-02 11:25:43');
+(1, 'mwaura', '$2a$12$kqDC8rg849H04BiZvZB6l.eWQ1Svpm/lefc0ZjN1oo6BuDRAaGKaS', 1, '2021-07-02 11:25:58', '2021-07-02 11:25:43');
 
 -- --------------------------------------------------------
 
@@ -1865,6 +1910,12 @@ INSERT INTO `vat` (`id`, `description`, `rate`, `date_created`, `last_modified`)
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `active_sessions`
+--
+ALTER TABLE `active_sessions`
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `audit_trail`
@@ -1979,10 +2030,16 @@ ALTER TABLE `vat`
 --
 
 --
+-- AUTO_INCREMENT for table `active_sessions`
+--
+ALTER TABLE `active_sessions`
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `audit_trail`
 --
 ALTER TABLE `audit_trail`
-    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+    MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=456;
 
 --
 -- AUTO_INCREMENT for table `clients`
