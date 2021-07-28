@@ -283,7 +283,7 @@ class Data_model extends CI_Model
 	 */
 	public function getStaff()
 	{
-		$this->db->select('staff.staff_id, staff.name, staff.email, staff.mobile, department, staff.usergroup as user_group_id, user_groups.name as usergroup,
+		$this->db->select('staff.staff_id, staff.name, staff.email, staff.mobile, staff.department, staff.usergroup as user_group_id, user_groups.name as usergroup,
 		staff.date_added, staff.last_modified');
 		$this->db->from('staff');
 		$this->db->join('user_groups', "staff.usergroup = user_groups.group_id");

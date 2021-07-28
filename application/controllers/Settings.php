@@ -104,8 +104,49 @@ class Settings extends  Base
 
 		
 		}else if($option =="user"){
+			/* 1. Get input fields */
+			
+			$staff_id = $this->input->post('staff_id');
+			$name = $this->input->post('name');
+			$email = $this->input->post('email');
+			$mobile = $this->input->post('mobile');
+			$department = $this->input->post('department');
+			$user_group_id = $this->input->post('user_group_id');
+			
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'name'=> $name,
+				'email'=> $email,
+				'mobile'=> $mobile,
+				'department'=> $department,
+				'usergroup'=> $user_group_id,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/*update dB data*/
+			
+			$status = $this->Data->update("staff", 'staff_id', $staff_id, $insert_data);
 
-		}
+			
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Staff Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Staff Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Staff Material Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Staff Details Not Updated";
+			}
+		}else if($option == ""){
+
+		}else if($option == ""){
+
+		}else if($option == ""){}
 		$data = array(
 				'status' => $status,
 				'messageType' => $messageType,
@@ -208,8 +249,49 @@ class Settings extends  Base
 		);
 	 }
 	 elseif($option == "user"){
+	/* 1. Get input fields */
+		$name = $this->input->post('name');
+		$email =$this->input->post('email');
+		$mobile = $this->input->post('mobile');
+		$department = $this->input->post('department');
+		$user_group_id = $this->input->post('user_group_id') ;
 
-	 }
+		$data = array(
+			'name'=> $name,
+			'email'=> $email,
+			'mobile'=> $mobile,
+			'department'=> $department,
+			'usergroup'=> $user_group_id,
+			'date_added'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("staff", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Staff';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Staff Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Staff Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Staff Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
+		
+	
+	}else if($option == ""){
+
+	}else if($option == ""){
+
+	}else if($option == ""){}
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));
  }
 
