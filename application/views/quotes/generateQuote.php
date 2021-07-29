@@ -1479,6 +1479,8 @@
 			console.log(includeInstallations_)
 			console.log("includeAccessories_")
 			console.log(includeAccessories_)
+			console.log("includeBankDetails_")
+			console.log(includeBankDetails_)
 			console.log("clientDetails")
 			console.log(clientDetails)
 			console.log("jobTypeName")
