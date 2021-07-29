@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
 		<div>7th Floor, Westside Towers, Westlands,</div>
 		<div>P.O Box 899-00515, Nairobi, Kenya</div>
 		<div>Tel: +254 722 124 444</div>
-		<div><a>info@naya.co.ke</a></div>
+		<div><a>sales@naya.co.ke</a></div>
 	</div>
 	</div>
 </header>
@@ -31,25 +32,32 @@
 			<h1><?php echo $data['quote_ref'] ?></h1>
 			<div class="date">Date: <?php echo $data['date_created'] ?></div>
 		</div>
+		<br>
+
+		<div >
+			<h3 style="color: black; text-transform: uppercase; text-align: center; font-family: SourceSansPro,sans-serif; " >Title:- <?php echo $data['title'] ?>
+				<br>
+		</div
 	</div>
-	<div>
-		<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['title'] ?>
-			<br>
-			<h3 style="color: black; text-align: center; text-transform: uppercase; font-family: SourceSansPro,sans-serif;"><?php echo $data['uid'] ?>
-	</div>
+	<br>
+	<br>
+
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 		<tr>
 			<th class="no">#</th>
 			<th class="desc">DESCRIPTION</th>
-			<th class="qty">UNIT PRICE</th>
 			<th class="qty">QUANTITY</th>
 			<th class="total">TOTAL</th>
 		</tr>
 		</thead>
 		<tbody>
 		<?php
-
+		$installation =0;
+		$accessories = 0;
+		$subtotal =0 ;
+		var_dump($includeInstallations);
+		var_dump($includeAccessories);
 		$k = 0;
 		$count = 0;
 		$total = 0;
@@ -58,56 +66,77 @@
 			<tr>
 				<td class="no"><?php echo $k + 1; ?></td>
 				<td class="desc"><h3><?php echo $dat->description ?></h3></td>
-				<td class="qty"><?php echo $dat->buying_price ?></td>
+				<!--				<td class="qty">--><?php //echo $dat->selling_price ?><!--</td>-->
 				<td class="qty"><?php echo $dat->quantity ?></td>
 				<td class="total"><?php echo number_format(($dat->selling_price), 2) ?></td>
 			</tr>
 			<?php
 			$k++;
 		} ?>
-		<tr>
-			<td class="no"><?php echo sizeof($data['line_items']); ?></td>
-			<td class="desc"><h3><?php echo "Accessories" ?></h3></td>
-			<td class="qty"><?php
-				$subtotal = 0;
-				foreach ($data['line_items'] as $dat) {
-					$subtotal += $dat->selling_price;
-				}
-				$accessories = (0.15) * $subtotal;
-				echo number_format(($accessories ), 2) ?></td>
-			<td class="qty"><?php echo "Lot" ?></td>
-			<td class="total"><?php echo number_format(($accessories ), 2) ?></td>
-		</tr>
-			<tr>
-			<td class="no"><?php echo sizeof($data['line_items']); ?></td>
-			<td class="desc"><h3><?php echo "Installation & Configuration Costs " ?></h3></td>
-				<td class="qty"><?php
-				$installation = (0.20) * $subtotal;
-					echo number_format(($installation  ), 2) ?></td>
-				<td class="qty"><?php echo 1 ?></td>
-				<td class="total"><?php echo number_format(($accessories ), 2) ?></td>
-		</tr>
+
+		<?php if(!empty($includeAccessories)){
+			if($includeAccessories ==  1){ ?>
+				<tr>
+					<td class="no"><?php echo sizeof($data['line_items'] + 1); ?></td>
+					<td class="desc"><h3><?php echo "Accessories" ?></h3></td>
+					<td class="qty"><?php
+						$accessories = (0.15) * $subtotal;
+						echo number_format(($accessories ), 2) ?></td>
+					<td class="qty"><?php echo "Lot" ?></td>
+					<td class="total"><?php echo number_format(($accessories ), 2) ?></td>
+				</tr>
+				<?php
+			}
+		} ?>
+
+		<?php if(!empty($includeInstallations)){
+			if($includeInstallations ==  1){ ?>
+				<tr>
+					<td class="no"><?php echo sizeof($data['line_items']) + 2; ?></td>
+					<td class="desc"><h3><?php echo "Installation & Configuration Costs " ?></h3></td>
+					<td class="qty"><?php
+						$installation = (0.20) * $subtotal;
+						echo number_format(($installation  ), 2) ?></td>
+					<td class="qty"><?php echo 1 ?></td>
+					<td class="total"><?php echo number_format(($installation ), 2) ?></td>
+				</tr>
+				<?php
+			}
+		} ?>
 		</tbody>
 		<tfoot>
 		<?php
+//		var_dump($includeAccessories);
+//		var_dump($includeInstallations);
 		$count = 0;
 		$total = 0;
 		?>
 		<tr>
-			<td colspan="2"></td>
+			<td colspan="1">
+				<h4 style="font-style: italic ; text-align: left; text-transform: capitalize">
+					Prepared By: <?php echo $data['username'] ?>
+			</td>
 			<td colspan="2">SUBTOTAL</td>
-			<td>KES <?php
-				$subtotal = $subtotal + $accessories + $installation;
-				echo number_format($subtotal, 2);
-				?></td>
+			<td> <b> KES <?php
+
+					foreach ($data['line_items'] as $dat) {
+						$subtotal += $dat->selling_price;
+					}
+					$subtotal = $subtotal + $accessories + $installation;
+					echo number_format($subtotal, 2);
+					?></b></td>
 		</tr>
+
 		<tr>
 			<?php
 			$tax = 0;
 			//	var_dump($data['client_details']);
 			$vat_type = $data['client_details']->vat_id;
 			?>
-			<td colspan="2"></td>
+			<td colspan="1">
+				<b><h4 style="font-style: italic ; text-align: left; text-transform: capitalize">Payment Terms:</b>
+				<?php echo $data['payment_terms'] ?></h4>
+			</td>
 			<?php	if($vat_type == 1){  ?>
 			<td colspan="2"> Zero Rated VAT</td>
 			<td>KES <?php
@@ -131,38 +160,34 @@
 				} ?></td>
 		</tr>
 		<tr>
-			<td colspan="2"></td>
+			<td colspan="1">
+				<b><p style="text-align: left;; text-transform: lowercase"">Notes</b>
+				<?php echo $data['notes'] ?></p>
+
+			</td>
 			<td colspan="2">3% Sales Discount</td>
-			<td>KES <?php
+			<td>KES ( <?php
 				$discount = (0.03) * $subtotal;
 				echo number_format(($discount), 2);
 
-				?></td>
+				?> )</td>
 		</tr>
+
 		<tr>
-			<td colspan="2"></td>
-			<td colspan="2">GRAND TOTAL</td>
-			<td>KES <?php
-				echo number_format( ($subtotal + $tax+ $discount), 2) ?></td>
-			<?php
-			 ?>
+			<td colspan="1"></td>
+			<td colspan="2"><b>GRAND TOTAL </b></td>
+			<td>  <b>KES  <?php
+					echo number_format( ($subtotal + $tax+ $discount), 2); ?>
+				</b></td>
 		</tr>
 		</tfoot>
 	</table>
-	<div><h4 style="font-style: italic ; color: black; text-align: left; text-transform: capitalize">Prepared By: <?php echo $data['username'] ?></div>
-	<div id="notices">
-		<div style="text-align: left; text-transform: capitalize">Payment Terms:</div>
-		<div class="notice"><p style="text-align: left; text-transform: lowercase"><?php echo $data['payment_terms'] ?></p></div>
-	</div>
-	<div id="notices">
-		<div>Notes:</div>
-		<div class="notice"><p style="text-align: left;; text-transform: lowercase""><?php echo $data['notes'] ?></p></div>
-	</div>
 </main>
 <footer>
+
 	<div id="notices">
 		<div style="text-align: left; text-transform: capitalize">Bank Account Details:</div>
-		<textarea rows="20" cols="42.5" style=" border: 1px solid #000; text-decoration-color: white; overflow-y: scroll;">Bank Name: NCBA Bank Kenya PLC &nbsp;
+	<!--	<textarea rows="20" cols="42.5" style=" border: 1px solid #000; text-decoration-color: white; overflow-y: scroll;">Bank Name: NCBA Bank Kenya PLC &nbsp;
 				Account Name: Naya Solutions Ltd &nbsp;
 				KES Account Number: 7935650015&nbsp;
 				USD Account Number: 7935650028&nbsp;
@@ -182,16 +207,16 @@
 				Bank & Branch Code: 03106&nbsp;
 				Bank Address: P.O. Box 30120 -&nbsp;
 				00100 Nairobi, Kenya&nbsp;
-				MPESA  Paybill:  303030</textarea>&nbsp;
-
-	<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
+				MPESA  Paybill:  303030</textarea>&nbsp;-->
+		<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
 		This quote is system generated and does not require a signature or stamp.
 
 		<br>
-	<p>	Powered By:<b> Naya Solutions</b></p>
-	<br>
-	U70xDN
+		<p>	Powered By:<b> Naya Solutions</b></p>
+		<br>
+		U70xDN
 	</div>
+
 </footer>
 </body>
 </html>
