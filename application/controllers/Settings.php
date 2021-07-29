@@ -113,6 +113,7 @@ class Settings extends  Base
 			$department = $this->input->post('department');
 			$user_group_id = $this->input->post('user_group_id');
 			
+			
 			/*  2. Prepare dB row update data  */
 			$insert_data = array(
 				'name'=> $name,
@@ -120,11 +121,13 @@ class Settings extends  Base
 				'mobile'=> $mobile,
 				'department'=> $department,
 				'usergroup'=> $user_group_id,
+				
 				'last_modified'=> date("Y-m-d H:i:s"),
 			);
 			/*update dB data*/
 			
 			$status = $this->Data->update("staff", 'staff_id', $staff_id, $insert_data);
+			
 
 			
 			if ($status == true) {
@@ -255,6 +258,7 @@ class Settings extends  Base
 		$mobile = $this->input->post('mobile');
 		$department = $this->input->post('department');
 		$user_group_id = $this->input->post('user_group_id') ;
+		$password = $this->input->post('password');
 
 		$data = array(
 			'name'=> $name,
@@ -264,8 +268,18 @@ class Settings extends  Base
 			'usergroup'=> $user_group_id,
 			'date_added'=> date("Y-m-d H:i:s"),
 		);
+
+		$data_user = array(
+			'username' => $name,
+			'password' => $password,
+			'usergroup'=> $user_group_id,
+			'date_created'=> date("Y-m-d H:i:s"),
+		);
+
 		$status = $this->Data->insert("staff", $data);
-		if ($status == true) {
+		$status_2 = $this->Data->insert("users", $data_user); 
+
+		if ($status && $status_2 == true) {
 			/*insert audit trail log*/
 			$action = 'Added New Staff';
 				$this->createTrail($action, $username, $status);
