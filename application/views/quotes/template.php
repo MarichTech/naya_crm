@@ -32,7 +32,7 @@
 		<br>
 		<h3 style="color: black; text-align: center;  text-transform: uppercase; font-family: SourceSansPro,sans-serif;">
 			Provider Request No :- <?php echo $data['uid']  ?>
-			<br>	<br>
+			<br>
 	<table border="0" cellspacing="0" cellpadding="0">
 		<thead>
 		<tr>
@@ -162,7 +162,10 @@
 		</tr>
 		</tfoot>
 	</table>
-			<?php if(isset($includeBankDetails)){
+			<?php
+			$includeBankDetails =  $data['includeBankDetails'];
+
+			if(isset($includeBankDetails)){
 			if($includeBankDetails ==  1){ ?>
 			<h2>Bank Details:</h2>
 			<table style="width:100%">
@@ -180,7 +183,6 @@
 					<td rowspan="1">KES Account Number: 7935650015</td>
 					<td>KES Account Number: 7935650015</td>
 				</tr>
-
 
 				<tr>
 					<td>USD Account Number: 7935650028</td>
