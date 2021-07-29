@@ -389,10 +389,12 @@
 		var basePath = "http://localhost/naya_crm";
 	
 		$(document).ready(function () {
-		
+			
 
 		})
 		
+		
+
 		function createModal(){
 			document.getElementById("create_form").reset();
 			$('#createModal').modal('show');

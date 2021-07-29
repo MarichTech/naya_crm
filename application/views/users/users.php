@@ -57,6 +57,7 @@
 									$department = $staff->department;
 									$access_level = $staff->usergroup;
 									$date_created  = $staff->date_added;
+									$password = $staff->password;
 								?>
 									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
 										. ',' . "'$access_level'" ?>)" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
@@ -127,7 +128,12 @@
 
 						<div class="form-group col-md-6">
 							<label>Access Level</label><br>
-							<input id="modal_access_level" type="text" class="form-control  basic " name="access_level"  >
+							<select class="form-control  basic" id="modal_access_level" required>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Password</label><br>
+							<input id="modal_password" type="password" class="form-control  basic " name="password"   required>
 						</div>
 							
 					</div>
@@ -202,6 +208,46 @@
 	<script type="text/javascript">
 
 		var basePath = "http://localhost/naya_crm";
+		$(document).ready(function () {
+			access_level_create()
+
+		})
+
+		function access_level(){
+			let access_levels = []
+			var select = document.getElementById("mod_access_level")
+			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			fetch(this.basePath + '/user_groups')
+				.then(response => {
+					return response.json()
+				})
+				.then(data => {
+					access_levels = data["user_groups"];
+					for (let i = 0; i < access_levels.length; i++){
+						let option = '<option value="' + access_levels[i]["group_id"] + '">' + access_levels[i]["name"] + '</option>'
+						option += option
+					}
+					select.innerHTML = options;
+				})
+		}
+
+		function access_level_create(){
+			let access_levels = []
+			var select = document.getElementById("modal_access_level")
+			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			fetch(this.basePath + '/user_groups')
+				.then(response => {
+					return response.json()
+				})
+				.then(data => {
+					access_levels = data["user_groups"];
+					for (let i = 0; i < access_levels.length; i++){
+						let option = '<option value="' + access_levels[i]["group_id"] + '">' + access_levels[i]["name"] + '</option>'
+						option += option
+					}
+					select.innerHTML = options;
+				})
+		}
 		
 		function createModal(){
 			document.getElementById("create_form").reset();
@@ -215,6 +261,8 @@
 			let mobile = document.getElementById("modal_mobile").value;
 			let department = document.getElementById("modal_department").value;
 			let user_group_id = document.getElementById("modal_access_level").value;
+			let password = document.getElementById("modal_password").value;
+			
 			
 			/*	2. Update data  */
 
@@ -237,6 +285,7 @@
 					mobile : mobile,
 					department : department,
 					user_group_id : user_group_id,
+					password : password,
 				},
 				success: function (response) {
 					let respons = (response)
