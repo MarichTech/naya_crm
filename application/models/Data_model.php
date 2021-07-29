@@ -281,12 +281,19 @@ class Data_model extends CI_Model
 	 * Fetch all Staff Data
 	 * @return object[]
 	 */
-	public function getStaff()
+	public function getStaff($params = "")
 	{
 		$this->db->select('staff.staff_id, staff.name, staff.email, staff.mobile, department, staff.usergroup as user_group_id, user_groups.name as usergroup,
 		staff.date_added, staff.last_modified');
 		$this->db->from('staff');
 		$this->db->join('user_groups', "staff.usergroup = user_groups.group_id");
+		if (($params != '')) {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
 		return $this->db->get()->result();
 	}
 	public function getStatusFlags(){
@@ -295,17 +302,31 @@ class Data_model extends CI_Model
 		$this->db->from('status_flags');
 		return $this->db->get()->result();
 	}
-	public function getUserGroups(){
+	public function getUserGroups($params = ""){
 		$this->db->select('user_groups.group_id, user_groups.name, user_groups.description,		 
 		user_groups.date_added, user_groups.last_modified');
 		$this->db->from('user_groups');
+		if (($params != '')) {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
 		return $this->db->get()->result();
 	}
-	public function getUsers(){
+	public function getUsers($params = ""){
 		$this->db->select('users.user_id, users.username, users.password, users.usergroup as user_group_id, 
 		 user_groups.name as usergroup, users.date_created, users.last_modified');
 		$this->db->from('users');
 		$this->db->join('user_groups', "users.usergroup = user_groups.group_id");
+		if (($params != '')) {
+			foreach ($params as $key => $value) {
+				if ($value != null) {
+					$this->db->where("$key", $value);
+				}
+			}
+		}
 		return $this->db->get()->result();
 	}
 

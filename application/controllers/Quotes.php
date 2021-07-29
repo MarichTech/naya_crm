@@ -136,12 +136,16 @@ public function currencies()
 		$support_charge   = $decoded->support_charge;
 		$support_duration   = $decoded->support_duration;
 		$support_items   = $decoded->support_items;
-		$support_doc   = $_FILES['support_doc'];
+		$support_doc = '';
+		if(isset($_FILES['support_doc'])){
+			$support_doc   = $_FILES['support_doc'];
 
-		var_dump($support_charge);
-		var_dump($support_duration);
-		var_dump($support_items);
-		var_dump($support_doc);
+		}
+
+//		var_dump($support_charge);
+//		var_dump($support_duration);
+//		var_dump($support_items);
+//		var_dump($support_doc);
 		$references   = $decoded->quote_references;
 		$quote_ref = $references->quote_ref;
 		$date = $references->date;
@@ -160,6 +164,10 @@ public function currencies()
 		$currencies_to_show = $decoded->currencies_to_show;
 		$markup = $decoded->markup;
 		$line_items = $decoded->line_items;
+		$includeAccessories = $decoded->includeAccessories;
+		$includeInstallations = $decoded->includeInstallations;
+		$includeBankDetails = $decoded->includeBankDetails;
+
 		$vat_include = $decoded->vat_include;
 		$uid = $decoded->uid;
 		$vat = $decoded->vat;
@@ -229,8 +237,9 @@ public function currencies()
 			}else{
 				$this->createTrail('Create Quote', $user_id, "Success");
 			}
-			//var_dump($materials);
-			$user =$this->Data->getUsers(array('user_id'=> $user_id));
+
+			$user =$this->Data->getStaff(array('user_id'=> $user_id));
+		//	var_dump($user);
 			/* 3. Prepare Data for PDF  */
 			$PDFData = array(
 				'quote_ref' => $quote_ref,
@@ -247,6 +256,9 @@ public function currencies()
 				'line_items' => $line_items,
 				'vat_include' => $vat_include,
 				'vat' => $vat,
+				'includeInstallations' => $includeInstallations,
+				'includeAccessories' => $includeAccessories,
+				'includeBankDetails' => $includeBankDetails,
 				'uid' => $uid,
 				'job_category' => $job_type_id,
 				'job_type_name' => $jobTypeName,
@@ -262,7 +274,7 @@ public function currencies()
 				'client_id' => $client_id,
 				'client_name' => $client_name,
 				'user_id' => $user_id,
-				'username' => $user[0]->username,
+				'username' => $user[0]->name,
 				'date_created' =>$date,
 			);
 			//var_dump($PDFData);
@@ -293,10 +305,8 @@ public function currencies()
 			$html = $this->load->view('quotes/template', $data);// pass the data array as the parameter
 		}elseif ($PDFData['quote_type_id'] == 2){
 			$html = $this->load->view('quotes/hware_sware_template', $data);// pass the data array as the parameter
-
 		}elseif ($PDFData['quote_type_id'] == 3){
 			$html = $this->load->view('quotes/support_template', $data);// pass the data array as the parameter
-
 		}
 		$string_version = serialize($html);
 		$mpdf->charset_in = 'utf-8';
@@ -305,7 +315,7 @@ public function currencies()
 		error_reporting(0);
 		if ($PDFData) {
 			ini_set("pcre.backtrack_limit", "10000000");
-			//header('Content-Type: application/pdf');
+		//	header('Content-Type: application/pdf');
 			$mpdf->Output(FCPATH . '/assets/quotes/' . $PDFData["quote_ref"] . '.pdf', 'F');
 		}
 		ob_end_clean();

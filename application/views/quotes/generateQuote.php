@@ -411,6 +411,35 @@
 										</div>
 
 									</div>
+									<div class="n-chk" id="accessories_icon">
+										<label
+												class="new-control new-checkbox new-checkbox-rounded checkbox-success">
+											<input type="checkbox" onclick="includeAccessories()" id="accessories_radio_"
+												   name="accessories_radio_" class="new-control-input"><span
+													class="new-control-indicator">
+													</span>Include Accessories Costs</label>
+									</div>
+
+										<div class="n-chk" id="installation_icon">
+										<label
+												class="new-control new-checkbox new-checkbox-rounded checkbox-success">
+											<input type="checkbox" onclick="includeInstallations()" id="installation_radio_"
+												   name="installation_radio_" class="new-control-input"><span
+													class="new-control-indicator">
+													</span>Include Installations Costs </label>
+									</div>
+
+									<div class="n-chk" id="banking_icon">
+										<label
+												class="new-control new-checkbox new-checkbox-rounded checkbox-success">
+											<input type="checkbox" onclick="includeBankDetails()" id="bank_details_radio_"
+												   name="bank_details_radio_" class="new-control-input"><span
+													class="new-control-indicator">
+													</span>Include Banking Details </label>
+									</div>
+
+
+
 									<a class="btn btn-success mb-2" onclick="generateQuote()">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
 											 height="24">
@@ -705,6 +734,9 @@
 		let radiovalues_ = []
 		let referenceDetails_ = []
 		let markup_ = 1.2
+		let includeBankDetails_ = 0
+		let includeInstallations_ = 0
+		let includeAccessories_ = 0
 		let vat_ = 0
 		let vat_include_ = []
 		let clients_ = []
@@ -1353,6 +1385,46 @@
 			}
 			console.log(vat_);
 		}
+		function includeAccessories(){
+			let name = "accessories_radio_";
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				//change accessory global value
+				includeAccessories_ = 1;
+			} else {
+
+				includeAccessories_ = 0;
+			}
+			console.log("includeAccessories_");
+			console.log(includeAccessories_);
+		}
+		function includeInstallations(){
+			let name = "installation_radio_";
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				//change installation  global value
+				includeInstallations_ = 1;
+			} else {
+				includeInstallations_ = 0;
+			}
+			console.log("includeInstallations_");
+			console.log(includeInstallations_);
+		}
+
+		function includeBankDetails(){
+			let name = "bank_details_radio_";
+			let checkbox_status = $('input[name=' + name + ']:checked').val();
+			if (checkbox_status === "on") {
+				//change bank details  global value
+				includeBankDetails_ = 1;
+			} else {
+				includeBankDetails_ = 0;
+			}
+			console.log("includeBankDetails_");
+			console.log(includeBankDetails_);
+		}
+
+
 
 		function vat_include_line_item(id) {
 			let name = "vat_radio_" + id;
@@ -1397,6 +1469,9 @@
 			let markup = markup_
 			let line_items = line_items_
 			let vat = vat_
+			let includeInstallations = includeInstallations_
+			let includeAccessories = includeAccessories_
+			let includeBankDetails = includeBankDetails_
 			let vat_include = vat_include_
 			let support_items = support_items_
 			let uid = document.getElementById("quote_uid").value
@@ -1407,6 +1482,10 @@
 			 support_charge_ = document.getElementById("support_charge").value;
 			 support_doc_ = document.getElementById("support_doc").value;
 
+			console.log("includeInstallations_")
+			console.log(includeInstallations_)
+			console.log("includeAccessories_")
+			console.log(includeAccessories_)
 			console.log("clientDetails")
 			console.log(clientDetails)
 			console.log("jobTypeName")
@@ -1467,6 +1546,9 @@
 				vat_include : vat_include,
 				uid : uid,
 				vat: vat,
+				includeInstallations: includeInstallations,
+				includeAccessories: includeAccessories,
+				includeBankDetails: includeBankDetails,
 				clientDetails: clientDetails,
 				jobTypeName: jobTypeName,
 				job_type_id: job_type_id,
@@ -1750,7 +1832,7 @@
 				var vat = '<div class="n-chk"><label class="new-control new-checkbox checkbox-outline-warning">' +
 						'<input type="checkbox"  name="vat_radio_' + i + '"  id="vat_radio_' + i + '"  onclick="vat_include_supp_item(' + i + ')" class="new-control-input">' +
 						'<span class="new-control-indicator"></span>Include VAT</label></div>'
-				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_quantity'>" + quantity + "</td><td id='td_unit_price'>" + Math.round(unit_price) + "</td><td >" + vat + "</td></tr>"
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_quantity'>" + quantity + "</td><td id='td_unit_price'>" + Math.round(unit_price, 2) + "</td><td >" + vat + "</td></tr>"
 			}
 			tbody.innerHTML = tr;
 			/*	4. Reset && hide modal  */
