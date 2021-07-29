@@ -371,7 +371,6 @@
 
 								<h3>Add Notes & Payment Terms</h3>
 								<section>
-<!--									<p>Enter Payment Terms & Additional Notes</p>-->
 										<p>Choose Currency Options</p>
 										<br>
 										<div class="n-chk" id="currencies_div">
@@ -383,8 +382,6 @@
 										<textarea id="payment_terms" class="form-control"
 												  aria-label="Payment Terms"></textarea>
 									</div>
-
-
 									<div class="input-group mb-4">
 										<div class="input-group-prepend">
 											<span class="input-group-text">Notes </span>
@@ -437,8 +434,6 @@
 													class="new-control-indicator">
 													</span>Include Banking Details </label>
 									</div>
-
-
 
 									<a class="btn btn-success mb-2" onclick="generateQuote()">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"

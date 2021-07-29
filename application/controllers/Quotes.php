@@ -301,6 +301,7 @@ public function currencies()
 			'data' => $PDFData
 		);
 		$html = '';
+		//var_dump($PDFData);
 		if($PDFData['quote_type_id'] == 1){
 			$html = $this->load->view('quotes/template', $data);// pass the data array as the parameter
 		}elseif ($PDFData['quote_type_id'] == 2){

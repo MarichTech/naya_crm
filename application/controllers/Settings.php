@@ -66,10 +66,87 @@ class Settings extends  Base
 			
 
 		}else if($option == "material"){
+			/*  1. Get input fields  */
+			$material_id = $this->input->post('material_id');
+			$description = $this->input->post('description');
+			$unit_of_measurement = $this->input->post('UOM');
+			$quantity = $this->input->post('quantity');
+			$proposed_rate = $this->input->post('proposed_rate');
+			$remarks = $this->input->post('remarks') ;
+			
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'description'=> $description,
+				'unit_of_measurement'=> $unit_of_measurement,
+				'quantity'=> $quantity,
+				'proposed_rate'=> $proposed_rate,
+				'remarks'=> $remarks,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/*update dB data*/
+			$status = $this->Data->update("materials", 'id', $material_id, $insert_data);
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Material Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Material Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Failed Material Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Material Details Not Updated";
+			}
+			
 
+		
 		}else if($option =="user"){
+			/* 1. Get input fields */
+			
+			$staff_id = $this->input->post('staff_id');
+			$name = $this->input->post('name');
+			$email = $this->input->post('email');
+			$mobile = $this->input->post('mobile');
+			$department = $this->input->post('department');
+			$user_group_id = $this->input->post('user_group_id');
+			
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'name'=> $name,
+				'email'=> $email,
+				'mobile'=> $mobile,
+				'department'=> $department,
+				'usergroup'=> $user_group_id,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/*update dB data*/
+			
+			$status = $this->Data->update("staff", 'staff_id', $staff_id, $insert_data);
 
-		}
+			
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Staff Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Staff Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Staff Material Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Staff Details Not Updated";
+			}
+		}else if($option == ""){
+
+		}else if($option == ""){
+
+		}else if($option == ""){}
 		$data = array(
 				'status' => $status,
 				'messageType' => $messageType,
@@ -96,7 +173,7 @@ class Settings extends  Base
 		 $client_group =  $this->input->post('client_group');
 		 /*  2. Prepare dB row update data  */
 		 $data = array(
-			 'name'=> $name,
+			'name'=> $name,
 			 'email'=> $email,
 			 'mobile'=> $mobile,
 			 'address'=> $address,
@@ -107,7 +184,8 @@ class Settings extends  Base
 			 'vat_type'=> $vat_type,
 			 'client_group'=> $client_group,
 			 'last_modified'=> date("Y-m-d H:i:s"),
-		 );
+			'last_modified'=> date("Y-m-d H:i:s"),
+		);
 		 $status = $this->Data->insert("clients", $data);
 		 if ($status == true) {
 			 /*insert audit trail log*/
@@ -132,11 +210,88 @@ class Settings extends  Base
 
 	 }
 	 elseif($option == "material"){
-
+		/*  1. Get input fields  */
+		$description = $this->input->post('description');
+		$unit_of_measurement =$this->input->post('UOM');
+		$quantity = $this->input->post('quantity');
+		$proposed_rate = $this->input->post('proposed_rate');
+		$remarks = $this->input->post('remarks') ;
+		
+		/*  2. Prepare dB row update data  */
+		$data = array(
+			'description'=> $description,
+			'unit_of_measurement'=> $unit_of_measurement,
+			'quantity'=> $quantity,
+			'proposed_rate'=> $proposed_rate,
+			'remarks'=> $remarks,
+			'last_modified'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("materials", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Material';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Material Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Material Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Material Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
 	 }
 	 elseif($option == "user"){
+	/* 1. Get input fields */
+		$name = $this->input->post('name');
+		$email =$this->input->post('email');
+		$mobile = $this->input->post('mobile');
+		$department = $this->input->post('department');
+		$user_group_id = $this->input->post('user_group_id') ;
 
-	 }
+		$data = array(
+			'name'=> $name,
+			'email'=> $email,
+			'mobile'=> $mobile,
+			'department'=> $department,
+			'usergroup'=> $user_group_id,
+			'date_added'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("staff", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Staff';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Staff Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Staff Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Staff Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
+		
+	
+	}else if($option == ""){
+
+	}else if($option == ""){
+
+	}else if($option == ""){}
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));
  }
 
