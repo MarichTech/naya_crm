@@ -141,23 +141,23 @@
 				echo number_format($tax, 2);
 				} ?></td>
 		</tr>
-		<tr>
+	<!--	<tr>
 			<td colspan="2">
-				<p style="text-align: left; text-transform: lowercase"> Notes: <?php echo $data['notes'] ?></p>
+				<p style="text-align: left; text-transform: lowercase"> Notes: <?php /*echo $data['notes'] */?></p>
 			</td>
 			<td colspan="2">3% Sales Discount</td>
 			<td>( KES <?php
-				$discount = (0.03) * $subtotal;
+/*				$discount = (0.03) * $subtotal;
 				echo number_format(($discount), 2);
 
-				?> )
+				*/?> )
 			</td>
-		</tr>
+		</tr>-->
 		<tr>
 			<td colspan="2"></td>
 			<td colspan="2"><b>GRAND TOTAL </b></td>
 			<td><b>KES <?php
-					echo number_format(($subtotal + $tax + $discount), 2); ?>
+					echo number_format(($subtotal + $tax), 2); ?>
 				</b></td>
 		</tr>
 		</tfoot>
