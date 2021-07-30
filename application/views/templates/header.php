@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-	<meta http-equiv="refresh" content="15000; url=<?php echo base_url() ?>unset"/>
+	<meta http-equiv="refresh" content="5000; url=<?php echo base_url() ?>unset"/>
 	<title>Naya Solutions | CRM Application | </title>
 	<link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico"/>
 	<link href="<?php echo base_url() ?>assets/css/loader.css" rel="stylesheet" type="text/css" />
