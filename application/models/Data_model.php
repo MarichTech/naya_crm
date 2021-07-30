@@ -297,7 +297,7 @@ class Data_model extends CI_Model
 	}
 	public function getUserGroups(){
 		$this->db->select('user_groups.group_id, user_groups.name, user_groups.description,		 
-		user_groups.date_added, user_groups.last_modified');
+		user_groups.date_created, user_groups.last_modified');
 		$this->db->from('user_groups');
 		return $this->db->get()->result();
 	}

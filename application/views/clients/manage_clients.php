@@ -258,6 +258,7 @@
 
 
 	<?php $this->load->view('templates/footer'); ?>
+	
 	<script type="text/javascript">
 		var basePath = "http://localhost/naya_crm";
 		let clientDetails_ = []

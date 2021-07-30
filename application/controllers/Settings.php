@@ -14,6 +14,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Settings extends  Base
 {
+
+	public function user_groups()
+	{
+
+		$user_groups = $this->Data->getUserGroups();
+		$result = array(
+			'user_groups' => $user_groups
+		);
+		echo json_encode($result);
+	}
+	
  public function update(){
 	 $data = array();
 	 $option = $this->uri->segment(2);
@@ -121,16 +132,24 @@ class Settings extends  Base
 				'mobile'=> $mobile,
 				'department'=> $department,
 				'usergroup'=> $user_group_id,
-				
 				'last_modified'=> date("Y-m-d H:i:s"),
 			);
-			/*update dB data*/
 			
+
+			$insert_data_user = array(
+				'username' => $name,
+				'usergroup' => $user_group_id,
+				'last_modified' => date("Y-m-d H:i:s"),
+			);
+			
+			/* 3. update dB data*/
+
 			$status = $this->Data->update("staff", 'staff_id', $staff_id, $insert_data);
+			$status_2 = $this->Data->update("users", 'user_id', $staff_id, $insert_data_user);
 			
 
 			
-			if ($status == true) {
+			if ($status && $status_2 == true) {
 				/*insert audit trail log*/
 				$action = 'Staff Details Updated';
 				$this->createTrail($action, $username, $status);
@@ -150,11 +169,13 @@ class Settings extends  Base
 		}else if($option == ""){
 
 		}else if($option == ""){}
+
 		$data = array(
 				'status' => $status,
 				'messageType' => $messageType,
 				'message' => $message
 			);
+			
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));
  }
  public function create(){
