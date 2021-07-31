@@ -24,6 +24,14 @@ class Settings extends  Base
 		);
 		echo json_encode($result);
 	}
+
+	public function job_categories(){
+		$job_categories = $this->Data->getJobCategories();
+		$result = array(
+			'job_categories' => $job_categories
+		);
+		echo json_encode($result);
+	}
 	
  public function update(){
 	 $data = array();
@@ -164,9 +172,73 @@ class Settings extends  Base
 				$messageType = 2;
 				$message = "Staff Details Not Updated";
 			}
-		}else if($option == ""){
+		}else if($option == "job_categories"){
 
-		}else if($option == ""){
+			/*  1. Get input fields  */
+			$category_id = $this->input->post('category_id');
+			$name = $this->input->post('name');
+			$description = $this->input->post('description');
+						
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'name' => $name,
+				'description'=> $description,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/*update dB data*/
+			$status = $this->Data->update("job_categories", 'category_id', $category_id, $insert_data);
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Job Category Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Job Category Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Failed Job Category Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Job Category Details Not Updated";
+			}
+		}else if($option == "job_subcategories"){
+
+			/* 1. Get input fields */
+
+			$sub_cat_id = $this->input->post('sub_cat_id');
+			$name = $this->input->post('name');
+			$description = $this->input->post('description');
+			$category_id = $this->input->post('job_category');
+						
+			/*  2. Prepare dB row update data  */
+			$insert_data = array(
+				'name'=> $name,
+				'description'=> $description,
+				'category_id'=> $category_id,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			
+			
+			/* 3. update dB data*/
+
+			$status = $this->Data->update("job_subcategories", 'sub_cat_id', $sub_cat_id, $insert_data);
+
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Job Sub-Category Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Job Sub-Category Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Failed Job Sub-Category Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Job Sub-Category Details Not Updated";
+			}
 
 		}else if($option == ""){}
 
@@ -322,10 +394,71 @@ class Settings extends  Base
 		);
 		
 	
-	}else if($option == ""){
+	}elseif($option == "job_categories"){
+		$name = $this->input->post('name');
+		$description =$this->input->post('description');
+				
+		/*  2. Prepare dB row update data  */
+		$data = array(
+			'name'=> $name,
+			'description'=> $description,
+			'date_created'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("job_categories", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Job Category';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Job Category Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Job Category Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Job Category Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
 
-	}else if($option == ""){
+	}else if($option == "job_subcategory"){
+		$name = $this->input->post('name');
+		$description =$this->input->post('description');
+		$job_category = $this->input->post('job_category');
 
+		/*  2. Prepare dB row update data  */
+		$data = array(
+			'name'=> $name,
+			'description'=> $description,
+			'category_id' => $job_category,
+			'date_created'=> date("Y-m-d H:i:s"),
+		);
+		$status = $this->Data->insert("job_subcategories", $data);
+		if ($status == true) {
+			/*insert audit trail log*/
+			$action = 'Added New Job Sub-Category';
+				$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 1;
+			$message = "Job Sub-Category Added Successfully";
+		} else {
+			/*insert audit trail log*/
+			$action = 'Failed Create Job Category Attempt';
+			$this->createTrail($action, $username, $status);
+			/*insert audit trail log*/
+			$messageType = 2;
+			$message = "  Create Job Sub-Category Failed";
+		}
+		$data = array(
+			'status' => $status,
+			'messageType' => $messageType,
+			'message' => $message
+		);
 	}else if($option == ""){}
 	 echo json_encode(mb_convert_encoding($data, "UTF-8", "UTF-8"));
  }
