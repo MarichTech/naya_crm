@@ -49,6 +49,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+/*Base*/
+
 $route['default_controller'] = 'Base';
+$route['login'] = 'Base/login';
+$route['logout'] = 'Base/logout';
+$route['unset'] = 'Base/unset_session';
+$route['auth'] = 'Base/authentication';
+$route['home'] = 'Base/home';
+$route['users'] = 'Base/users';
+$route['materials'] = 'Base/materials';
+$route['new_quote'] = 'Base/new_quote';
+$route['rate_cards'] = 'Base/rate_cards';
+$route['company_settings'] = 'Base/company_settings';
+$route['manage_clients'] = 'Base/manage_clients';
+$route['vat_types'] = 'Base/vat_types';
+$route['client_types'] = 'Base/client_types';
+$route['job_categories'] = 'Base/job_categories';
+$route['job_subcategories'] = 'Base/job_subcategories';
+/*Quotes*/
+$route['quote_types'] = 'Quotes/getQuoteTypes';
+$route['clients'] = 'Quotes/getClients';
+$route['references'] = 'Quotes/references';
+$route['getPdfUrl'] = 'Quotes/getPdfUrl';
+$route['clientDetails'] = 'Quotes/clientDetails';
+$route['jobTypes'] = 'Quotes/jobTypes';
+$route['jobSubTypes'] = 'Quotes/jobSubTypes';
+$route['ratecard'] = 'Quotes/ratecard';
+$route['material'] = 'Quotes/material';
+$route['quote'] = 'Quotes/quote';
+$route['loadCurrencies'] = 'Quotes/currencies';
+$route['view_quote/(:any)'] = 'Quotes/view_quote/$1';
+
+/*Settings*/
+$route['update/(:any)'] = 'Settings/update/$1';
+$route['create/(:any)'] = 'Settings/create/$1';
+$route['user_groups'] = 'Settings/user_groups';
+$route['job_category'] = 'Settings/job_categories';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
