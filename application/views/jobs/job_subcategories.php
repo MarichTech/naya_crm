@@ -226,7 +226,16 @@
 					
 			
 			/*	2. Update data  */
-
+			//check data
+			if (name === ''|| description === ''|| job_category === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Job Sub-Category ....',
 				text: 'Please Wait',
@@ -303,7 +312,16 @@
 			let name = document.getElementById("mod_name").value;
 			let description  = document.getElementById("mod_description").value;
 			let job_category = $("#mod_job_category").val();
-
+			//check data
+			if (name === ''|| description === ''|| job_category === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',

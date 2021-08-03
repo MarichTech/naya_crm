@@ -37,11 +37,7 @@
 						</thead>
 						<tbody>
 						<?php $i = 1;
-						//var_dump($staffers);
-
 						foreach ( $staffers as $staff) {
-						//	var_dump($staff);
-
 							?>
 							<tr>
 								<td><?php echo $i ?></td>
@@ -224,7 +220,7 @@
 		function access_levels_update(){
 			let access_levels = []
 			var select = document.getElementById("mod_access_level")
-			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
+			var options = '<option value="" readonly="readonly">Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -242,7 +238,7 @@
 		function access_levels(){
 			let access_levels = []
 			var select = document.getElementById("modal_access_level")
-			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" >Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -274,7 +270,16 @@
 			
 			
 			/*	2. Update data  */
-
+						//check data
+			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === ''||password === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Staff ....',
 				text: 'Please Wait',
@@ -336,16 +341,17 @@
 			let mod_email  = document.getElementById("mod_email");
 			let mod_mobile = document.getElementById("mod_mobile");
 			let mod_department = document.getElementById("mod_department");
-			let mod_access_level = document.getElementById("mod_access_level");//$("#mod_access_level").val();
-			
+
+		//	let mod_access_level = document.getElementById("mod_access_level");
+		/*	@the select2 has already been populated on page load. You don't need to assign a value again @Mwaura*/
+			//$("#mod_access_level").val();
 		/*	populate modal elements with data */
 			mod_id.value = staff_id;
 			mod_name.value = name;
 			mod_email.value = email;
 			mod_mobile.value = mobile;
 			mod_department.value = department;
-			mod_access_level.value = access_level;
-			
+	//		mod_access_level.value = access_level;
 			/* show modal */
 			$('#editModal').modal('show');
 		}
@@ -357,7 +363,15 @@
 			let mobile = document.getElementById("mod_mobile").value;
 			let department = document.getElementById("mod_department").value;
 			let user_group_id = $("#mod_access_level").val();
-
+			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',

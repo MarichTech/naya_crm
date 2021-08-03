@@ -227,6 +227,15 @@
 			
 			/*	2. Update data  */
 
+			if (description === ''|| UOM === ''||quantity === '' ||proposed_rate === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Material ....',
 				text: 'Please Wait',
@@ -310,6 +319,15 @@
 			let proposed_rate = document.getElementById("mod_proposed_rate").value;
 			let remarks = document.getElementById("mod_remarks").value;
 
+			if (description === ''|| UOM === ''||quantity === '' ||proposed_rate === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',

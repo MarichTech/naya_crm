@@ -169,7 +169,16 @@
 			let description  = document.getElementById("modal_description").value;
 						
 			/*	2. Update data  */
-
+			//check data
+			if (name === ''|| description === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Staff ....',
 				text: 'Please Wait',
@@ -242,7 +251,16 @@
 			let category_id = document.getElementById("mod_id").value;
 			let name = document.getElementById("mod_name").value;
 			let description  = document.getElementById("mod_description").value;
-			
+			//check data
+			if (name === ''|| description === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',
