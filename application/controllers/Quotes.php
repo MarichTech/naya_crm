@@ -174,6 +174,8 @@ public function currencies()
 		$materials  = $decoded->materials;
 		$notes  = $decoded->notes;
 		$payment_terms  = $decoded->payment_terms;
+		$user_id = $this->session->userdata('userID');
+		$user =$this->Data->getStaff(array('user_id'=> $user_id));
 
 		//non-provider job types
 
@@ -201,7 +203,7 @@ public function currencies()
 			'payment_terms' => $payment_terms,
 			'amount' => 0 ,
 			'client_id' => $client_id,
-			'user_id' => 1,
+			'user_id' => $user_id,
 			'date_created' => date("Y-m-d H:i:s"),
 			'last_modified' => date("Y-m-d H:i:s"),
 		);
@@ -214,7 +216,6 @@ public function currencies()
 			);
 		/*	-Quotes references  table - */
 		$qt_refs_table_data = array(
-			'index_id' => '',
 			'quote_ref' => $quote_ref,
 			'date_created' => date("Y-m-d H:i:s"),
 			'last_modified' => date("Y-m-d H:i:s"),
@@ -227,7 +228,6 @@ public function currencies()
 			$qt_status_table_insert = $this->Data->insert('quote_status', $qt_status_table_data);
 			$qt_refs_table_insert = $this->Data->insert('quote_references', $qt_refs_table_data);
 			/*	- Audit Trail  table - */
-			$user_id = 1;
 			if(!$qt_table_insert){
 				$this->createTrail('Create Quote', $user_id, "Fail");
 			}else if(!$qt_refs_table_insert){
@@ -237,8 +237,6 @@ public function currencies()
 			}else{
 				$this->createTrail('Create Quote', $user_id, "Success");
 			}
-
-			$user =$this->Data->getStaff(array('user_id'=> $user_id));
 		//	var_dump($user);
 			/* 3. Prepare Data for PDF  */
 			$PDFData = array(
