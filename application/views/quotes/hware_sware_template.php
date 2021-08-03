@@ -8,8 +8,10 @@
 <body>
 <header class="clearfix">
 	<div id="logo">
+	<!--	<img  style="max-width: 100%;width: auto;   height: auto;"
+			  src="<?php /*echo base_url(); */?>assets/pdf/NAYA_LH-01.jpg">-->
 		<img  style="max-width: 100%;width: auto;   height: auto;"
-			  src="<?php echo base_url(); ?>assets/pdf/NAYA_LH-01.jpg">
+			  src="https://www.finsys-group.com/assets/naya/header_banner.jpg">
 	</div>
 	</div>
 </header>
@@ -220,7 +222,9 @@
 <footer>
 	<p>	Quote Generated at: <b> <?php echo  date("H:i:s") ?></b></p>
 	This quote is system generated and does not require a signature or stamp.
-	<img style="max-width: 100%;width: auto;   height: auto;" src="<?php echo base_url(); ?>assets/pdf/NAYA_LH_02.jpg">
+<!--	<img style="max-width: 100%;width: auto;   height: auto;" src="<?php /*echo base_url(); */?>assets/pdf/NAYA_LH_02.jpg">-->
+	<img style="max-width: 100%;width: auto;   height: auto;" src="https://www.finsys-group.com/assets/naya/banner_footer.jpg">
+
 </footer>
 </body>
 </html>
