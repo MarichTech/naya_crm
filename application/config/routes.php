@@ -84,6 +84,8 @@ $route['view_quote/(:any)'] = 'Quotes/view_quote/$1';
 /*Settings*/
 $route['update/(:any)'] = 'Settings/update/$1';
 $route['create/(:any)'] = 'Settings/create/$1';
+$route['user_groups'] = 'Settings/user_groups';
+$route['job_category'] = 'Settings/job_categories';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

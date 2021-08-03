@@ -116,6 +116,8 @@ class Base extends CI_Controller
 	public function users()
 	{
 		$staff = $this->Data->getStaff();
+	//	var_dump($staff);
+
 		$data = array(
 			'staffers' => $staff
 		);

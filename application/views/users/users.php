@@ -37,6 +37,7 @@
 						</thead>
 						<tbody>
 						<?php $i = 1;
+
 						foreach ( $staffers as $staff) {
 							?>
 							<tr>
@@ -57,7 +58,7 @@
 									$department = $staff->department;
 									$access_level = $staff->usergroup;
 									$date_created  = $staff->date_added;
-									$password ="12345";
+
 								?>
 									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
 										. ',' . "'$access_level'" ?>)" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
@@ -101,7 +102,7 @@
 							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
 						</svg>
 					</div>
-					<h5 class="modal-title">Enter Material Details</h5>
+					<h5 class="modal-title">Enter Staff Details</h5>
 					<br>
 					<br>
 					<form id="create_form">
@@ -161,7 +162,7 @@
 							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
 						</svg>
 					</div>
-					<h5 class="modal-title">Edit Material Details</h5>
+					<h5 class="modal-title">Edit Staff Details</h5>
 					<br>
 					<br>
 					<form id="update_form">
@@ -189,7 +190,8 @@
 
 						<div class="form-group col-md-6">
 							<label>Access Level</label><br>
-							<input id="mod_access_level" type="text" class="form-control  basic " name="access_level"  >
+							<select class="form-control  basic" id="mod_access_level" required>
+							</select>
 						</div>
 					</div>
 					</form>
@@ -208,15 +210,17 @@
 	<script type="text/javascript">
 
 		var basePath = "http://localhost/naya_crm";
+
 		$(document).ready(function () {
-			access_level_create()
+			access_levels()
+			access_levels_update()
 
 		})
 
-		function access_level(){
+		function access_levels_update(){
 			let access_levels = []
 			var select = document.getElementById("mod_access_level")
-			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -225,16 +229,16 @@
 					access_levels = data["user_groups"];
 					for (let i = 0; i < access_levels.length; i++){
 						let option = '<option value="' + access_levels[i]["group_id"] + '">' + access_levels[i]["name"] + '</option>'
-						option += option
+					    options += option;
 					}
 					select.innerHTML = options;
 				})
 		}
 
-		function access_level_create(){
+		function access_levels(){
 			let access_levels = []
 			var select = document.getElementById("modal_access_level")
-			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -243,24 +247,25 @@
 					access_levels = data["user_groups"];
 					for (let i = 0; i < access_levels.length; i++){
 						let option = '<option value="' + access_levels[i]["group_id"] + '">' + access_levels[i]["name"] + '</option>'
-						option += option
+					    options += option;
 					}
 					select.innerHTML = options;
 				})
 		}
-		
+
+
 		function createModal(){
 			document.getElementById("create_form").reset();
 			$('#createModal').modal('show');
-
 		}
+
 		function create(){
 			/*	1. get values from create modal*/
 			let name = document.getElementById("modal_name").value;
 			let email  = document.getElementById("modal_email").value;
 			let mobile = document.getElementById("modal_mobile").value;
 			let department = document.getElementById("modal_department").value;
-			let user_group_id = document.getElementById("modal_access_level").value;
+			let user_group_id = $("#mod_access_level").val();
 			let password = document.getElementById("modal_password").value;
 			
 			
@@ -327,7 +332,7 @@
 			let mod_email  = document.getElementById("mod_email");
 			let mod_mobile = document.getElementById("mod_mobile");
 			let mod_department = document.getElementById("mod_department");
-			let mod_access_level = document.getElementById("mod_access_level");
+			let mod_access_level = document.getElementById("mod_access_level");//$("#mod_access_level").val();
 			
 		/*	populate modal elements with data */
 			mod_id.value = staff_id;
@@ -347,7 +352,7 @@
 			let email  = document.getElementById("mod_email").value;
 			let mobile = document.getElementById("mod_mobile").value;
 			let department = document.getElementById("mod_department").value;
-			let user_group_id = document.getElementById("mod_access_level").value;
+			let user_group_id = $("#mod_access_level").val();
 
 			Swal.fire({
 				title: 'Updating ....',

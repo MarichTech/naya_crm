@@ -304,7 +304,7 @@ class Data_model extends CI_Model
 	}
 	public function getUserGroups($params = ""){
 		$this->db->select('user_groups.group_id, user_groups.name, user_groups.description,		 
-		user_groups.date_added, user_groups.last_modified');
+		user_groups.date_created, user_groups.last_modified');
 		$this->db->from('user_groups');
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
