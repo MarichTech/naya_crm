@@ -267,8 +267,7 @@
 			let department = document.getElementById("modal_department").value;
 			let user_group_id = $("#mod_access_level").val();
 			let password = document.getElementById("modal_password").value;
-			
-			
+
 			/*	2. Update data  */
 						//check data
 			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === ''||password === '' ) {

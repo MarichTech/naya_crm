@@ -240,7 +240,41 @@ class Settings extends  Base
 				$message = "Job Sub-Category Details Not Updated";
 			}
 
-		}else if($option == ""){}
+		}else if($option == "company"){
+			/* 1. Get input fields */
+
+			$company_id = $this->input->post('company_id');
+			$name = $this->input->post('name');
+			$mobile = $this->input->post('mobile');
+			$email = $this->input->post('email');
+			$address  = $this->input->post('address');
+			/*  2. Prepare dB row update data  */
+			$update_data = array(
+				'name'=> $name,
+				'email'=> $email,
+				'mobile'=> $mobile,
+				'address'=> $address,
+				'last_modified'=> date("Y-m-d H:i:s"),
+			);
+			/* 3. update dB data*/
+			$status = $this->Data->update("company_details", 'company_id', $company_id, $update_data);
+			if ($status == true) {
+				/*insert audit trail log*/
+				$action = 'Company Details Updated';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 1;
+				$message = "Company Details Updated Successfully";
+			} else {
+				/*insert audit trail log*/
+				$action = 'Failed Company Details Update Attempt';
+				$this->createTrail($action, $username, $status);
+				/*insert audit trail log*/
+				$messageType = 2;
+				$message = "Job Company Details Not Updated";
+			}
+		}
+else if($option == ""){}
 
 		$data = array(
 				'status' => $status,
