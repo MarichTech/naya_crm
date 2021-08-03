@@ -244,6 +244,7 @@
 																		<th>Proposed Rate</th>
 																		<th>Remarks</th>
 																		<th>Date Created</th>
+																		<th></th>
 																		<th class="invisible"></th>
 																	</tr>
 																	</tfoot>

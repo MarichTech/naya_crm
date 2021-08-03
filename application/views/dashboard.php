@@ -67,11 +67,13 @@
 									<th>#</th>
 									<th>Quote Ref</th>
 									<th>Client</th>
+									<th>Quote Type</th>
 									<th>Category</th>
 									<th>Subcategory</th>
 									<th>Done By</th>
 									<th>Date Created</th>
 									<th>Last Modified</th>
+									<th></th>
 									<th class="invisible"></th>
 								</tr>
 								</tfoot>

@@ -327,6 +327,7 @@ class Data_model extends CI_Model
 				}
 			}
 		}
+		$this->db->order_by('user_id', 'ASC');
 		return $this->db->get()->result();
 	}
 
