@@ -220,7 +220,7 @@
 		function access_levels_update(){
 			let access_levels = []
 			var select = document.getElementById("mod_access_level")
-			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -238,7 +238,7 @@
 		function access_levels(){
 			let access_levels = []
 			var select = document.getElementById("modal_access_level")
-			var options = '<option value="" readonly="readonly">Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
