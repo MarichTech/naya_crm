@@ -215,13 +215,14 @@ class Data_model extends CI_Model
 	quotes.job_sub_category, job_subcategories.name as jobSubType, job_categories.name as jobType, quotes.rate_card_id, quotes.additional_materials, 
 		quotes.notes, quotes.assumptions, quotes.payment_terms, quotes.amount, quotes.client_id,
 		 clients.name as name, clients.email, clients.mobile, clients.rep_name, clients.rep_mobile, 
-		 quotes.user_id, users.username, quotes.date_created, quotes.last_modified, quotes.quote_type as quote_type_id,
+		 quotes.user_id, users.username, staff.name as staff_name, quotes.date_created, quotes.last_modified, quotes.quote_type as quote_type_id,
 		  quote_types.description as quote_type ');
 		$this->db->from('quotes');
 		$this->db->join('job_categories',"quotes.job_category = job_categories.category_id");
 		$this->db->join('job_subcategories',"quotes.job_sub_category = job_subcategories.sub_cat_id");
 		$this->db->join('clients',"quotes.client_id = clients.client_id");
 		$this->db->join('users',"quotes.user_id = users.user_id");
+		$this->db->join('staff',"quotes.user_id = staff.user_id");
 		$this->db->join('quote_types',"quotes.quote_type = quote_types.id");
 
 		if (($params != '')) {

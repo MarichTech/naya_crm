@@ -52,7 +52,7 @@
 										<td><?php echo $quote->quote_type ?></td>
 										<td><?php echo $quote->jobType ?></td>
 										<td><?php echo $quote->jobSubType ?></td>
-										<td><?php echo $quote->username ?></td>
+										<td><?php echo $quote->staff_name ?></td>
 										<td><?php echo $quote->date_created ?></td>
 										<td><?php echo $quote->last_modified ?></td>
 										<td class="text-center"><a href="<?php echo base_url() .'view_quote/'.$quote->quote_id ?>"><button  class="btn btn-primary">View</button> </a></td>
