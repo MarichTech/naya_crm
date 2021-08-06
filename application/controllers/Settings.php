@@ -127,6 +127,7 @@ class Settings extends  Base
 			
 			$staff_id = $this->input->post('staff_id');
 			$name = $this->input->post('name');
+			$username = $this->input->post('username');
 			$email = $this->input->post('email');
 			$mobile = $this->input->post('mobile');
 			$department = $this->input->post('department');
@@ -145,7 +146,7 @@ class Settings extends  Base
 			
 
 			$insert_data_user = array(
-				'username' => $name,
+				'username' => $username,
 				'usergroup' => $user_group_id,
 				'last_modified' => date("Y-m-d H:i:s"),
 			);
@@ -381,7 +382,8 @@ else if($option == ""){}
 	 elseif($option == "user"){
 	/* 1. Get input fields */
 		$name = $this->input->post('name');
-		$email =$this->input->post('email');
+		 $username = $this->input->post('username');
+		 $email =$this->input->post('email');
 		$mobile = $this->input->post('mobile');
 		$department = $this->input->post('department');
 		$user_group_id = $this->input->post('user_group_id') ;
@@ -397,7 +399,7 @@ else if($option == ""){}
 		);
 
 		$data_user = array(
-			'username' => $name,
+			'username' => $username,
 			'password' => $password,
 			'usergroup'=> $user_group_id,
 			'date_created'=> date("Y-m-d H:i:s"),

@@ -284,9 +284,10 @@ class Data_model extends CI_Model
 	public function getStaff($params = "")
 	{
 		$this->db->select('staff.staff_id, staff.name, staff.email, staff.mobile, staff.department, staff.usergroup as user_group_id, user_groups.name as usergroup,
-		staff.date_added, staff.last_modified');
+		staff.date_added, staff.last_modified, users.user_id, users.username');
 		$this->db->from('staff');
 		$this->db->join('user_groups', "staff.usergroup = user_groups.group_id");
+		$this->db->join('users', "staff.user_id = users.user_id");
 		if (($params != '')) {
 			foreach ($params as $key => $value) {
 				if ($value != null) {

@@ -30,6 +30,7 @@
 							<th>Email</th>
 							<th>Mobile</th>
 							<th>Department</th>
+							<th>Username</th>
 							<th>User Group</th>
 							<th>Date Added</th>
 							<th>Action</th>
@@ -45,6 +46,7 @@
 								<td><?php echo $staff->email ?></td>
 								<td><?php echo $staff->mobile ?></td>
 								<td><?php echo $staff->department ?></td>
+								<td><?php echo $staff->username ?></td>
 								<td><?php echo $staff->usergroup ?></td>
 								<td><?php echo $staff->date_added ?></td>
 
@@ -52,6 +54,7 @@
 								<?php 
 									$staff_id = $staff->staff_id;
 									$name = $staff->name;
+									$username = $staff->username;
 									$email = $staff->email;
 									$mobile = $staff->mobile;
 									$department = $staff->department;
@@ -59,7 +62,7 @@
 									$date_created  = $staff->date_added;
 
 								?>
-									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
+									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" .  ',' ."'$username'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
 										. ',' . "'$access_level'" ?>)" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
 									<a onclick="confirmDelete('<?php echo base_url() .'settings/users/delete/'.$staff->staff_id ?>')" href="javascript:;" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
 									</ul>
@@ -75,6 +78,7 @@
 							<th>Email</th>
 							<th>Mobile</th>
 							<th>Department</th>
+							<th>Username</th>
 							<th>Access Level</th>
 							<th>Date Added</th>
 							<th class="invisible"></th>
@@ -112,6 +116,12 @@
 							<input id="modal_name" type="text" class="form-control  basic " name="name" required>
 
 						</div>
+						<div class="form-group col-md-12">
+							<label>Username</label><br>
+							<input id="modal_username" type="text"  placeholder="username should not have spaces" class="form-control  basic " name="name" required>
+
+						</div>
+
 						<div class="form-group col-md-6">
 							<label>Email</label><br>
 							<input id="modal_email" type="text" class="form-control  basic " name="email"  required>
@@ -173,10 +183,14 @@
 							<input id="mod_name" type="text" class="form-control  basic " name="name" required>
 
 						</div>
-						<div class="form-group col-md-6">
-							<label>Email</label><br>
-							<input id="mod_email" type="text" class="form-control  basic " name="email"  required>
+						<div class="form-group col-md-12">
+							<label>Username (username should not have spaces)</label><br>
+							<input id="mod_username" type="text"  placeholder="username should not have spaces" class="form-control  basic " name="email"  required>
 						</div>
+					<div class="form-group col-md-6">
+									<label>Email</label><br>
+									<input id="mod_email" type="text" class="form-control  basic " name="email"  required>
+								</div>
 
 						<div class="form-group col-md-6">
 							<label>Mobile</label><br>
@@ -259,8 +273,10 @@
 		}
 
 		function create(){
+
 			/*	1. get values from create modal*/
 			let name = document.getElementById("modal_name").value;
+			let username = document.getElementById("modal_username").value;
 			let email  = document.getElementById("modal_email").value;
 			let mobile = document.getElementById("modal_mobile").value;
 			let department = document.getElementById("modal_department").value;
@@ -269,7 +285,7 @@
 
 			/*	2. Update data  */
 						//check data
-			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === ''||password === '' ) {
+			if (name === ''|| username === ''||email === ''||mobile === '' ||department === '' ||user_group_id === ''||password === '' ) {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
 					animation: false,
@@ -293,6 +309,7 @@
 				dataType: 'JSON',
 				data: {
 					name : name,
+					username : username,
 					email : email,
 					mobile : mobile,
 					department : department,
@@ -332,10 +349,11 @@
 				}
 			});
 		}
-		function updateModal(staff_id, name, email, mobile, department, access_level){
+		function updateModal(staff_id,  name,username, email, mobile, department, access_level){
 			/*get html elements in the modal*/
 			let mod_id = document.getElementById("mod_id");
 			let mod_name = document.getElementById("mod_name");
+			let mod_username = document.getElementById("mod_username");
 			let mod_email  = document.getElementById("mod_email");
 			let mod_mobile = document.getElementById("mod_mobile");
 			let mod_department = document.getElementById("mod_department");
@@ -346,6 +364,7 @@
 		/*	populate modal elements with data */
 			mod_id.value = staff_id;
 			mod_name.value = name;
+			mod_username.value = username;
 			mod_email.value = email;
 			mod_mobile.value = mobile;
 			mod_department.value = department;
@@ -357,12 +376,15 @@
 			/*	1. get values of update modal*/
 			let staff_id = document.getElementById("mod_id").value;
 			let name = document.getElementById("mod_name").value;
+			let username = document.getElementById("mod_username").value;
 			let email  = document.getElementById("mod_email").value;
 			let mobile = document.getElementById("mod_mobile").value;
 			let department = document.getElementById("mod_department").value;
 			let user_group_id = $("#mod_access_level").val();
 
-			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === '' ) {
+			console.log("username")
+			console.log(username)
+			if (name === ''|| email === ''|| username === ''||mobile === '' ||department === '' ||user_group_id === '' ) {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
 					animation: false,
@@ -387,6 +409,7 @@
 				data: {
 					staff_id : staff_id,
 					name : name,
+					username : username,
 					email : email,
 					mobile : mobile,
 					department : department,
