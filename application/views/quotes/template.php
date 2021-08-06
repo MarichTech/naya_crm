@@ -169,43 +169,92 @@
 
 			if(isset($includeBankDetails)){
 			if($includeBankDetails ==  1){ ?>
-			<h2>Bank Details:</h2>
-			<table style="width:100%">
-				<tr>
-					<th>Bank Name: NCBA Bank Kenya PLC</th>
-					<td style=" text-align: left;">ABSA Bank Kenya PLC</td>
-				</tr>
-				<tr>
-					<th rowspan="2">Account Name: Naya Solutions Ltd</th>
-				</tr>
-				<tr>
-					<th rowspan="2">Account Name: Naya Solutions Ltd</th>
-				</tr>
-				<tr>
-					<td rowspan="1">KES Account Number: 7935650015</td>
-					<td>KES Account Number: 7935650015</td>
-				</tr>
+				<h2>Bank Details:</h2>
+				<table style="width:100% ;">
+					<colgroup>
+						<col><col><col><col><col>
+					</colgroup>
+					<thead>
+					<tr>
+						<th colspan="2"><h3>NCBA</h3></th>
+						<th colspan="1"></th>
+						<th colspan="2"><h3>ABSA</h3></th>
+					</tr>
+					</thead>
 
-				<tr>
-					<td>USD Account Number: 7935650028</td>
-				</tr>
-				<tr>
-					<td>Branch Name: Westlands</td>
-				</tr>
-				<tr>
-					<td>Swift Code: CBAFKENX</td>
-				</tr>
-				<tr>
-					<td>Bank & Branch Code: 07000</td>
-				</tr>
-				<tr>
-					<td>Bank Address: P.O. Box 30437 - 00100 Nairobi, Kenya</td>
-				</tr>
-				<tr>
-					<td>MPESA  Paybill:  880100</td>
-				</tr>
+					<tbody style=" text-align: left">
+					<tr>
+						<td style=" text-align: center"><b>Account Name</b></td>
+						<td  style=" text-align: left">Naya Solutions LTD</td>
 
-			</table>
+						<td></td>
+
+						<td style=" text-align: center"><b>Account Name</b></td>
+						<td  style=" text-align: left">Naya Solutions LTD</td>
+					</tr>
+					<tr>
+						<td style=" text-align: center"><b>KES Account Number</b></td>
+						<td style=" text-align: left">7935650015</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>KES Account Number</b></td>
+						<td style=" text-align: left">2043836334</td>
+					</tr>
+					<tr>
+						<td style=" text-align: center"><b>USD Account Number</b></td>
+						<td style=" text-align: left">7935650028</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>USD Account Number</b></td>
+						<td style=" text-align: left">2043836458</td>
+
+					</tr>
+					<tr>
+						<td style=" text-align: center"><b>Branch Name</b></td>
+						<td style=" text-align: left">Westlands</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>Branch Name</b></td>
+						<td style=" text-align: left">Sarit Banch</td>
+					</tr>
+					<tr>
+						<td style=" text-align: center"><b>SWIFT Code</b></td>
+						<td style=" text-align: left">CBAFKENX</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>SWIFT Code</b></td>
+						<td style=" text-align: left">BARCKENX</td>
+					</tr>
+
+					<tr>
+						<td style=" text-align: center"><b>Bank & Branch Code</b></td>
+						<td style=" text-align: left">07000</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>Bank & Branch Code</b></td>
+						<td style=" text-align: left">03106</td>
+					</tr>
+
+					<tr>
+						<td style=" text-align: center"><b>Bank Address</b></td>
+						<td style=" text-align: left">P.O. BOX 30437-00100,
+							Nairobi, Kenya.</td>
+
+						<td></td>
+
+						<td style=" text-align: center"><b>Bank Address</b></td>
+						<td style=" text-align: left">P.O. BOX 30120-00100,
+							Nairobi, Kenya.</td>
+					</tr>
+
+
+					</tbody>
+				</table>
 				<?php
 			}
 			}?>

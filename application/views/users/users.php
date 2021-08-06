@@ -362,6 +362,7 @@
 			let mobile = document.getElementById("mod_mobile").value;
 			let department = document.getElementById("mod_department").value;
 			let user_group_id = $("#mod_access_level").val();
+
 			if (name === ''|| email === ''||mobile === '' ||department === '' ||user_group_id === '' ) {
 				swal.fire({
 					title: 'Please Fill In All Required Fields',
