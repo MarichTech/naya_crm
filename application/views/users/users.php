@@ -22,7 +22,7 @@
 						</svg>&nbsp;&nbsp;Add New Staff
 					</a>
 
-					<table id="default-ordering" class="table table-hover" style="width:100%">
+					<table  class="multi-table table table-striped table-bordered table-hover non-hover" style="width:100%">
 						<thead>
 						<tr>
 							<th>#</th>
@@ -77,7 +77,6 @@
 							<th>Department</th>
 							<th>Access Level</th>
 							<th>Date Added</th>
-							<th></th>
 							<th class="invisible"></th>
 						</tr>
 						</tfoot>

@@ -22,7 +22,7 @@
 						</svg>   &nbsp;&nbsp; Add New Category
 					</a>
 
-					<table id="default-ordering" class="table table-hover" style="width:100%">
+					<table  class="multi-table table table-hover" style="width:100%">
 						<thead>
 						<tr>
 							<th>#</th>
@@ -62,7 +62,6 @@
 							<th>Name</th>
 							<th>Description</th>
 							<th>Date Created</th>
-							<th></th>
 							<th class="invisible"></th>
 						</tr>
 						</tfoot>

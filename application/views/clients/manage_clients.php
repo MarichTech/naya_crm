@@ -22,7 +22,7 @@
 						</svg>  &nbsp;&nbsp;  Add New Client
 						</a>
 
-					<table id="default-ordering" class="table table-hover" style="width:100%">
+					<table class="multi-table table table-striped table-bordered table-hover non-hover" style="width:100%">
 						<thead>
 						<tr>
 							<th>#</th>
@@ -81,7 +81,6 @@
 							<th>Address</th>
 							<th>Contact Name</th>
 							<th>Contact Email</th>
-							<th></th>
 							<th class="invisible"></th>
 						</tr>
 						</tfoot>

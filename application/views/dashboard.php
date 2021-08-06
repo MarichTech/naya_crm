@@ -37,7 +37,7 @@
 									<th>Done By</th>
 									<th>Date Created</th>
 									<th>Last Modified</th>
-									<th>Actions</th>
+									<th  class="text-center">Actions</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -73,7 +73,6 @@
 									<th>Done By</th>
 									<th>Date Created</th>
 									<th>Last Modified</th>
-									<th></th>
 									<th class="invisible"></th>
 								</tr>
 								</tfoot>
