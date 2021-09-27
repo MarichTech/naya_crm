@@ -261,6 +261,7 @@
 												<th>Selling Price</th>
 												<th>Remarks</th>
 												<th>VAT</th>
+												<th>Edit</th>
 											</tr>
 											</thead>
 											<div style="position: absolute; top: 0; right: 0;z-index: 9999; margin-left: 20px; margin-right: 20px;">
@@ -548,6 +549,58 @@
 		</div>
 	</div>
 
+<!-- Modal  Edit Line Item Row-->
+	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="edit_line_item_modal" tabindex="-1"
+		 role="dialog" aria-labelledby="standardModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document" id="standardModalLabel">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="icon-content">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="feather feather-bell">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
+					</div>
+					<h5 class="modal-title">Edit Line Item Details</h5>
+					<br>
+					<br>
+					<form id="r_update_form">
+
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label>Description</label><br>
+								<input id="r_id" type="text" class="form-control  basic " name="desc" hidden>
+								<input id="r_name" type="text" class="form-control  basic " name="desc" required>
+
+							</div>
+							<div class="form-group col-md-6">
+								<label>Buying Price</label><br>
+								<input id="r_buying_price" type="number" class="form-control  basic "
+									   name="r_buying_price" required>
+							</div>
+
+							<div class="form-group col-md-6">
+								<label>Quantity</label><br>
+								<input id="r_quantity" type="number" class="form-control  basic " name="quantity"
+									   required>
+							</div>
+							<div class="form-group col-md-12">
+								<label>Remarks</label><br>
+								<input id="r_remarks" type="text" class="form-control  basic " name="remarks">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+					<button type="button" onclick="edit_line_item()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Modal Support Item Row-->
 	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="support_modal" tabindex="-1"
@@ -596,7 +649,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Modal  Update Row-->
 	<div class="modal animated fadeInUp custo-fadeInUp modal-notification" id="standardModal" tabindex="-1"
@@ -763,6 +815,7 @@
 			materials()
 			currencies()
 			quoteTypes()
+
 		});
 
 		function quoteTypes() {
@@ -830,7 +883,6 @@
 
 
 		function selectedQuoteType() {
-			clients();
 			//show user selection
 			quote_type_id_ = $("#quote_type_select").val();
 			let select = document.getElementById("quote_type_select");
@@ -838,6 +890,8 @@
 			document.getElementById("quote_type").innerText = quote_type_
 			filterMenu()
 			filterJobTypes()
+			clients();
+
 		}
 		function filterJobTypes() {
 			if (quote_type_id_ == 1) {
@@ -875,14 +929,16 @@
 						clients = data["clients"];
 						clients_ = clients
 						//hide clients on dropdown depending onn quote Type selection
+						console.log("quote_type_id_")
+						console.log(quote_type_id_)
 						if (quote_type_id_ == 1) {
 							//hide non-provider clients
 							console.log("clients_ before")
 							console.log(clients_)
 							for (let i = 0; i < clients_.length; i++) {
-								if (clients_[i]['client_group'] != 1) {
+								if (clients_[i]['client_group'] !== 1) {
 									clients_.splice(i, 1)
-									console.log("clients_")
+									console.log("clients_ filtered here")
 									console.log(clients_)
 								}
 							}
@@ -983,11 +1039,17 @@
 				//hide Support Details
 				$('#support_duration').attr('hidden', true);
 				$('#support_title').attr('hidden', true);
+
+					//hide Installation & Accessiories Radios
+				$('#installation_icon').attr('hidden', true);
+				$('#accessories_icon').attr('hidden', true);
+
 				//hide Monthly Charge
 				$('#support_charge').attr('hidden', true);
 				$('#charge_title').attr('hidden', true);
 				$('#support_div').attr('hidden', true);
 				$('#support_docs_title').attr('hidden', true);
+
 
 				//hide Rental Details
 				$('#rent_div').attr('hidden', true);
@@ -1036,6 +1098,9 @@
 				//hide Support Details
 				$('#support_duration').attr('hidden', true);
 				$('#support_title').attr('hidden', true);
+				//show Installation & Accessiories Radios
+				$('#installation_icon').attr('hidden', false);
+				$('#accessories_icon').attr('hidden', false);
 				//hide Monthly Charge
 				$('#support_charge').attr('hidden', true);
 				$('#charge_title').attr('hidden', true);
@@ -1089,7 +1154,9 @@
 				//hide UID
 				$('#quote_uid').attr('hidden', true);
 				$('#uuid_title').attr('hidden', true);
-
+				//hide Installation & Accessiories Radios
+				$('#installation_icon').attr('hidden', false);
+				$('#accessories_icon').attr('hidden', false);
 				//hide Rental Details
 				$('#rent_div').attr('hidden', true);
 				$('#rent_person').attr('hidden', true);
@@ -1109,7 +1176,7 @@
 				$('#pill-vertical-h-8').attr('hidden', false);
 				$('#pill-vertical-p-8').attr('hidden', false);
 
-					$('#pill-vertical-t-7').attr('hidden', true);
+				$('#pill-vertical-t-7').attr('hidden', true);
 				$('#pill-vertical-h-7').attr('hidden', true);
 				$('#pill-vertical-p-7').attr('hidden', true);
 
@@ -1618,6 +1685,8 @@
 		function add_line_item_modal() {
 			$('#line_item_modal').modal('show');
 		}
+
+
 		function add_support_line_item_modal() {
 					$('#support_modal').modal('show');
 				}
@@ -1760,14 +1829,16 @@
 			console.log(row_remarks)
 			/*	2. Push Data Line Items Global array  */
 			let data = []
+			let index = line_items_.length + 1
+
 			data = {
+				id : index,
 				description: row_name,
 				buying_price: row_buying_price,
 				quantity: row_quantity,
 				selling_price: row_buying_price * row_quantity * markup_,
 				remarks: row_remarks,
 			}
-			let index = line_items_.length + 1
 			line_items_.push(data)
 			console.log("created index")
 			console.log(line_items_)
@@ -1785,8 +1856,14 @@
 				var vat = '<div class="n-chk"><label class="new-control new-checkbox checkbox-outline-warning">' +
 						'<input type="checkbox"  name="vat_radio_' + i + '"  id="vat_radio_' + i + '"  onclick="vat_include_line_item(' + i + ')" class="new-control-input">' +
 						'<span class="new-control-indicator"></span>Include VAT</label></div>'
-				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + buying_price +
-						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + selling_price + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + vat + "</td></tr>"
+				var edit_icon =  '<a onclick="edit_line_item_modal(' + '\'' + (i  + 1 ) +  '\''+  ',\'' + line_items[i].description + '\'' + ', \'' + line_items[i].buying_price
+					+ '\'' + ', \'' + line_items[i].quantity + '\'' +  ',\' ' + line_items[i].remarks + '\')"' +
+					'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+					'data-original-title="Edit">' +
+					'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
+					'</a>'
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + parseFloat(buying_price).toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2,}) +
+						"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + selling_price.toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2,}) + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + vat + "</td>" + "<td>" + edit_icon + "</td></tr>"
 			}
 			tbody.innerHTML = tr;
 			/*	4. Reset && hide modal  */
@@ -1797,6 +1874,86 @@
 			document.getElementById("line_item_toast_body").innerHTML = "Item " + description + " Details Added Succesfully!."
 			//display toast
 			$('.toast').toast('show');
+		}
+		function edit_line_item_modal(id, desc, buying_price, quantity, remarks){
+			let r_id = document.getElementById("r_id");
+			let r_name = document.getElementById("r_name");
+			let r_buying_price  = document.getElementById("r_buying_price");
+			let r_quantity = document.getElementById("r_quantity");
+			let r_remarks = document.getElementById("r_remarks");
+			r_id.value = id;
+			r_name.value = desc;
+			r_buying_price.value = buying_price;
+			r_quantity.value = quantity;
+			r_remarks.value = remarks;
+			$('#edit_line_item_modal').modal('show');
+		}
+		function edit_line_item() {
+			/*	1. Get Modal Data   */
+			let mod_id  = document.getElementById("r_id").value;
+			let mod_desc  = document.getElementById("r_name").value;
+			let mod_buying_price = document.getElementById("r_buying_price").value;
+			let mod_quantity  = document.getElementById("r_quantity").value;
+			let mod_remarks = document.getElementById("r_remarks").value;
+			let mod_selling_price = mod_buying_price * mod_quantity * 1.2
+			if (mod_desc === ''|| mod_buying_price === ''||mod_quantity === '' ||mod_remarks === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
+			/*	2. update Line Items Global array Attributes for that index ID   */
+			console.log("line_items_ before update")
+			console.log(line_items_)
+			for (var i in line_items_) {
+
+				if (line_items_[i].id == mod_id) {
+					line_items_[i].description = mod_desc
+					line_items_[i].buying_price = mod_buying_price
+					line_items_[i].quantity = mod_quantity
+					line_items_[i].selling_price = mod_selling_price
+					line_items_[i].remarks = mod_remarks
+					console.log("updated row line_items_")
+					console.log(line_items_)
+				}
+			}
+
+			/*	3. Update  table   */
+			var tbody = document.getElementById("line_item_tbody");
+			let line_items = line_items_
+			var tr = '';
+			var total = 0
+			for (let i = 0; i < line_items.length; i++) {
+				var description = line_items[i].description
+				var buying_price = line_items[i].buying_price
+				var quantity = line_items[i].quantity
+				var selling_price = line_items[i].selling_price
+				var remarks = line_items[i].remarks;
+				var vat = '<div class="n-chk"><label class="new-control new-checkbox checkbox-outline-warning">' +
+					'<input type="checkbox"  name="vat_radio_' + i + '"  id="vat_radio_' + i + '"  onclick="vat_include_line_item(' + i + ')" class="new-control-input">' +
+					'<span class="new-control-indicator"></span>Include VAT</label></div>'
+				var edit_icon =  '<a onclick="edit_line_item_modal('  +   (i + 1) +  ',\'' + line_items[i].description + '\'' + ', \'' + line_items[i].buying_price
+					+ '\'' + ', \'' + line_items[i].quantity + '\'' +  ',\' ' + line_items[i].remarks + '\')"' +
+					'class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""' +
+					'data-original-title="Edit">' +
+					'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" fill="rgba(216,176,12,1)"/></svg>' +
+					'</a>'
+				tr += "<tr id='tr" + i + "'><td>" + (i + 1) + "</td><td id='td_desc'>" + description + "</td><td id='td_uom'>" + buying_price.toLocaleString('en-US', { minimumFractionDigits: 2,maximumFractionDigits: 2,}) +
+					"</td><td id='td_quantity'>" + quantity + "</td><td id='td_rate'>" + selling_price.toLocaleString('en-US', {minimumFractionDigits: 2,maximumFractionDigits: 2,}) + "</td><td id='td_remarks'>" + remarks + "</td>" + "<td >" + vat + "</td>" + "<td>" + edit_icon + "</td></tr>"
+			}
+			tbody.innerHTML = tr;
+			/*	4. Reset && hide modal  */
+			document.getElementById("r_update_form").reset();
+			$('#edit_line_item_modal').modal('hide');
+			/*	5. notify user of update status  */
+			// toast body populate
+			document.getElementById("line_item_toast_body").innerHTML = "Item " + description + " Details Updated Succesfully!."
+			//display toast
+			$('.toast').toast('show');
+
 		}
 		function add_support_item() {
 			/*	1. get data from modal form items  */

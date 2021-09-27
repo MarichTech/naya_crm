@@ -19,10 +19,10 @@
 
 					<a onclick="createModal()" class="btn btn-primary mb-2">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line>
-						</svg>    - Add New Staff
+						</svg>&nbsp;&nbsp;Add New Staff
 					</a>
 
-					<table id="default-ordering" class="table table-hover" style="width:100%">
+					<table  class="multi-table table table-striped table-bordered table-hover non-hover" style="width:100%">
 						<thead>
 						<tr>
 							<th>#</th>
@@ -30,6 +30,7 @@
 							<th>Email</th>
 							<th>Mobile</th>
 							<th>Department</th>
+							<th>Username</th>
 							<th>User Group</th>
 							<th>Date Added</th>
 							<th>Action</th>
@@ -37,7 +38,6 @@
 						</thead>
 						<tbody>
 						<?php $i = 1;
-
 						foreach ( $staffers as $staff) {
 							?>
 							<tr>
@@ -46,6 +46,7 @@
 								<td><?php echo $staff->email ?></td>
 								<td><?php echo $staff->mobile ?></td>
 								<td><?php echo $staff->department ?></td>
+								<td><?php echo $staff->username ?></td>
 								<td><?php echo $staff->usergroup ?></td>
 								<td><?php echo $staff->date_added ?></td>
 
@@ -53,6 +54,7 @@
 								<?php 
 									$staff_id = $staff->staff_id;
 									$name = $staff->name;
+									$username = $staff->username;
 									$email = $staff->email;
 									$mobile = $staff->mobile;
 									$department = $staff->department;
@@ -60,7 +62,7 @@
 									$date_created  = $staff->date_added;
 
 								?>
-									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
+									<a onclick="updateModal(<?php echo "'$staff_id'" . ',' ."'$name'" .  ',' ."'$username'" . ',' . "'$email'" .  ',' . "'$mobile'" . ',' . "'$department'"
 										. ',' . "'$access_level'" ?>)" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 p-1 br-6 mb-1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
 									<a onclick="confirmDelete('<?php echo base_url() .'settings/users/delete/'.$staff->staff_id ?>')" href="javascript:;" class="bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash p-1 br-6 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a>
 									</ul>
@@ -76,6 +78,7 @@
 							<th>Email</th>
 							<th>Mobile</th>
 							<th>Department</th>
+							<th>Username</th>
 							<th>Access Level</th>
 							<th>Date Added</th>
 							<th class="invisible"></th>
@@ -113,6 +116,12 @@
 							<input id="modal_name" type="text" class="form-control  basic " name="name" required>
 
 						</div>
+						<div class="form-group col-md-12">
+							<label>Username</label><br>
+							<input id="modal_username" type="text"  placeholder="username should not have spaces" class="form-control  basic " name="name" required>
+
+						</div>
+
 						<div class="form-group col-md-6">
 							<label>Email</label><br>
 							<input id="modal_email" type="text" class="form-control  basic " name="email"  required>
@@ -174,10 +183,14 @@
 							<input id="mod_name" type="text" class="form-control  basic " name="name" required>
 
 						</div>
-						<div class="form-group col-md-6">
-							<label>Email</label><br>
-							<input id="mod_email" type="text" class="form-control  basic " name="email"  required>
+						<div class="form-group col-md-12">
+							<label>Username (username should not have spaces)</label><br>
+							<input id="mod_username" type="text"  placeholder="username should not have spaces" class="form-control  basic " name="email"  required>
 						</div>
+					<div class="form-group col-md-6">
+									<label>Email</label><br>
+									<input id="mod_email" type="text" class="form-control  basic " name="email"  required>
+								</div>
 
 						<div class="form-group col-md-6">
 							<label>Mobile</label><br>
@@ -220,7 +233,7 @@
 		function access_levels_update(){
 			let access_levels = []
 			var select = document.getElementById("mod_access_level")
-			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
+			var options = '<option value="" readonly="readonly">Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -238,7 +251,7 @@
 		function access_levels(){
 			let access_levels = []
 			var select = document.getElementById("modal_access_level")
-			var options = '<option value="" readonly="readonly" selected>Select Access Level</option>'
+			var options = '<option value="" readonly="readonly" >Select Access Level</option>'
 			fetch(this.basePath + '/user_groups')
 				.then(response => {
 					return response.json()
@@ -260,17 +273,27 @@
 		}
 
 		function create(){
+
 			/*	1. get values from create modal*/
 			let name = document.getElementById("modal_name").value;
+			let username = document.getElementById("modal_username").value;
 			let email  = document.getElementById("modal_email").value;
 			let mobile = document.getElementById("modal_mobile").value;
 			let department = document.getElementById("modal_department").value;
 			let user_group_id = $("#mod_access_level").val();
 			let password = document.getElementById("modal_password").value;
-			
-			
-			/*	2. Update data  */
 
+			/*	2. Update data  */
+						//check data
+			if (name === ''|| username === ''||email === ''||mobile === '' ||department === '' ||user_group_id === ''||password === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Staff ....',
 				text: 'Please Wait',
@@ -286,6 +309,7 @@
 				dataType: 'JSON',
 				data: {
 					name : name,
+					username : username,
 					email : email,
 					mobile : mobile,
 					department : department,
@@ -325,23 +349,26 @@
 				}
 			});
 		}
-		function updateModal(staff_id, name, email, mobile, department, access_level){
+		function updateModal(staff_id,  name,username, email, mobile, department, access_level){
 			/*get html elements in the modal*/
 			let mod_id = document.getElementById("mod_id");
 			let mod_name = document.getElementById("mod_name");
+			let mod_username = document.getElementById("mod_username");
 			let mod_email  = document.getElementById("mod_email");
 			let mod_mobile = document.getElementById("mod_mobile");
 			let mod_department = document.getElementById("mod_department");
-			let mod_access_level = document.getElementById("mod_access_level");//$("#mod_access_level").val();
-			
+
+		//	let mod_access_level = document.getElementById("mod_access_level");
+		/*	@the select2 has already been populated on page load. You don't need to assign a value again @Mwaura*/
+			//$("#mod_access_level").val();
 		/*	populate modal elements with data */
 			mod_id.value = staff_id;
 			mod_name.value = name;
+			mod_username.value = username;
 			mod_email.value = email;
 			mod_mobile.value = mobile;
 			mod_department.value = department;
-			mod_access_level.value = access_level;
-			
+	//		mod_access_level.value = access_level;
 			/* show modal */
 			$('#editModal').modal('show');
 		}
@@ -349,11 +376,23 @@
 			/*	1. get values of update modal*/
 			let staff_id = document.getElementById("mod_id").value;
 			let name = document.getElementById("mod_name").value;
+			let username = document.getElementById("mod_username").value;
 			let email  = document.getElementById("mod_email").value;
 			let mobile = document.getElementById("mod_mobile").value;
 			let department = document.getElementById("mod_department").value;
 			let user_group_id = $("#mod_access_level").val();
 
+			console.log("username")
+			console.log(username)
+			if (name === ''|| email === ''|| username === ''||mobile === '' ||department === '' ||user_group_id === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',
@@ -370,6 +409,7 @@
 				data: {
 					staff_id : staff_id,
 					name : name,
+					username : username,
 					email : email,
 					mobile : mobile,
 					department : department,

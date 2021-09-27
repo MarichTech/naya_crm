@@ -22,7 +22,7 @@
 
 				<a onclick="createModal()" class="btn btn-primary mb-2">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line>
-						</svg>    - Add New Material
+						</svg>    &nbsp;&nbsp;Add New Material
 						</a>
 
 					<table id="default-ordering" class="table table-hover" style="width:100%">
@@ -227,6 +227,15 @@
 			
 			/*	2. Update data  */
 
+			if (description === ''|| UOM === ''||quantity === '' ||proposed_rate === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Adding Material ....',
 				text: 'Please Wait',
@@ -310,6 +319,15 @@
 			let proposed_rate = document.getElementById("mod_proposed_rate").value;
 			let remarks = document.getElementById("mod_remarks").value;
 
+			if (description === ''|| UOM === ''||quantity === '' ||proposed_rate === '' ) {
+				swal.fire({
+					title: 'Please Fill In All Required Fields',
+					animation: false,
+					customClass: 'animated tada',
+					padding: '2em'
+				})
+				return false;
+			}
 			Swal.fire({
 				title: 'Updating ....',
 				text: 'Please Wait',

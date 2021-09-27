@@ -25,7 +25,7 @@
 					</div>
 					<div class="widget-content widget-content-area br-6">
 						<div class="table-responsive mb-4 mt-4">
-							<table id="default-ordering" class="table table-hover" style="width:100%">
+							<table class="multi-table table table-hover" style="width:100%">
 								<thead>
 								<tr>
 									<th>#</th>
@@ -37,7 +37,7 @@
 									<th>Done By</th>
 									<th>Date Created</th>
 									<th>Last Modified</th>
-									<th>Actions</th>
+									<th  class="text-center">Actions</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -52,7 +52,7 @@
 										<td><?php echo $quote->quote_type ?></td>
 										<td><?php echo $quote->jobType ?></td>
 										<td><?php echo $quote->jobSubType ?></td>
-										<td><?php echo $quote->username ?></td>
+										<td><?php echo $quote->staff_name ?></td>
 										<td><?php echo $quote->date_created ?></td>
 										<td><?php echo $quote->last_modified ?></td>
 										<td class="text-center"><a href="<?php echo base_url() .'view_quote/'.$quote->quote_id ?>"><button  class="btn btn-primary">View</button> </a></td>
@@ -67,6 +67,7 @@
 									<th>#</th>
 									<th>Quote Ref</th>
 									<th>Client</th>
+									<th>Quote Type</th>
 									<th>Category</th>
 									<th>Subcategory</th>
 									<th>Done By</th>
