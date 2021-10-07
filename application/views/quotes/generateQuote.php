@@ -237,8 +237,8 @@
 										</table>
 									</div>
 								</section>
-								<h3>Hardware & Software Items</h3>
-								<section>
+								<h3 id="cl12">Hardware & Software Items</h3>
+								<section id="cl12">
 									<p> Add H/ware or S/ware Line Item</p>
 									<div class="table-responsive mb-4 mt-4">
 										<a onclick="add_line_item_modal()">
@@ -1031,6 +1031,7 @@
 					})
 		}
 
+
 		function filterMenu() {
 			let quote_type = quote_type_id_
 			//if quote type is Provider(1), show rate card & job type sections
@@ -1069,13 +1070,18 @@
 				$('#pill-vertical-h-8').attr('hidden', false);
 				$('#pill-vertical-p-8').attr('hidden', false);
 
+				$("#pill-vertical").steps("remove", 7);
+				
 				$('#pill-vertical-t-6').attr('hidden', false);
 				$('#pill-vertical-h-6').attr('hidden', false);
 				$('#pill-vertical-p-6').attr('hidden', false);
 
-				$('#pill-vertical-t-5').attr('hidden', true);
-				$('#pill-vertical-h-5').attr('hidden', true);
-				$('#pill-vertical-p-5').attr('hidden', true);
+				$("#pill-vertical").steps("remove", 5);
+				//$("#pill-vertical").steps('incomplete',5);
+				//	$("#pill-vertical").steps("remove", 2);
+				//$('#pill-vertical-t-5').attr('remove', true);
+				//$('#pill-vertical-h-5').attr('remove', true);
+				//$('#pill-vertical-p-5').attr('remove', true);
 
 				$('#pill-vertical-t-4').attr('hidden', false);
 				$('#pill-vertical-h-4').attr('hidden', false);
